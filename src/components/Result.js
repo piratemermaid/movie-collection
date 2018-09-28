@@ -9,6 +9,8 @@ const Result = props => {
   const matches = props.movies.filter(movie => {
     if (movie.tags.includes(tag)) {
       return movie.title;
+    } else {
+      return null;
     }
   });
 
