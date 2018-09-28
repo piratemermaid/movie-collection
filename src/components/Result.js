@@ -16,7 +16,9 @@ const Result = props => {
 
   return (
     <div>
-      <Link to="/">Back to Search arrow</Link>
+      <Link to="/">
+        <i className="material-icons small icon-link">arrow_back</i>
+      </Link>
       <br />
       <h5>Movies matching "{props.match.params.tag}"</h5>
       <TableList movies={matches} />
