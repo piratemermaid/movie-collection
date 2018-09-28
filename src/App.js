@@ -43,6 +43,9 @@ class App extends Component {
         }
       ]
     };
+
+    this.addMovie = this.addMovie.bind(this);
+    this.getAllTags = this.getAllTags.bind(this);
   }
 
   addMovie(movie, type) {
@@ -88,7 +91,7 @@ class App extends Component {
                   render={() => (
                     <Search
                       movies={this.state.movies}
-                      getAllTags={this.getAllTags.bind(this)}
+                      getAllTags={this.getAllTags}
                     />
                   )}
                 />
@@ -99,7 +102,10 @@ class App extends Component {
                 <Route
                   path="/add/:type"
                   render={() => (
-                    <AddMovie addMovie={this.addMovie.bind(this)} />
+                    <AddMovie
+                      addMovie={this.addMovie}
+                      getAllTags={this.getAllTags}
+                    />
                   )}
                 />
                 <Route
