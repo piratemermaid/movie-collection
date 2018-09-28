@@ -14,34 +14,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      collection: [
-        {
-          title: "Harry Potter",
-          year: 2000,
-          tags: ["fantasy", "nerdy", "magic"],
-          watched: true
-        },
-        {
-          title: "Zootopia",
-          year: 2014,
-          tags: ["zoo", "animals", "animated"],
-          watched: false
-        }
-      ],
-      wishlist: [
-        {
-          title: "Solo: A Star Wars Story",
-          year: 2017,
-          tags: ["fantasy", "nerdy"],
-          watched: false
-        },
-        {
-          title: "Avengers",
-          year: 2012,
-          tags: ["superhero", "nerdy"],
-          watched: false
-        }
-      ]
+      collection: [],
+      wishlist: []
     };
 
     this.addMovie = this.addMovie.bind(this);
@@ -52,6 +26,7 @@ class App extends Component {
     let current = this.state[type];
     current.push(movie);
     this.setState({ [type]: current });
+    localStorage.setItem("movieState", JSON.stringify(this.state));
   }
 
   getAllTags() {
@@ -70,14 +45,8 @@ class App extends Component {
   }
 
   componentWillMount() {
-    if (!this.state) {
-      const state = localStorage.getItem(JSON.parse("movieState"));
-      // TODO: set state from localStorage
-      this.setState({
-        movies: state.movies || null,
-        wishlist: state.wishlist || null
-      });
-    }
+    const state = JSON.parse(localStorage.getItem("movieState"));
+    this.setState({ collection: state.collection, wishlist: state.wishlist });
   }
 
   render() {
