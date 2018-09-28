@@ -43,6 +43,7 @@ class AddMovie extends Component {
       };
       const type = this.props.match.params.type;
       this.props.addMovie(info, type);
+      this.props.history.push("/collection");
     }
   }
 
@@ -98,7 +99,7 @@ class AddMovie extends Component {
         <div className="col s12">
           <h5>
             Add to{" "}
-            {this.props.match.params.type === "collection"
+            {this.props.match.params.type === "movies"
               ? "Collection"
               : "Wishlist"}
           </h5>
