@@ -48,7 +48,7 @@ class AddMovie extends Component {
       };
       const type = this.props.match.params.type;
       this.props.addMovie(info, type);
-      this.props.history.push("/collection");
+      this.props.history.push(`/${type}`);
     }
   }
 
@@ -99,18 +99,14 @@ class AddMovie extends Component {
   }
 
   render() {
+    const type = this.props.match.params.type;
     return (
       <div className="row">
         <div className="col s12">
-          <Link to="/collection">
+          <Link to={`/${type}`}>
             <i className="material-icons small icon-link">arrow_back</i>
           </Link>
-          <h5>
-            Add to{" "}
-            {this.props.match.params.type === "movies"
-              ? "Collection"
-              : "Wishlist"}
-          </h5>
+          <h5>Add to {type === "collection" ? "Collection" : "Wishlist"}</h5>
           <div className="row">
             <form onSubmit={e => this.addMovie(e)}>
               <div className="input-field col s12">
