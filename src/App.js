@@ -49,6 +49,20 @@ class App extends Component {
     console.log("add", movie, "to", type);
   }
 
+  getAllTags() {
+    let tagList = [];
+
+    for (let i in this.state.movies) {
+      for (let j in this.state.movies[i].tags) {
+        if (!tagList.includes(this.state.movies[i].tags[j])) {
+          tagList.push(this.state.movies[i].tags[j]);
+        }
+      }
+    }
+
+    return tagList;
+  }
+
   componentWillMount() {
     if (!this.state) {
       const state = localStorage.getItem(JSON.parse("movieState"));
@@ -71,7 +85,12 @@ class App extends Component {
                 <Route
                   exact
                   path="/"
-                  render={() => <Search movies={this.state.movies} />}
+                  render={() => (
+                    <Search
+                      movies={this.state.movies}
+                      getAllTags={this.getAllTags.bind(this)}
+                    />
+                  )}
                 />
                 <Route
                   path="/search/:tag"
