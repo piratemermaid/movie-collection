@@ -64,11 +64,13 @@ class EditMovie extends Component {
         <Link to="/collection">
           <i className="material-icons small icon-link">arrow_back</i>
         </Link>
-        <Link
-          to="/collection"
-          onClick={this.props.deleteMovie(this.state.title)}
-        >
-          <i className="material-icons small icon-link float-right">delete</i>
+        <Link to="/collection">
+          <i
+            className="material-icons small icon-link float-right"
+            onClick={() => this.props.deleteMovie(this.state.title)}
+          >
+            delete
+          </i>
         </Link>
         <h5>edit {this.state.title}</h5>
         <div className="row">
