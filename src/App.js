@@ -49,7 +49,9 @@ class App extends Component {
   }
 
   addMovie(movie, type) {
-    console.log("add", movie, "to", type);
+    let current = this.state[type];
+    current.push(movie);
+    this.setState({ [type]: current });
   }
 
   getAllTags() {
