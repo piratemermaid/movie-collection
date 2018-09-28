@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Result from "./components/Result";
+import AddMovie from "./components/AddMovie";
 import Collection from "./components/Collection";
 import Wishlist from "./components/Wishlist";
 
@@ -44,6 +45,21 @@ class App extends Component {
     };
   }
 
+  addMovie(movie, type) {
+    console.log("add", movie, "to", type);
+  }
+
+  componentWillMount() {
+    if (!this.state) {
+      const state = localStorage.getItem(JSON.parse("movieState"));
+      // TODO: set state from localStorage
+      this.setState({
+        movies: state.movies || null,
+        wishlist: state.wishlist || null
+      });
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -60,6 +76,12 @@ class App extends Component {
                 <Route
                   path="/search/:tag"
                   render={() => <Result movies={this.state.movies} />}
+                />
+                <Route
+                  path="/add/:type"
+                  render={() => (
+                    <AddMovie addMovie={this.addMovie.bind(this)} />
+                  )}
                 />
                 <Route
                   path="/collection"
