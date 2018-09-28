@@ -24,21 +24,26 @@ class EditMovie extends Component {
     this.setState({ added: e.target.value });
   }
 
-  updateTags(tag) {
-    let tagStr = this.state.tags;
-    if (tagStr.includes(tag) || tag === "") {
-      return;
-    }
-    if (tagStr !== "") {
-      tagStr += " ";
-    }
-    tagStr += tag;
-    this.setState({ tags: tagStr });
-  }
-
   updateMovie(e) {
     e.preventDefault();
-    this.props.editMovie(this.state);
+
+    let tags;
+
+    if (String(this.state.tags.length) > 0) {
+      tags = this.state.tags.split(" ");
+      tags = tags.filter(val => val); // get rid of empty values
+    } else {
+      tags = [];
+    }
+    const info = {
+      title: this.state.title,
+      year: this.state.year,
+      tags,
+      watched: this.state.watched,
+      added: this.state.added
+    };
+
+    this.props.editMovie(info);
     this.props.history.push("/collection");
   }
 
@@ -47,14 +52,18 @@ class EditMovie extends Component {
     const info = this.props.movies.collection.filter(movie => {
       return movie.title === title;
     })[0];
-    let tagStr = "";
-    for (let i in info.tags) {
-      tagStr += info.tags[i];
-      if (i < info.tags.length - 1) {
-        tagStr += " ";
+
+    if (typeof info.tags !== "string") {
+      let tagStr = "";
+      for (let i in info.tags) {
+        tagStr += info.tags[i];
+        if (i < info.tags.length - 1) {
+          tagStr += " ";
+        }
       }
+      info.tags = tagStr;
     }
-    info.tags = tagStr;
+
     this.setState(info);
   }
 
