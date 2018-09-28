@@ -104,6 +104,25 @@ h5 {
   border-bottom: 1px solid #64b5f6;
   box-shadow: 0 1px 0 0 #64b5f6;
 }
+/* label focus color */
+.input-field input[type="date"]:focus + label {
+  color: #64b5f6;
+}
+/* label underline focus color */
+.input-field input[type="date"]:focus {
+  border-bottom: 1px solid #64b5f6;
+  box-shadow: 0 1px 0 0 #64b5f6;
+}
+/* valid color */
+.input-field input[type="date"].valid {
+  border-bottom: 1px solid #64b5f6;
+  box-shadow: 0 1px 0 0 #64b5f6;
+}
+/* invalid color */
+.input-field input[type="date"].invalid {
+  border-bottom: 1px solid #64b5f6;
+  box-shadow: 0 1px 0 0 #64b5f6;
+}
 /* icon prefix focus color */
 .input-field .prefix.active {
   color: #64b5f6;
@@ -111,6 +130,7 @@ h5 {
 /* manually created labels to fix autocomplete issue */
 .form-label {
   color: #64b5f6;
+  margin-bottom: 0;
 }
 /* change checkbox color */
 .checkbox-blue[type="checkbox"]:checked + label:before {

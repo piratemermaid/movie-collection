@@ -8,7 +8,7 @@ const Collection = props => {
       <Link to="/add/collection">
         <i className="material-icons small icon-link float-right">add_circle</i>
       </Link>
-      <TableList movies={props.movies} />
+      <TableList movies={props.movies} editable={true} />
     </div>
   );
 };
