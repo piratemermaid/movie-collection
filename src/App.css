@@ -1,0 +1,10 @@
+body {
+  font: sans-serif;
+}
+
+/* Search styles */
+.search-tag:hover {
+  color: #64b5f6;
+  font-weight: bold;
+  cursor: pointer;
+}
