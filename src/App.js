@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Search from "./components/Search";
 import Result from "./components/Result";
 import AddMovie from "./components/AddMovie";
+import EditMovie from "./components/EditMovie";
 import Collection from "./components/Collection";
 import Wishlist from "./components/Wishlist";
 
@@ -19,6 +20,7 @@ class App extends Component {
     };
 
     this.addMovie = this.addMovie.bind(this);
+    this.editMovie = this.editMovie.bind(this);
     this.getAllTags = this.getAllTags.bind(this);
   }
 
@@ -27,6 +29,21 @@ class App extends Component {
     current.push(movie);
     this.setState({ [type]: current });
     localStorage.setItem("movieState", JSON.stringify(this.state));
+  }
+
+  editMovie(updatedMovie) {
+    let newCollection = this.state.collection;
+    for (let i in newCollection) {
+      if (newCollection[i].title === updatedMovie.title) {
+        newCollection[i] = updatedMovie;
+      }
+    }
+
+    this.setState({ collection: newCollection });
+  }
+
+  deleteMovie(title) {
+    console.log("delete", title);
   }
 
   getAllTags() {
@@ -81,6 +98,16 @@ class App extends Component {
                     <AddMovie
                       addMovie={this.addMovie}
                       getAllTags={this.getAllTags}
+                    />
+                  )}
+                />
+                <Route
+                  path="/edit/:title"
+                  render={() => (
+                    <EditMovie
+                      movies={this.state}
+                      editMovie={this.editMovie}
+                      deleteMovie={this.deleteMovie}
                     />
                   )}
                 />

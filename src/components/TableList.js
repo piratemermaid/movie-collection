@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const TableList = props => {
   function renderMovies(movies) {
@@ -8,7 +9,12 @@ const TableList = props => {
       const movie = movies[i];
       rows.push(
         <tr key={i}>
-          <td>{movie.title}</td>
+          <td>
+            {movie.title}
+            <Link to={`/edit/${movie.title}`}>
+              <i className="material-icons tiny icon-link">edit</i>
+            </Link>
+          </td>
           <td>{renderTags(movie.tags)}</td>
           <td>{movie.year}</td>
           <td>{movie.watched ? "Yes" : "No"}</td>

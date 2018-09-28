@@ -7,10 +7,11 @@ class AddMovie extends Component {
     super(props);
 
     this.state = {
-      title: "",
+      title: "title placeholder",
       year: "",
       tags: [],
       watched: false,
+      added: "",
       titleErr: "",
       yearErr: "",
       tagsErr: ""
@@ -44,7 +45,8 @@ class AddMovie extends Component {
         title: this.state.title,
         year: this.state.year,
         tags,
-        watched: this.state.watched
+        watched: this.state.watched,
+        added: this.state.added
       };
       const type = this.props.match.params.type;
       this.props.addMovie(info, type);
@@ -67,6 +69,10 @@ class AddMovie extends Component {
   onTagsChange(e) {
     // TODO: better way to input than separating by spaces
     this.setState({ tags: e.target.value, tagsErr: "" });
+  }
+
+  onAddedChange(e) {
+    this.setState({ added: e.target.value });
   }
 
   updateTags(tag) {
@@ -98,6 +104,20 @@ class AddMovie extends Component {
     return tagArr;
   }
 
+  componentWillMount() {
+    const now = new Date();
+    let day = now.getDay();
+    if (day < 10) {
+      day = "0" + String(day);
+    }
+    let month = now.getMonth() + 1;
+    if (month < 10) {
+      month = "0" + String(month);
+    }
+    const year = now.getFullYear();
+    this.setState({ added: `${year}-${day}-${month}` });
+  }
+
   render() {
     const type = this.props.match.params.type;
     return (
@@ -110,23 +130,23 @@ class AddMovie extends Component {
           <div className="row">
             <form onSubmit={e => this.addMovie(e)}>
               <div className="input-field col s12">
+                <p className="form-label">Title</p>
                 <input
                   id="input-title"
                   type="text"
                   value={this.state.title}
                   onChange={e => this.onTitleChange(e)}
                 />
-                <label htmlFor="input-title">Title</label>
                 <div className="form-err">{this.state.titleErr}</div>
               </div>
               <div className="input-field col s8">
+                <p className="form-label">Year</p>
                 <input
                   id="input-year"
                   type="number"
                   value={this.state.year}
                   onChange={e => this.onYearChange(e)}
                 />
-                <label htmlFor="input-year">Year</label>
                 <div className="form-err">{this.state.yearErr}</div>
               </div>
               <div className="input-field col s4">
@@ -139,17 +159,29 @@ class AddMovie extends Component {
                 <label htmlFor="input-movie">Watched?</label>
               </div>
               <div className="input-field col s12">
+                <p className="form-label">
+                  Tags, separated by spaces (e.g. nerdy comedy romantic
+                  girlsnight)
+                </p>
                 <input
                   id="input-tags"
                   type="text"
                   value={this.state.tags}
                   onChange={e => this.onTagsChange(e)}
                 />
-                <label htmlFor="input-tags">
-                  Tags, separated by spaces (e.g. nerdy comedy romantic
-                  girlsnight)
-                </label>
                 <div className="form-err">{this.state.tagsErr}</div>
+              </div>
+              <div className="input-field col s12">
+                <p className="form-label">
+                  Added to collection (defaults to now)
+                </p>
+                <input
+                  id="input-added"
+                  type="date"
+                  value={this.state.added}
+                  onChange={e => this.onAddedChange(e)}
+                />
+                <div className="form-err">{this.state.titleErr}</div>
               </div>
               <div className="input-field col s12">
                 <button
