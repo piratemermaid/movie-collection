@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
+import { Autocomplete } from "react-materialize";
 
 class AddMovie extends Component {
   constructor(props) {
@@ -31,6 +32,15 @@ class AddMovie extends Component {
 
   onWatchedChange(e) {
     this.setState({ watched: e.target.checked });
+  }
+
+  getTagData() {
+    const allTags = this.props.getAllTags();
+    let data = {};
+    for (let i in allTags) {
+      data[allTags[i]] = null;
+    }
+    return data;
   }
 
   render() {
@@ -66,7 +76,7 @@ class AddMovie extends Component {
                 <label htmlFor="movie-watched">Watched?</label>
               </div>
               <div className="input-field col s12">
-                <input id="movie-tags" type="text" className="autocomplete" />
+                <Autocomplete id="movie-tags" data={this.getTagData()} />
                 <label htmlFor="movie-tags">Tags</label>
               </div>
               <div className="input-field col s12">
