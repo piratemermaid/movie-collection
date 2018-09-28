@@ -5,28 +5,53 @@ class AddMovie extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { title: "", year: "", tags: [], watched: false };
+    this.state = {
+      title: "",
+      year: "",
+      tags: [],
+      watched: false,
+      titleErr: "",
+      yearErr: "",
+      tagsErr: ""
+    };
   }
 
   addMovie(e) {
     e.preventDefault();
+    let errors = false;
 
-    const info = {
-      title: this.state.title,
-      year: this.state.year,
-      tags: this.state.tags,
-      watched: this.state.watched
-    };
-    const type = this.props.match.params.type;
-    this.props.addMovie(info, type);
+    if (!this.state.title) {
+      this.setState({ titleErr: "Please enter a title." });
+      errors = true;
+    }
+    if (this.state.year && this.state.year.length !== 4) {
+      this.setState({ yearErr: "Please enter a valid year." });
+      errors = true;
+    }
+
+    // not doing tags error for now because I think
+    // it's OK not to have tags
+
+    let tags = this.state.tags.split(" ");
+    tags = tags.filter(val => val); // get rid of empty values
+    if (!errors) {
+      const info = {
+        title: this.state.title,
+        year: this.state.year,
+        tags,
+        watched: this.state.watched
+      };
+      const type = this.props.match.params.type;
+      this.props.addMovie(info, type);
+    }
   }
 
   onTitleChange(e) {
-    this.setState({ title: e.target.value });
+    this.setState({ title: e.target.value, titleErr: "" });
   }
 
   onYearChange(e) {
-    this.setState({ year: e.target.value });
+    this.setState({ year: e.target.value, yearErr: "" });
   }
 
   onWatchedChange(e) {
@@ -34,12 +59,13 @@ class AddMovie extends Component {
   }
 
   onTagsChange(e) {
-    this.setState({ tags: e.target.value });
+    // TODO: better way to input than separating by spaces
+    this.setState({ tags: e.target.value, tagsErr: "" });
   }
 
   updateTags(tag) {
     let tagStr = this.state.tags;
-    if (tagStr.includes(tag)) {
+    if (tagStr.includes(tag) || tag === "") {
       return;
     }
     if (tagStr !== "") {
@@ -70,6 +96,12 @@ class AddMovie extends Component {
     return (
       <div className="row">
         <div className="col s12">
+          <h5>
+            Add to{" "}
+            {this.props.match.params.type === "collection"
+              ? "Collection"
+              : "Wishlist"}
+          </h5>
           <div className="row">
             <form onSubmit={e => this.addMovie(e)}>
               <div className="input-field col s12">
@@ -80,6 +112,7 @@ class AddMovie extends Component {
                   onChange={e => this.onTitleChange(e)}
                 />
                 <label htmlFor="input-title">Title</label>
+                <div className="form-err">{this.state.titleErr}</div>
               </div>
               <div className="input-field col s8">
                 <input
@@ -89,11 +122,9 @@ class AddMovie extends Component {
                   onChange={e => this.onYearChange(e)}
                 />
                 <label htmlFor="input-year">Year</label>
+                <div className="form-err">{this.state.yearErr}</div>
               </div>
-              <div
-                className="input-field col s4"
-                style={{ paddingTop: "46px" }}
-              >
+              <div className="input-field col s4">
                 <input
                   id="input-movie"
                   type="checkbox"
@@ -113,6 +144,7 @@ class AddMovie extends Component {
                   Tags, separated by spaces (e.g. nerdy comedy romantic
                   girlsnight)
                 </label>
+                <div className="form-err">{this.state.tagsErr}</div>
               </div>
               <div className="input-field col s12">
                 <button
