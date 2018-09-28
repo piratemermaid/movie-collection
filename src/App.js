@@ -14,7 +14,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      movies: [
+      collection: [
         {
           title: "Harry Potter",
           year: 2000,
@@ -57,10 +57,10 @@ class App extends Component {
   getAllTags() {
     let tagList = [];
 
-    for (let i in this.state.movies) {
-      for (let j in this.state.movies[i].tags) {
-        if (!tagList.includes(this.state.movies[i].tags[j])) {
-          tagList.push(this.state.movies[i].tags[j]);
+    for (let i in this.state.collection) {
+      for (let j in this.state.collection[i].tags) {
+        if (!tagList.includes(this.state.collection[i].tags[j])) {
+          tagList.push(this.state.collection[i].tags[j]);
         }
       }
     }
@@ -93,14 +93,14 @@ class App extends Component {
                   path="/"
                   render={() => (
                     <Search
-                      movies={this.state.movies}
+                      movies={this.state.collection}
                       getAllTags={this.getAllTags}
                     />
                   )}
                 />
                 <Route
                   path="/search/:tag"
-                  render={() => <Result movies={this.state.movies} />}
+                  render={() => <Result movies={this.state.collection} />}
                 />
                 <Route
                   path="/add/:type"
@@ -113,7 +113,7 @@ class App extends Component {
                 />
                 <Route
                   path="/collection"
-                  render={() => <Collection movies={this.state.movies} />}
+                  render={() => <Collection movies={this.state.collection} />}
                 />
                 <Route
                   path="/wishlist"
