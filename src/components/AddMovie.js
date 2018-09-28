@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
 
 class AddMovie extends Component {
   constructor(props) {
@@ -97,6 +98,9 @@ class AddMovie extends Component {
     return (
       <div className="row">
         <div className="col s12">
+          <Link to="/collection">
+            <i className="material-icons small icon-link">arrow_back</i>
+          </Link>
           <h5>
             Add to{" "}
             {this.props.match.params.type === "movies"
