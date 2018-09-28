@@ -32,9 +32,13 @@ class AddMovie extends Component {
 
     // not doing tags error for now because I think
     // it's OK not to have tags
-
-    let tags = this.state.tags.split(" ");
-    tags = tags.filter(val => val); // get rid of empty values
+    let tags;
+    if (this.state.tags.length > 0) {
+      tags = this.state.tags.split(" ");
+      tags = tags.filter(val => val); // get rid of empty values
+    } else {
+      tags = [];
+    }
     if (!errors) {
       const info = {
         title: this.state.title,
