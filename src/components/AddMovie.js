@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
-import { Autocomplete } from "react-materialize";
 
 class AddMovie extends Component {
   constructor(props) {
@@ -34,13 +33,37 @@ class AddMovie extends Component {
     this.setState({ watched: e.target.checked });
   }
 
-  getTagData() {
-    const allTags = this.props.getAllTags();
-    let data = {};
-    for (let i in allTags) {
-      data[allTags[i]] = null;
+  onTagsChange(e) {
+    this.setState({ tags: e.target.value });
+  }
+
+  updateTags(tag) {
+    let tagStr = this.state.tags;
+    if (tagStr.includes(tag)) {
+      return;
     }
-    return data;
+    if (tagStr !== "") {
+      tagStr += " ";
+    }
+    tagStr += tag;
+    this.setState({ tags: tagStr });
+  }
+
+  renderTags() {
+    const allTags = this.props.getAllTags();
+    let tagArr = [];
+    for (let i in allTags) {
+      tagArr.push(
+        <div
+          className="search-tag col s2"
+          key={i}
+          onClick={() => this.updateTags(allTags[i])}
+        >
+          {allTags[i]}
+        </div>
+      );
+    }
+    return tagArr;
   }
 
   render() {
@@ -50,43 +73,46 @@ class AddMovie extends Component {
           <div className="row">
             <form onSubmit={e => this.addMovie(e)}>
               <div className="input-field col s12">
-                <p className="form-label">Title</p>
                 <input
-                  id="movie-title"
+                  id="input-title"
                   type="text"
                   value={this.state.title}
                   onChange={e => this.onTitleChange(e)}
                 />
+                <label htmlFor="input-title">Title</label>
               </div>
               <div className="input-field col s8">
-                <p className="form-label">Year</p>
                 <input
-                  id="movie-year"
+                  id="input-year"
                   type="number"
                   value={this.state.year}
                   onChange={e => this.onYearChange(e)}
                 />
+                <label htmlFor="input-year">Year</label>
               </div>
               <div
                 className="input-field col s4"
                 style={{ paddingTop: "46px" }}
               >
                 <input
-                  id="movie-watched"
+                  id="input-movie"
                   type="checkbox"
                   onClick={e => this.onWatchedChange(e)}
                   className="checkbox-blue"
                 />
-                <label htmlFor="movie-watched">Watched?</label>
+                <label htmlFor="input-movie">Watched?</label>
               </div>
               <div className="input-field col s12">
-                <p className="form-label">Tags</p>
-                <Autocomplete
-                  id="movie-tags"
-                  data={this.getTagData()}
-                  className="s12"
-                  style={{ padding: 0 }}
+                <input
+                  id="input-tags"
+                  type="text"
+                  value={this.state.tags}
+                  onChange={e => this.onTagsChange(e)}
                 />
+                <label htmlFor="input-tags">
+                  Tags, separated by spaces (e.g. nerdy comedy romantic
+                  girlsnight)
+                </label>
               </div>
               <div className="input-field col s12">
                 <button
@@ -98,6 +124,16 @@ class AddMovie extends Component {
                 </button>
               </div>
             </form>
+          </div>
+          <div className="row">
+            <div className="card">
+              <div className="card-content">
+                <div className="card-title" style={{ marginBottom: "28px" }}>
+                  Existing tags (click to add)
+                </div>
+                <div className="row">{this.renderTags()}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

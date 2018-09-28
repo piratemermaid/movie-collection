@@ -63,6 +63,7 @@ class App extends Component {
       }
     }
 
+    tagList = tagList.sort();
     return tagList;
   }
 
