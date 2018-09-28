@@ -9,6 +9,10 @@ body {
   font: sans-serif;
 }
 
+h5 {
+  text-transform: lowercase;
+}
+
 /*///////////////////////////////////////////////////////
 // SEARCH STYLES
 ///////////////////////////////////////////////////////*/
@@ -20,6 +24,10 @@ body {
   color: #64b5f6;
   font-weight: bold;
   cursor: pointer;
+}
+
+.search-section {
+  margin: 50px 0;
 }
 
 /*///////////////////////////////////////////////////////
