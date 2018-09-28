@@ -50,34 +50,43 @@ class AddMovie extends Component {
           <div className="row">
             <form onSubmit={e => this.addMovie(e)}>
               <div className="input-field col s12">
+                <p className="form-label">Title</p>
                 <input
                   id="movie-title"
                   type="text"
                   value={this.state.title}
                   onChange={e => this.onTitleChange(e)}
                 />
-                <label htmlFor="movie-title">Movie Title</label>
               </div>
               <div className="input-field col s8">
+                <p className="form-label">Year</p>
                 <input
                   id="movie-year"
                   type="number"
                   value={this.state.year}
                   onChange={e => this.onYearChange(e)}
                 />
-                <label htmlFor="movie-year">Year</label>
               </div>
-              <div className="input-field col s4">
+              <div
+                className="input-field col s4"
+                style={{ paddingTop: "46px" }}
+              >
                 <input
                   id="movie-watched"
                   type="checkbox"
                   onClick={e => this.onWatchedChange(e)}
+                  className="checkbox-blue"
                 />
                 <label htmlFor="movie-watched">Watched?</label>
               </div>
               <div className="input-field col s12">
-                <Autocomplete id="movie-tags" data={this.getTagData()} />
-                <label htmlFor="movie-tags">Tags</label>
+                <p className="form-label">Tags</p>
+                <Autocomplete
+                  id="movie-tags"
+                  data={this.getTagData()}
+                  className="s12"
+                  style={{ padding: 0 }}
+                />
               </div>
               <div className="input-field col s12">
                 <button
