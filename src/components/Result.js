@@ -5,13 +5,19 @@ import { Link } from "react-router-dom";
 import TableList from "./TableList";
 
 const Result = props => {
-  console.log(props);
+  const tag = props.match.params.tag;
+  const matches = props.movies.filter(movie => {
+    if (movie.tags.includes(tag)) {
+      return movie.title;
+    }
+  });
+
   return (
     <div>
       <Link to="/">Back to Search arrow</Link>
       <br />
-      <h5>Movies matching "{props.match.params.term}"</h5>
-      <TableList movies={props.movies} />
+      <h5>Movies matching "{props.match.params.tag}"</h5>
+      <TableList movies={matches} />
     </div>
   );
 };

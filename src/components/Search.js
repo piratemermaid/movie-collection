@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Search = props => {
   function getAllTags() {
@@ -17,9 +18,13 @@ const Search = props => {
     let tagsRender = [];
     for (let i in tagList) {
       tagsRender.push(
-        <div className="search-tag col s2" key={i}>
+        <Link
+          className="search-tag col s2"
+          key={i}
+          to={`/search/${tagList[i]}`}
+        >
           {tagList[i]}
-        </div>
+        </Link>
       );
     }
 
