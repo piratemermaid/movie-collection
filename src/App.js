@@ -68,7 +68,11 @@ class App extends Component {
                   )}
                 />
                 <Route
-                  path="/search/:tag"
+                  path="/search/unwatched"
+                  render={() => <Result movies={this.state.collection} />}
+                />
+                <Route
+                  path="/search/tags/:tag"
                   render={() => <Result movies={this.state.collection} />}
                 />
                 <Route
