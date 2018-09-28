@@ -21,14 +21,18 @@ class App extends Component {
 
     this.addMovie = this.addMovie.bind(this);
     this.editMovie = this.editMovie.bind(this);
+    this.deleteMovie = this.deleteMovie.bind(this);
     this.getAllTags = this.getAllTags.bind(this);
+  }
+
+  updateLocalStorage() {
+    localStorage.setItem("movieState", JSON.stringify(this.state));
   }
 
   addMovie(movie, type) {
     let current = this.state[type];
     current.push(movie);
     this.setState({ [type]: current });
-    localStorage.setItem("movieState", JSON.stringify(this.state));
   }
 
   editMovie(updatedMovie) {
@@ -43,7 +47,14 @@ class App extends Component {
   }
 
   deleteMovie(title) {
-    console.log("delete", title);
+    let newCollection = [];
+    for (let i in this.state.collection) {
+      if (this.state.collection[i].title !== title) {
+        newCollection.push(this.state.collection[i]);
+      }
+    }
+
+    this.setState({ collection: newCollection });
   }
 
   getAllTags() {
@@ -59,6 +70,10 @@ class App extends Component {
 
     tagList = tagList.sort();
     return tagList;
+  }
+
+  componentDidUpdate() {
+    this.updateLocalStorage();
   }
 
   componentWillMount() {
