@@ -20,15 +20,32 @@ const TableList = props => {
   }
 
   function renderTags(tags) {
-    let tagStr = "";
+    let tagArr = [];
+    let tagClass;
     for (let i in tags) {
-      tagStr += tags[i];
-      if (i < tags.length - 1) {
-        tagStr += ", ";
+      tagClass = "tag-result";
+      if (tags[i] === props.tag) {
+        tagClass += " tag-match";
       }
+      tagArr.push(
+        <span className={tagClass} key={i}>
+          {tags[i]}
+        </span>
+      );
     }
-    return tagStr;
+    return tagArr;
   }
+
+  //   function renderTags(tags) {
+  //     let tagStr = [""];
+  //     for (let i in tags) {
+  //       tagStr += tags[i];
+  //       if (i < tags.length - 1) {
+  //         tagStr += ", ";
+  //       }
+  //     }
+  //     return <span>tagStr</span>;
+  //   }
 
   return (
     <table>

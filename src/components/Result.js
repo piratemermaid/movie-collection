@@ -20,8 +20,8 @@ const Result = props => {
         <i className="material-icons small icon-link">arrow_back</i>
       </Link>
       <br />
-      <h5>Movies matching "{props.match.params.tag}"</h5>
-      <TableList movies={matches} />
+      <h5>Movies matching "{tag}"</h5>
+      <TableList movies={matches} tag={tag} />
     </div>
   );
 };

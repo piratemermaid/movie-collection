@@ -1,3 +1,10 @@
+/* #64b5f6 blue lighten-2 (reg) */
+/* #42a5f5 blue lighten-1 */
+/* #2196f3 blue */
+/* #1e88e5 blue darken-1 */
+/* #1976d2 blue darken-2 */
+/* #1565c0 blue darken-3 */
+
 body {
   font: sans-serif;
 }
@@ -13,6 +20,19 @@ body {
   color: #64b5f6;
   font-weight: bold;
   cursor: pointer;
+}
+
+/*///////////////////////////////////////////////////////
+// RESULT STYLES
+///////////////////////////////////////////////////////*/
+
+.tag-result {
+  margin: 6px;
+  font-size: 12px;
+}
+
+.tag-match {
+  color: #2196f3;
 }
 
 /*///////////////////////////////////////////////////////
