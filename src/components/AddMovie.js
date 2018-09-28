@@ -1,57 +1,89 @@
-import React from "react";
+import React, { Component } from "react";
 import { withRouter } from "react-router";
 
-const AddMovie = props => {
-  const type = props.match.params.type;
+class AddMovie extends Component {
+  constructor(props) {
+    super(props);
 
-  function addMovie(e) {
-    e.preventDefault();
-
-    const title = document.getElementById("movie-title").value;
-    const year = document.getElementById("movie-year").value;
-    const tags = document.getElementById("movie-tags").value;
-    const watched = document.getElementById("movie-watched").value;
-
-    const info = { title, year, tags, watched };
-
-    props.addMovie(info, type);
+    this.state = { title: "", year: "", tags: [], watched: false };
   }
 
-  return (
-    <div className="row">
-      <div className="col s12">
-        <div className="row">
-          <form onSubmit={() => addMovie()}>
-            <div className="input-field col s12">
-              <input id="movie-title" type="text" />
-              <label htmlFor="movie-title">Movie Title</label>
-            </div>
-            <div className="input-field col s12">
-              <input id="movie-year" type="text" />
-              <label htmlFor="movie-year">Year</label>
-            </div>
-            <div className="input-field col s12">
-              <input id="movie-tags" type="text" />
-              <label htmlFor="movie-tags">Tags</label>
-            </div>
-            <div className="input-field col s12">
-              <input id="movie-watched" type="text" />
-              <label htmlFor="movie-watched">Watched?</label>
-            </div>
-            <div className="input-field col s12">
-              <button
-                className="btn waves-effect waves-light blue lighten-2"
-                onClick={e => addMovie(e)}
-              >
-                Add
-                <i className="material-icons right" />
-              </button>
-            </div>
-          </form>
+  addMovie(e) {
+    e.preventDefault();
+
+    const info = {
+      title: this.state.title,
+      year: this.state.year,
+      tags: this.state.tags,
+      watched: this.state.watched
+    };
+    const type = this.props.match.params.type;
+    this.props.addMovie(info, type);
+  }
+
+  onTitleChange(e) {
+    this.setState({ title: e.target.value });
+  }
+
+  onYearChange(e) {
+    this.setState({ year: e.target.value });
+  }
+
+  onWatchedChange(e) {
+    this.setState({ watched: e.target.checked });
+  }
+
+  render() {
+    return (
+      <div className="row">
+        <div className="col s12">
+          <div className="row">
+            <form onSubmit={e => this.addMovie(e)}>
+              <div className="input-field col s12">
+                <input
+                  id="movie-title"
+                  type="text"
+                  value={this.state.title}
+                  onChange={e => this.onTitleChange(e)}
+                />
+                <label htmlFor="movie-title">Movie Title</label>
+              </div>
+              <div className="input-field col s8">
+                <input
+                  id="movie-year"
+                  type="number"
+                  value={this.state.year}
+                  onChange={e => this.onYearChange(e)}
+                />
+                <label htmlFor="movie-year">Year</label>
+              </div>
+              <div className="input-field col s4">
+                <input
+                  id="movie-watched"
+                  type="checkbox"
+                  onClick={e => this.onWatchedChange(e)}
+                />
+                <label htmlFor="movie-watched">Watched?</label>
+              </div>
+              <div className="input-field col s12">
+                <input id="movie-tags" type="text" />
+                <label htmlFor="movie-tags">Tags</label>
+              </div>
+              <div className="input-field col s12">
+                <button
+                  className="btn waves-effect waves-light blue lighten-2"
+                  onClick={e => this.addMovie(e)}
+                >
+                  Add
+                  <i className="material-icons right" />
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default withRouter(AddMovie);
