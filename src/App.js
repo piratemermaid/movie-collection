@@ -58,7 +58,7 @@ class App extends Component {
                   render={() => <Search movies={this.state.movies} />}
                 />
                 <Route
-                  path="/search/:term"
+                  path="/search/:tag"
                   render={() => <Result movies={this.state.movies} />}
                 />
                 <Route
