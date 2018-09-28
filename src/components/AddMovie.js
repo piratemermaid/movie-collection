@@ -66,7 +66,7 @@ class AddMovie extends Component {
                 <label htmlFor="movie-watched">Watched?</label>
               </div>
               <div className="input-field col s12">
-                <input id="movie-tags" type="text" />
+                <input id="movie-tags" type="text" className="autocomplete" />
                 <label htmlFor="movie-tags">Tags</label>
               </div>
               <div className="input-field col s12">

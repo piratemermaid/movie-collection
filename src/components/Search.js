@@ -2,19 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Search = props => {
-  function getAllTags() {
-    let tagList = [];
-    let tags;
-    for (let i in props.movies) {
-      tags = props.movies[i].tags;
-      for (let j in tags) {
-        if (!tagList.includes(tags[j])) {
-          tagList.push(tags[j]);
-        }
-      }
-    }
-    tagList = tagList.sort();
-
+  function renderAllTags() {
+    const tagList = props.getAllTags();
     let tagsRender = [];
     for (let i in tagList) {
       tagsRender.push(
@@ -31,7 +20,7 @@ const Search = props => {
     return tagsRender;
   }
 
-  return <div className="row">{getAllTags()}</div>;
+  return <div className="row">{renderAllTags()}</div>;
 };
 
 export default Search;
