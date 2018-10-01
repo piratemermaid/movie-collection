@@ -6,7 +6,6 @@ import TableList from "./TableList";
 
 const Result = props => {
   let title, matches, tag;
-  console.log(props);
   if (props.match.params.tag) {
     title = tag;
     tag = props.match.params.tag;

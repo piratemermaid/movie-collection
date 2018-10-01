@@ -7,7 +7,7 @@ class AddMovie extends Component {
     super(props);
 
     this.state = {
-      title: "title placeholder",
+      title: "",
       year: "",
       tags: [],
       watched: false,
