@@ -3,6 +3,12 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
 class EditMovie extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { type: "" };
+  }
+
   onTitleChange(e) {
     this.setState({ title: e.target.value });
   }
@@ -44,12 +50,24 @@ class EditMovie extends Component {
     };
 
     this.props.editMovie(info, this.props.match.params.title);
-    this.props.history.push("/collection");
+    this.props.history.push(`/${this.state.type}`);
   }
 
   componentWillMount() {
     const title = this.props.match.params.title;
-    const info = this.props.movies.collection.filter(movie => {
+    let obj;
+    const findInCollection = this.props.movies.collection.filter(movie => {
+      return movie.title === title;
+    });
+    if (findInCollection.length > 0) {
+      this.setState({ type: "collection" });
+      obj = this.props.movies.collection;
+    } else {
+      this.setState({ type: "wishlist" });
+      obj = this.props.movies.wishlist;
+    }
+
+    const info = obj.filter(movie => {
       return movie.title === title;
     })[0];
 
@@ -70,10 +88,10 @@ class EditMovie extends Component {
   render() {
     return (
       <div>
-        <Link to="/collection">
+        <Link to={`/${this.state.type}`}>
           <i className="material-icons small icon-link">arrow_back</i>
         </Link>
-        <Link to="/collection">
+        <Link to={`/${this.state.type}`}>
           <i
             className="material-icons small icon-link float-right"
             onClick={() => this.props.deleteMovie(this.state.title)}
