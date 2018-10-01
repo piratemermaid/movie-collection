@@ -3,6 +3,20 @@ import { Link } from "react-router-dom";
 import TableList from "./TableList";
 
 const Wishlist = props => {
+  let myProps = props.wishlist;
+  for (let i in props.wishlist) {
+    if (typeof props.wishlist[i].tags === "string") {
+      let tags;
+      if (props.wishlist[i].tags.length > 0) {
+        tags = props.wishlist[i].tags.split(" ");
+        tags = tags.filter(val => val); // get rid of empty values
+      } else {
+        tags = [];
+      }
+      myProps[i].tags = tags;
+    }
+  }
+
   return (
     <div>
       <Link to="/add/wishlist">

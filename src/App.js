@@ -35,19 +35,19 @@ class App extends Component {
     this.setState({ [type]: current });
   }
 
-  editMovie(updatedMovie, oldTitle) {
-    let newCollection = this.state.collection;
+  editMovie(updatedMovie, oldTitle, type) {
+    let newMovies = this.state[type];
 
-    for (let i in newCollection) {
-      if (newCollection[i].title === oldTitle) {
-        newCollection[i] = updatedMovie;
+    for (let i in newMovies) {
+      if (newMovies[i].title === oldTitle) {
+        newMovies[i] = updatedMovie;
       }
     }
     if (updatedMovie.title !== oldTitle) {
-      delete newCollection[oldTitle];
+      delete newMovies[oldTitle];
     }
 
-    this.setState({ collection: newCollection });
+    this.setState({ [type]: newMovies });
   }
 
   deleteMovie(title) {
