@@ -43,7 +43,7 @@ class EditMovie extends Component {
       added: this.state.added
     };
 
-    this.props.editMovie(info);
+    this.props.editMovie(info, this.props.match.params.title);
     this.props.history.push("/collection");
   }
 
