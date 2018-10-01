@@ -48,6 +48,10 @@ class AddMovie extends Component {
         watched: this.state.watched,
         added: this.state.added
       };
+      if (!this.state.added) {
+        // TODO: check date format
+        info.added = this.formatTodaysDate();
+      }
       const type = this.props.match.params.type;
       this.props.addMovie(info, type);
       this.props.history.push(`/${type}`);
@@ -104,7 +108,7 @@ class AddMovie extends Component {
     return tagArr;
   }
 
-  componentWillMount() {
+  formatTodaysDate() {
     const now = new Date();
     let day = now.getDay();
     if (day < 10) {
@@ -115,7 +119,13 @@ class AddMovie extends Component {
       month = "0" + String(month);
     }
     const year = now.getFullYear();
-    this.setState({ added: `${year}-${day}-${month}` });
+
+    return `${month}/${day}/${year}`;
+  }
+
+  componentWillMount() {
+    const today = this.formatTodaysDate();
+    this.setState({ added: today });
   }
 
   render() {
@@ -173,15 +183,15 @@ class AddMovie extends Component {
               </div>
               <div className="input-field col s12">
                 <p className="form-label">
-                  Added to collection (defaults to now)
+                  Added to collection (defaults to today, format MM/DD/YYYY)
                 </p>
                 <input
                   id="input-added"
-                  type="date"
+                  type="text"
                   value={this.state.added}
                   onChange={e => this.onAddedChange(e)}
                 />
-                <div className="form-err">{this.state.titleErr}</div>
+                <div className="form-err">{this.state.dateErr}</div>
               </div>
               <div className="input-field col s12">
                 <button
