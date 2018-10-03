@@ -6,7 +6,7 @@ class SearchByTag extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { selectedTags: [] };
+    this.state = { selectedTags: [], error: "" };
   }
 
   renderAllTags() {
@@ -43,14 +43,39 @@ class SearchByTag extends Component {
 
     newTagArr = newTagArr.sort();
 
-    this.setState({ selectedTags: newTagArr });
+    this.setState({ selectedTags: newTagArr, error: "" });
+  }
+
+  handleSearch() {
+    if (this.state.selectedTags.length < 1) {
+      this.setState({ error: "Please select at least 1 tag" });
+      return;
+    }
+
+    let tagStr = this.state.selectedTags.toString();
+    tagStr = tagStr.replace(/,/g, "&");
+    this.props.history.push(`/search/${tagStr}`);
   }
 
   render() {
     return (
       <div>
         <p>Click 1 or more tags you want to search for and hit "Search"</p>
-        {this.renderAllTags()}
+        <div className="row">{this.renderAllTags()}</div>{" "}
+        <div className="row error">
+          <div className="col s12">{this.state.error}</div>
+        </div>
+        <div className="row">
+          <div className="col s12">
+            <button
+              className="btn waves-effect waves-light blue lighten-2"
+              onClick={() => this.handleSearch()}
+            >
+              Search
+              <i className="material-icons right">search</i>
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
