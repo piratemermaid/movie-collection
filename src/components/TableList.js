@@ -1,16 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import dotProp from "dot-prop";
 
 const TableList = props => {
+  function removeFromList(title) {
+    const rows = document.querySelectorAll(".table-list-row");
+    let val;
+    for (let i in rows) {
+      if (rows[i].classList) {
+        val = rows[i].classList.value;
+        if (val.substr(val.indexOf(" ") + 1) === title) {
+          rows[i].classList.add("hidden");
+        }
+      }
+    }
+  }
+
   function renderMovies(movies) {
     let rows = [];
 
     for (let i in movies) {
       const movie = movies[i];
       rows.push(
-        <tr key={i}>
+        <tr
+          key={i}
+          className={`table-list-row ${movie.title}`}
+          title={movie.title}
+        >
           <td>
             {movie.title}
+            {props.deletable ? (
+              <i
+                className="material-icons tiny icon-link"
+                onClick={() => removeFromList(movie.title)}
+              >
+                delete
+              </i>
+            ) : null}
             {props.editable ? (
               <Link to={`/edit/${movie.title}`}>
                 <i className="material-icons tiny icon-link">edit</i>

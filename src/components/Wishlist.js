@@ -22,7 +22,7 @@ const Wishlist = props => {
       <Link to="/add/wishlist">
         <i className="material-icons small icon-link float-right">add_circle</i>
       </Link>
-      <TableList movies={props.wishlist} />
+      <TableList movies={props.wishlist} editable={true} deletable={false} />
     </div>
   );
 };
