@@ -15,7 +15,6 @@ const Result = props => {
       tags = tags.substring(0, tags.length - 10);
       optionAll = true;
     }
-    console.log(tags);
     let titleArr = tags.split("&");
     if (titleArr.length === 1) {
       title = titleArr[0];
@@ -38,15 +37,25 @@ const Result = props => {
     let matches = [];
     if (props.match.params.tags) {
       let tagsArr = tags.split("&");
-      let inArr;
+      let inArr, matched;
 
       for (let i in props.movies) {
         inArr = false;
+        matched = false;
         for (let j in tagsArr) {
           inArr = _.some(matches, { title: props.movies[i].title });
-          if (props.movies[i].tags.includes(tagsArr[j]) && !inArr) {
-            matches.push(props.movies[i]);
+          if (optionAll) {
+            if (!props.movies[i].tags.includes(tagsArr[j])) {
+              matched = false;
+              break;
+            }
           }
+          if (props.movies[i].tags.includes(tagsArr[j]) && !inArr) {
+            matched = true;
+          }
+        }
+        if (matched) {
+          matches.push(props.movies[i]);
         }
       }
     } else {
