@@ -7,10 +7,23 @@ import dotProp from "dot-prop";
 import TableList from "./TableList";
 
 const Result = props => {
-  let title;
+  let title = "";
   const tags = dotProp.get(props.match, "params.tags");
   if (props.match.params.tags) {
-    title = tags;
+    let titleArr = tags.split("&");
+    if (titleArr.length === 1) {
+      title = titleArr[0];
+    } else if (titleArr.length === 2) {
+      title = titleArr[0] + " & " + titleArr[1];
+    } else {
+      for (let i in titleArr) {
+        if (i < titleArr.length - 1) {
+          title += titleArr[i] + ", ";
+        } else {
+          title += " & " + titleArr[i];
+        }
+      }
+    }
   } else {
     title = String(props.match.path.substring(props.match.path.length, 8));
   }
