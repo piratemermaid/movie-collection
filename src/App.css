@@ -89,6 +89,7 @@ h5 {
 
 .icon-link:hover {
   color: #2196f3;
+  cursor: pointer;
 }
 
 .float-right {
