@@ -53,7 +53,6 @@ class SearchByTag extends Component {
 
     let tagStr = this.state.selectedTags.toString();
     tagStr = tagStr.replace(/,/g, "&");
-    console.log(this.state.optionAll);
     if (this.state.optionAll) {
       tagStr += "+optionAll";
     }
