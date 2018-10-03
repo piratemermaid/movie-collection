@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import dotProp from "dot-prop";
 
 const TableList = props => {
   function removeFromList(title) {
