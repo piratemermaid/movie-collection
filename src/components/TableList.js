@@ -11,9 +11,11 @@ const TableList = props => {
         <tr key={i}>
           <td>
             {movie.title}
-            <Link to={`/edit/${movie.title}`}>
-              <i className="material-icons tiny icon-link">edit</i>
-            </Link>
+            {props.editable ? (
+              <Link to={`/edit/${movie.title}`}>
+                <i className="material-icons tiny icon-link">edit</i>
+              </Link>
+            ) : null}
           </td>
           <td>{renderTags(movie.tags)}</td>
           <td>{movie.year}</td>
@@ -52,7 +54,6 @@ const TableList = props => {
   //     }
   //     return <span>tagStr</span>;
   //   }
-
   return (
     <table>
       <thead>
