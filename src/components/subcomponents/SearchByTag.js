@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 
 class SearchByTag extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { selectedTags: [], error: "" };
+    this.state = { selectedTags: [], error: "", optionAll: false };
   }
 
   renderAllTags() {
@@ -54,14 +53,38 @@ class SearchByTag extends Component {
 
     let tagStr = this.state.selectedTags.toString();
     tagStr = tagStr.replace(/,/g, "&");
+    console.log(this.state.optionAll);
+    if (this.state.optionAll) {
+      tagStr += "+optionAll";
+    }
     this.props.history.push(`/search/tags/${tagStr}`);
+  }
+
+  onOptionAllChange(e) {
+    this.setState({ optionAll: e.target.checked });
   }
 
   render() {
     return (
       <div>
-        <p>Click 1 or more tags you want to search for and hit "Search"</p>
-        <div className="row">{this.renderAllTags()}</div>{" "}
+        <p className="info">
+          Click 1 or more tags you want to search for, add options if you want
+          and hit "Search"
+        </p>
+        <div className="row">{this.renderAllTags()}</div>
+        <div className="search-option row">
+          <div className="input-field">
+            <input
+              id="search-option-all"
+              type="checkbox"
+              onClick={e => this.onOptionAllChange(e)}
+              className="checkbox-blue"
+            />
+            <label htmlFor="search-option-all">
+              Display movies that contain ALL selected tags
+            </label>
+          </div>
+        </div>
         <div className="row error">
           <div className="col s12">{this.state.error}</div>
         </div>
