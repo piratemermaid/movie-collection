@@ -11,7 +11,7 @@ import SearchByTag from "./subcomponents/SearchByTag";
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = { display: "unwatched" };
+    this.state = { display: "tags" }; //TODO: change back to 'unwatched'
   }
 
   render() {

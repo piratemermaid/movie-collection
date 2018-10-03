@@ -46,7 +46,15 @@ h5 {
   padding: 10px;
 }
 
+.card-link:hover {
+  background: #e3f2fd;
+}
+
 .card-link-active {
+  background: #bbdefb;
+}
+
+.card-link-active:hover {
   background: #bbdefb;
 }
 
