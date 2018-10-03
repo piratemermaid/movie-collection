@@ -7,9 +7,15 @@ import dotProp from "dot-prop";
 import TableList from "./TableList";
 
 const Result = props => {
+  let optionAll = false;
   let title = "";
-  const tags = dotProp.get(props.match, "params.tags");
-  if (props.match.params.tags) {
+  let tags = dotProp.get(props.match, "params.tags");
+  if (tags) {
+    if (tags.includes("+optionAll")) {
+      tags = tags.substring(0, tags.length - 10);
+      optionAll = true;
+    }
+    console.log(tags);
     let titleArr = tags.split("&");
     if (titleArr.length === 1) {
       title = titleArr[0];
