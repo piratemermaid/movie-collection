@@ -28,20 +28,22 @@ const TableList = props => {
   }
 
   function renderTags(tags) {
-    let tagArr = [];
+    let renderTagArr = [];
     let tagClass;
+    let tagsArr = props.tags.split("&");
+
     for (let i in tags) {
       tagClass = "tag-result";
-      if (tags[i] === props.tag) {
+      if (tagsArr.includes(tags[i])) {
         tagClass += " tag-match";
       }
-      tagArr.push(
+      renderTagArr.push(
         <span className={tagClass} key={i}>
           {tags[i]}
         </span>
       );
     }
-    return tagArr;
+    return renderTagArr;
   }
 
   //   function renderTags(tags) {
