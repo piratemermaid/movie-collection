@@ -54,7 +54,7 @@ class SearchByTag extends Component {
 
     let tagStr = this.state.selectedTags.toString();
     tagStr = tagStr.replace(/,/g, "&");
-    this.props.history.push(`/search/${tagStr}`);
+    this.props.history.push(`/search/tags/${tagStr}`);
   }
 
   render() {
