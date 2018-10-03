@@ -62,7 +62,12 @@ const Result = props => {
       </Link>
       <br />
       <h5>Movies matching "{title}"</h5>
-      <TableList movies={getMatches()} tags={tags} editable={false} />
+      <TableList
+        movies={getMatches()}
+        tags={tags}
+        editable={false}
+        deletable={true}
+      />
     </div>
   );
 };
