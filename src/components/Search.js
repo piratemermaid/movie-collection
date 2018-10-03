@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
+
+import SearchByTag from "./subcomponents/SearchByTag";
 
 /**
  * @param {string} display: render input for the selected type of display
@@ -13,23 +14,6 @@ class Search extends Component {
     this.state = { display: "unwatched" };
   }
 
-  renderAllTags() {
-    const tagList = this.props.getAllTags();
-    let tagsRender = [];
-    for (let i in tagList) {
-      tagsRender.push(
-        <Link
-          className="search-tag col s2"
-          key={i}
-          to={`/search/tags/${tagList[i]}`}
-        >
-          {tagList[i]}
-        </Link>
-      );
-    }
-
-    return tagsRender;
-  }
   render() {
     let cardClass = "card search-section link-hover card-link";
 
@@ -72,12 +56,7 @@ class Search extends Component {
           <div className="col s12">
             {this.state.display === "year" ? <div>search by year</div> : null}
             {this.state.display === "tags" ? (
-              <div>
-                <p>
-                  Click 1 or more tags you want to search for and hit "Search"
-                </p>
-                {this.renderAllTags()}
-              </div>
+              <SearchByTag getAllTags={this.props.getAllTags} />
             ) : null}
           </div>
         </div>
