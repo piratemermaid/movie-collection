@@ -30,7 +30,10 @@ const TableList = props => {
   function renderTags(tags) {
     let renderTagArr = [];
     let tagClass;
-    let tagsArr = props.tags.split("&");
+    let tagsArr = [];
+    if (props.tags) {
+      tagsArr = props.tags.split("&");
+    }
 
     for (let i in tags) {
       tagClass = "tag-result";
@@ -46,16 +49,6 @@ const TableList = props => {
     return renderTagArr;
   }
 
-  //   function renderTags(tags) {
-  //     let tagStr = [""];
-  //     for (let i in tags) {
-  //       tagStr += tags[i];
-  //       if (i < tags.length - 1) {
-  //         tagStr += ", ";
-  //       }
-  //     }
-  //     return <span>tagStr</span>;
-  //   }
   return (
     <table>
       <thead>
