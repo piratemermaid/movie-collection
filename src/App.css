@@ -1,3 +1,6 @@
+/* #e3f2fd blue lighten-5 */
+/* #bbdefb blue lighten-4 */
+/* #90caf9 blue lighten-3 */
 /* #64b5f6 blue lighten-2 (reg) */
 /* #42a5f5 blue lighten-1 */
 /* #2196f3 blue */
@@ -11,6 +14,11 @@ body {
 
 h5 {
   text-transform: lowercase;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /*///////////////////////////////////////////////////////
@@ -28,6 +36,18 @@ h5 {
 
 .search-section {
   margin: 50px 0;
+}
+
+.link-hover:hover {
+  cursor: pointer;
+}
+
+.card-link {
+  padding: 10px;
+}
+
+.card-link-active {
+  background: #bbdefb;
 }
 
 /*///////////////////////////////////////////////////////
