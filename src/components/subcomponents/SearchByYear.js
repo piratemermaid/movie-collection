@@ -36,21 +36,18 @@ class SearchByYear extends Component {
   }
 
   searchByYear(e) {
-    let options = "";
+    let options = "options=";
     if (this.state.range) {
-      options = `range_from_${this.state.fromYear}`;
+      options += `range_from_${this.state.fromYear}`;
+    } else if (this.state.after) {
+      options += `after`;
+    } else if (this.state.before) {
+      options += "before";
     } else {
-      if (this.state.after) {
-        options = `after`;
-      }
-      if (this.state.before) {
-        options = "before";
-      }
+      options += "none";
     }
 
-    let url = `/search/year/${this.state.toYear}`;
-    options ? (url += `/${options}`) : (url += "/no_options");
-
+    let url = `/search/year/${this.state.toYear}/${options}`;
     this.props.history.push(url);
 
     e.preventDefault();
