@@ -10,7 +10,9 @@ const Result = props => {
   let optionAll = false;
   let title = "";
   let tags = dotProp.get(props.match, "params.tags");
-  let year = dotProp.get(props.match, "params.year");
+  let year = parseInt(dotProp.get(props.match, "params.year"));
+  let yearOption;
+  let fromYear;
 
   if (tags) {
     if (tags.includes("+optionAll")) {
@@ -37,16 +39,19 @@ const Result = props => {
 
     if (options) {
       if (options.includes("range")) {
-        let fromYear = options.split("_")[2];
+        fromYear = options.split("_")[2];
         title = `From ${fromYear} to ${title}`;
+        yearOption = "range";
       }
 
       if (options === "before") {
         title = `Before ${title}`;
+        yearOption = "before";
       }
 
       if (options === "after") {
         title = `After ${title}`;
+        yearOption = "after";
       }
     }
   } else {
@@ -55,7 +60,7 @@ const Result = props => {
 
   function getMatches() {
     let matches = [];
-    if (props.match.params.tags) {
+    if (tags) {
       let tagsArr = tags.split("&");
       let inArr, matched;
 
@@ -77,6 +82,37 @@ const Result = props => {
         if (matched) {
           matches.push(props.movies[i]);
         }
+      }
+    } else if (year) {
+      if (yearOption) {
+        if (yearOption === "range") {
+          matches = props.movies.filter(movie => {
+            if (
+              parseInt(movie.year) >= parseInt(fromYear) &&
+              parseInt(movie.year) <= year
+            ) {
+              return movie.title;
+            } else return null;
+          });
+        } else if (yearOption === "before") {
+          matches = props.movies.filter(movie => {
+            if (parseInt(movie.year) <= year) {
+              return movie.title;
+            } else return null;
+          });
+        } else {
+          matches = props.movies.filter(movie => {
+            if (parseInt(movie.year) >= year) {
+              return movie.title;
+            } else return null;
+          });
+        }
+      } else {
+        matches = props.movies.filter(movie => {
+          if (parseInt(movie.year) === year) {
+            return movie.title;
+          } else return null;
+        });
       }
     } else {
       // title = 'unwatched'
