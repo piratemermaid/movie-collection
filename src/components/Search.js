@@ -12,7 +12,7 @@ import SearchByTag from "./subcomponents/SearchByTag";
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = { display: "year" }; //TODO: change back to 'unwatched'
+    this.state = { display: "tags" }; //TODO: change back to 'unwatched'
   }
 
   render() {
@@ -22,11 +22,14 @@ class Search extends Component {
       <div className="row flex">
         <div className="col s4 flex center-align">
           <div
-            className={cardClass}
-            onClick={() => this.props.history.push("/search/unwatched")}
+            className={
+              this.state.display === "tags"
+                ? `${cardClass} card-link-active`
+                : cardClass
+            }
+            onClick={() => this.setState({ display: "tags" })}
           >
-            <h5>view all unwatched</h5>
-            <i className="material-icons small icon-link">arrow_forward</i>
+            <h5>search by tag(s)</h5>
           </div>
         </div>
         <div className="col s4 flex center-align">
@@ -43,14 +46,11 @@ class Search extends Component {
         </div>
         <div className="col s4 flex center-align">
           <div
-            className={
-              this.state.display === "tags"
-                ? `${cardClass} card-link-active`
-                : cardClass
-            }
-            onClick={() => this.setState({ display: "tags" })}
+            className={cardClass}
+            onClick={() => this.props.history.push("/search/unwatched")}
           >
-            <h5>search by tag(s)</h5>
+            <h5>view all unwatched</h5>
+            <i className="material-icons small icon-link">arrow_forward</i>
           </div>
         </div>
         <div className="row">
