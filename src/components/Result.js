@@ -34,10 +34,10 @@ const Result = props => {
       }
     }
   } else if (year) {
-    let options = dotProp.get(props.match, "params.options");
+    let options = dotProp.get(props.match, "params.options").split("=")[1];
     title = year;
 
-    if (options) {
+    if (options !== "none") {
       if (options.includes("range")) {
         fromYear = options.split("_")[2];
         title = `From ${fromYear} to ${title}`;
