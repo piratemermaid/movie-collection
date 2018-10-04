@@ -112,6 +112,10 @@ class App extends Component {
                   render={() => <Result movies={this.state.collection} />}
                 />
                 <Route
+                  path="/search/year/:year/:options"
+                  render={() => <Result movies={this.state.collection} />}
+                />
+                <Route
                   path="/add/:type"
                   render={() => (
                     <AddMovie

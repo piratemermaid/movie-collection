@@ -32,19 +32,41 @@ class SearchByYear extends Component {
 
   onBeforeChange(e) {
     if (e.target.checked) {
-      document.getElementById("year-after").checked = false;
+      document.getElementById("year-range").checked = false;
     }
-    this.setState({ before: e.target.checked });
+    this.setState({ before: e.target.checked, after: false, range: false });
   }
 
   onAfterChange(e) {
     if (e.target.checked) {
       document.getElementById("year-before").checked = false;
+      document.getElementById("year-range").checked = false;
     }
-    this.setState({ after: e.target.checked });
+    this.setState({ after: e.target.checked, before: false, range: false });
   }
 
   searchByYear(e) {
+    // /search/year/:year/:options
+    let options = "";
+    if (this.state.range) {
+      options = `range_from_${this.state.fromYear}`;
+    } else {
+      if (this.state.after) {
+        options = `after`;
+      }
+      if (this.state.before) {
+        options = "before";
+      }
+    }
+
+    let url = `/search/year/${this.state.toYear}`;
+    if (options !== "") {
+      url += `/${options}`;
+    }
+
+    // this.props.history.push(url);
+    console.log(url);
+
     e.preventDefault();
   }
 
