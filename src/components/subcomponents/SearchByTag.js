@@ -46,6 +46,8 @@ class SearchByTag extends Component {
   }
 
   handleSearch() {
+    let options = "none";
+
     if (this.state.selectedTags.length < 1) {
       this.setState({ error: "Please select at least 1 tag" });
       return;
@@ -53,10 +55,11 @@ class SearchByTag extends Component {
 
     let tagStr = this.state.selectedTags.toString();
     tagStr = tagStr.replace(/,/g, "&");
+
     if (this.state.optionAll) {
-      tagStr += "+optionAll";
+      options = "all";
     }
-    this.props.history.push(`/search/tags/${tagStr}`);
+    this.props.history.push(`/search/tags/${tagStr}/options=${options}`);
   }
 
   onOptionAllChange(e) {

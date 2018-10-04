@@ -7,17 +7,17 @@ import dotProp from "dot-prop";
 import TableList from "./TableList";
 
 const Result = props => {
-  let optionAll = false;
   let title = "";
   let tags = dotProp.get(props.match, "params.tags");
+  let tagsOption;
   let year = parseInt(dotProp.get(props.match, "params.year"));
   let yearOption;
   let fromYear;
 
   if (tags) {
-    if (tags.includes("+optionAll")) {
-      tags = tags.substring(0, tags.length - 10);
-      optionAll = true;
+    let options = dotProp.get(props.match, "params.options").split("=")[1];
+    if (options === "all") {
+      tagsOption = "all";
     }
     let titleArr = tags.split("&");
     if (titleArr.length === 1) {
@@ -60,6 +60,7 @@ const Result = props => {
 
   function getMatches() {
     let matches = [];
+
     if (tags) {
       let tagsArr = tags.split("&");
       let inArr, matched;
@@ -69,7 +70,7 @@ const Result = props => {
         matched = false;
         for (let j in tagsArr) {
           inArr = _.some(matches, { title: props.movies[i].title });
-          if (optionAll) {
+          if (tagsOption === "all") {
             if (!props.movies[i].tags.includes(tagsArr[j])) {
               matched = false;
               break;
