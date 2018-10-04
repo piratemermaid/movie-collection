@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
 
+import SearchByYear from "./subcomponents/SearchByYear";
 import SearchByTag from "./subcomponents/SearchByTag";
 
 /**
@@ -11,7 +12,7 @@ import SearchByTag from "./subcomponents/SearchByTag";
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = { display: "tags" }; //TODO: change back to 'unwatched'
+    this.state = { display: "year" }; //TODO: change back to 'unwatched'
   }
 
   render() {
@@ -54,7 +55,7 @@ class Search extends Component {
         </div>
         <div className="row">
           <div className="col s12">
-            {this.state.display === "year" ? <div>search by year</div> : null}
+            {this.state.display === "year" ? <SearchByYear /> : null}
             {this.state.display === "tags" ? (
               <SearchByTag getAllTags={this.props.getAllTags} />
             ) : null}
