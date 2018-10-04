@@ -10,6 +10,8 @@ const Result = props => {
   let optionAll = false;
   let title = "";
   let tags = dotProp.get(props.match, "params.tags");
+  let year = dotProp.get(props.match, "params.year");
+
   if (tags) {
     if (tags.includes("+optionAll")) {
       tags = tags.substring(0, tags.length - 10);
@@ -27,6 +29,24 @@ const Result = props => {
         } else {
           title += " & " + titleArr[i];
         }
+      }
+    }
+  } else if (year) {
+    let options = dotProp.get(props.match, "params.options");
+    title = year;
+
+    if (options) {
+      if (options.includes("range")) {
+        let fromYear = options.split("_")[2];
+        title = `From ${fromYear} to ${title}`;
+      }
+
+      if (options === "before") {
+        title = `Before ${title}`;
+      }
+
+      if (options === "after") {
+        title = `After ${title}`;
       }
     }
   } else {

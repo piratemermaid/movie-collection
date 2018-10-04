@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 
 class SearchByYear extends Component {
   constructor(props) {
@@ -23,30 +24,18 @@ class SearchByYear extends Component {
   }
 
   onRangeChange(e) {
-    if (e.target.checked) {
-      const calcFromYear = this.state.toYear - 1;
-      this.setState({ fromYear: calcFromYear });
-    }
     this.setState({ range: e.target.checked });
   }
 
   onBeforeChange(e) {
-    if (e.target.checked) {
-      document.getElementById("year-range").checked = false;
-    }
     this.setState({ before: e.target.checked, after: false, range: false });
   }
 
   onAfterChange(e) {
-    if (e.target.checked) {
-      document.getElementById("year-before").checked = false;
-      document.getElementById("year-range").checked = false;
-    }
     this.setState({ after: e.target.checked, before: false, range: false });
   }
 
   searchByYear(e) {
-    // /search/year/:year/:options
     let options = "";
     if (this.state.range) {
       options = `range_from_${this.state.fromYear}`;
@@ -60,12 +49,9 @@ class SearchByYear extends Component {
     }
 
     let url = `/search/year/${this.state.toYear}`;
-    if (options !== "") {
-      url += `/${options}`;
-    }
+    options ? (url += `/${options}`) : (url += "/no_options");
 
-    // this.props.history.push(url);
-    console.log(url);
+    this.props.history.push(url);
 
     e.preventDefault();
   }
@@ -102,7 +88,8 @@ class SearchByYear extends Component {
           <input
             id="year-range"
             type="checkbox"
-            onClick={e => this.onRangeChange(e)}
+            checked={this.state.range}
+            onChange={e => this.onRangeChange(e)}
             className="checkbox-blue"
           />
           <label htmlFor="year-range">Search a range of years</label>
@@ -112,7 +99,8 @@ class SearchByYear extends Component {
             <input
               id="year-before"
               type="checkbox"
-              onClick={e => this.onBeforeChange(e)}
+              checked={this.state.before}
+              onChange={e => this.onBeforeChange(e)}
               className="checkbox-blue"
             />
             <label htmlFor="year-before">Before {this.state.toYear}</label>
@@ -123,7 +111,8 @@ class SearchByYear extends Component {
             <input
               id="year-after"
               type="checkbox"
-              onClick={e => this.onAfterChange(e)}
+              checked={this.state.after}
+              onChange={e => this.onAfterChange(e)}
               className="checkbox-blue"
             />
             <label htmlFor="year-after">After {this.state.toYear}</label>
@@ -143,4 +132,4 @@ class SearchByYear extends Component {
   }
 }
 
-export default SearchByYear;
+export default withRouter(SearchByYear);
