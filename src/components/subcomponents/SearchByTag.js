@@ -71,7 +71,7 @@ class SearchByTag extends Component {
           and hit "Search"
         </p>
         <div className="row">{this.renderAllTags()}</div>
-        <div className="search-option row">
+        <div className="search-option row" style={{ marginLeft: "6px" }}>
           <div className="input-field">
             <input
               id="search-option-all"
