@@ -10,7 +10,7 @@ const Result = props => {
   let title = "";
   let tags = dotProp.get(props.match, "params.tags");
   let tagsOption;
-  let year = parseInt(dotProp.get(props.match, "params.year"));
+  let year = parseInt(dotProp.get(props.match, "params.year"), 10);
   let yearOption;
   let fromYear;
 
@@ -89,28 +89,28 @@ const Result = props => {
         if (yearOption === "range") {
           matches = props.movies.filter(movie => {
             if (
-              parseInt(movie.year) >= parseInt(fromYear) &&
-              parseInt(movie.year) <= year
+              parseInt(movie.year, 10) >= parseInt(fromYear, 10) &&
+              parseInt(movie.year, 10) <= year
             ) {
               return movie.title;
             } else return null;
           });
         } else if (yearOption === "before") {
           matches = props.movies.filter(movie => {
-            if (parseInt(movie.year) <= year) {
+            if (parseInt(movie.year, 10) <= year) {
               return movie.title;
             } else return null;
           });
         } else {
           matches = props.movies.filter(movie => {
-            if (parseInt(movie.year) >= year) {
+            if (parseInt(movie.year, 10) >= year) {
               return movie.title;
             } else return null;
           });
         }
       } else {
         matches = props.movies.filter(movie => {
-          if (parseInt(movie.year) === year) {
+          if (parseInt(movie.year, 10) === year) {
             return movie.title;
           } else return null;
         });
