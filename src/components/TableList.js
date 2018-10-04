@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
@@ -10,7 +11,7 @@ import { Link } from "react-router-dom";
 class TableList extends Component {
   constructor(props) {
     super(props);
-    this.state = { sortBy: "dateAdded", ascending: true };
+    this.state = { sortBy: "year", ascending: true };
   }
 
   removeFromList(title) {
@@ -26,11 +27,64 @@ class TableList extends Component {
     }
   }
 
+  sortByMethod(sortBy, movies) {
+    let sorted = [];
+    for (let i in movies) {
+      let first = movies[i];
+      let firstInArr = _.some(sorted, { title: movies[i].title });
+      for (let j in movies) {
+        let inArr = _.some(sorted, { title: movies[j].title });
+        if (movies[j][sortBy] < first[sortBy]) {
+          if (!inArr) {
+            first = movies[j];
+            firstInArr = _.some(sorted, { title: first.title });
+          }
+        } else if (movies[j][sortBy] === first[sortBy]) {
+          // If same year, put in alphabetical order
+          if (sortBy === "year") {
+            if (movies[j].title < first.title && !inArr) {
+              first = movies[j];
+              firstInArr = false;
+            } else {
+              if (firstInArr) {
+                first = movies[j];
+                firstInArr = _.some(sorted, { title: first.title });
+              }
+            }
+          }
+          // TODO: if same title, put in order of year
+          // e.g. Cinderella original vs 2015 Cinderella
+        } else {
+          if (firstInArr && !inArr) {
+            first = movies[j];
+            firstInArr = false;
+          }
+        }
+      }
+
+      sorted.push(first);
+    }
+
+    return sorted;
+  }
+
   renderMovies(movies) {
     let rows = [];
 
-    for (let i in movies) {
-      const movie = movies[i];
+    // TODO: use state to sort movies
+    const { sortBy, ascending } = this.state;
+
+    let sortedMovies;
+    sortBy === "dateAdded"
+      ? (sortedMovies = movies)
+      : (sortedMovies = this.sortByMethod(sortBy, movies));
+
+    if (!ascending) {
+      sortedMovies.reverse();
+    }
+
+    for (let i in sortedMovies) {
+      const movie = sortedMovies[i];
       rows.push(
         <tr
           key={i}
@@ -60,10 +114,7 @@ class TableList extends Component {
       );
     }
 
-    // TODO: use state to sort rows
-    let sortedRows = rows;
-
-    return sortedRows;
+    return rows;
   }
 
   renderTags(tags) {
