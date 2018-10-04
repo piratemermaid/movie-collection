@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 class TableList extends Component {
   constructor(props) {
     super(props);
-    this.state = { sortBy: "year", ascending: true };
+    this.state = { sortBy: "dateAdded", ascending: true };
   }
 
   removeFromList(title) {
@@ -76,7 +76,7 @@ class TableList extends Component {
 
     let sortedMovies;
     sortBy === "dateAdded"
-      ? (sortedMovies = movies)
+      ? (sortedMovies = this.sortByMethod("added", movies))
       : (sortedMovies = this.sortByMethod(sortBy, movies));
 
     if (!ascending) {
