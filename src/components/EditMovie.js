@@ -104,7 +104,6 @@ class EditMovie extends Component {
         info = wishlist[i];
       }
     }
-    let tags = info.tags;
     if (typeof info.tags === "string") {
       let tags = info.tags.split(" ");
       info.tags = tags;
