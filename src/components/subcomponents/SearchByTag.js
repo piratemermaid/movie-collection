@@ -42,7 +42,13 @@ class SearchByTag extends Component {
 
   updateSelectedTags(tag) {
     let newTagArr = this.state.selectedTags;
-    if (!this.state.selectedTags.includes(tag)) {
+    let newExclude = this.state.exclude;
+
+    if (this.state.exclude.includes(tag)) {
+      newTagArr.push(tag);
+      let index = newExclude.indexOf(tag);
+      newExclude.splice(index, 1);
+    } else if (!this.state.selectedTags.includes(tag)) {
       newTagArr.push(tag);
     } else {
       let index = newTagArr.indexOf(tag);
@@ -51,7 +57,7 @@ class SearchByTag extends Component {
 
     newTagArr = newTagArr.sort();
 
-    this.setState({ selectedTags: newTagArr, error: "" });
+    this.setState({ selectedTags: newTagArr, exclude: newExclude, error: "" });
   }
 
   renderExcludeTags() {
