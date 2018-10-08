@@ -94,7 +94,9 @@ class EditMovie extends Component {
         <Link to={`/${this.state.type}`}>
           <i
             className="material-icons small icon-link float-right"
-            onClick={() => this.props.deleteMovie(this.state.title)}
+            onClick={() =>
+              this.props.deleteMovie(this.state.title, this.state.type)
+            }
           >
             delete
           </i>
