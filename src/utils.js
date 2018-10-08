@@ -88,7 +88,7 @@ export function devFillMovies() {
     },
     {
       added: "10/06/2018",
-      tags: ["animated", "disney", "family", "feminism", "magic", "musical"],
+      tags: ["animated", "disney", "feminism", "magic", "musical"],
       title: "Frozen",
       watched: true,
       year: "2016",

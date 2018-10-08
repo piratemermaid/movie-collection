@@ -9,22 +9,26 @@ class SearchByTag extends Component {
       selectedTags: [],
       error: "",
       optionAll: false,
-      optionExclude: false
+      optionExclude: false,
+      exclude: []
     };
   }
 
   renderAllTags() {
     const tagList = this.props.getAllTags();
     let tagsRender = [];
-    let tagClass = "search-tag col s2";
     for (let i in tagList) {
+      let tagClass = "search-tag col s2";
+      if (this.state.exclude.includes(tagList[i])) {
+        tagClass += " tag-exclude";
+      } else {
+        if (this.state.selectedTags.includes(tagList[i])) {
+          tagClass += " tag-match";
+        }
+      }
       tagsRender.push(
         <div
-          className={
-            this.state.selectedTags.includes(tagList[i])
-              ? tagClass + " tag-match"
-              : tagClass
-          }
+          className={tagClass}
           key={i}
           onClick={() => this.updateSelectedTags(tagList[i])}
         >
@@ -50,6 +54,33 @@ class SearchByTag extends Component {
     this.setState({ selectedTags: newTagArr, error: "" });
   }
 
+  renderExcludeTags() {
+    const tagList = this.props.getAllTags();
+    let tagsRender = [];
+    let tagClass = "search-tag col s2";
+    for (let i in tagList) {
+      if (!this.state.exclude.includes(tagList[i])) {
+        tagsRender.push(
+          <div
+            className={tagClass}
+            key={i}
+            onClick={() => this.updateExcludedTags(tagList[i])}
+          >
+            {tagList[i]}
+          </div>
+        );
+      }
+    }
+
+    return tagsRender;
+  }
+
+  updateExcludedTags(tag) {
+    let newExclude = this.state.exclude;
+    newExclude.push(tag);
+    this.setState({ exclude: newExclude });
+  }
+
   handleSearch() {
     let options = "none";
 
@@ -63,6 +94,13 @@ class SearchByTag extends Component {
 
     if (this.state.optionAll) {
       options = "all";
+      if (this.state.optionExclude && this.state.exclude.length > 0) {
+        options += "&exclude=";
+      }
+    } else {
+      if (this.state.optionExclude && this.state.optionExclude.length > 0) {
+        options = "exclude=";
+      }
     }
 
     this.props.history.push(`/search/tags/${tagStr}/options=${options}`);
@@ -73,6 +111,9 @@ class SearchByTag extends Component {
   }
 
   onOptionExcludeChange(e) {
+    if (!e.target.checked) {
+      this.setState({ exclude: [] });
+    }
     this.setState({ optionExclude: e.target.checked });
   }
 
@@ -110,6 +151,7 @@ class SearchByTag extends Component {
             </label>
           </div>
         </div>
+        {this.state.optionExclude ? this.renderExcludeTags() : null}
         <div className="row error">
           <div className="col s12">{this.state.error}</div>
         </div>
