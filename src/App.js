@@ -11,6 +11,7 @@ import AddMovie from "./components/AddMovie";
 import EditMovie from "./components/EditMovie";
 import Collection from "./components/Collection";
 import Wishlist from "./components/Wishlist";
+import Account from "./components/Account";
 
 class App extends Component {
   constructor(props) {
@@ -103,7 +104,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    const state = JSON.parse(localStorage.getItem("movieState"));
+    const state = JSON.parse(localStorage.getItem("movieState")) || {};
     this.setState({ collection: state.collection, wishlist: state.wishlist });
   }
 
@@ -176,6 +177,10 @@ class App extends Component {
                       fillMovies={this.fillMovies}
                     />
                   )}
+                />
+                <Route
+                  path="/account"
+                  render={() => <Account movies={this.state} />}
                 />
               </Switch>
             </div>

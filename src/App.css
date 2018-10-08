@@ -207,6 +207,14 @@ h5 {
   border-bottom: 1px solid #64b5f6;
   box-shadow: 0 1px 0 0 #64b5f6;
 }
+textarea#account-import.materialize-textarea:focus {
+  border-bottom: 1px solid #64b5f6;
+  box-shadow: 0 1px 0 0 #64b5f6;
+}
+textarea#account-export.materialize-textarea:focus {
+  border-bottom: 1px solid #64b5f6;
+  box-shadow: 0 1px 0 0 #64b5f6;
+}
 /* icon prefix focus color */
 .input-field .prefix.active {
   color: #64b5f6;

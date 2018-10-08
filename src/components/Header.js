@@ -34,6 +34,9 @@ class Header extends Component {
             <li className={this.getClassName("/wishlist")}>
               <Link to="/wishlist">Wishlist</Link>
             </li>
+            <li className={this.getClassName("/account")}>
+              <Link to="/account">Account</Link>
+            </li>
           </ul>
         </div>
       </nav>
