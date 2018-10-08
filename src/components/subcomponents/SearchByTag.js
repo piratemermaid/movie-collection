@@ -5,7 +5,12 @@ class SearchByTag extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { selectedTags: [], error: "", optionAll: false };
+    this.state = {
+      selectedTags: [],
+      error: "",
+      optionAll: false,
+      optionExclude: false
+    };
   }
 
   renderAllTags() {
@@ -59,11 +64,16 @@ class SearchByTag extends Component {
     if (this.state.optionAll) {
       options = "all";
     }
+
     this.props.history.push(`/search/tags/${tagStr}/options=${options}`);
   }
 
   onOptionAllChange(e) {
     this.setState({ optionAll: e.target.checked });
+  }
+
+  onOptionExcludeChange(e) {
+    this.setState({ optionExclude: e.target.checked });
   }
 
   render() {
@@ -84,6 +94,19 @@ class SearchByTag extends Component {
             />
             <label htmlFor="search-option-all">
               Display movies that contain ALL selected tags
+            </label>
+          </div>
+        </div>
+        <div className="search-option row" style={{ marginLeft: "6px" }}>
+          <div className="input-field">
+            <input
+              id="search-option-exclude"
+              type="checkbox"
+              onClick={e => this.onOptionExcludeChange(e)}
+              className="checkbox-blue"
+            />
+            <label htmlFor="search-option-exclude">
+              Exclude certain tags from search
             </label>
           </div>
         </div>
