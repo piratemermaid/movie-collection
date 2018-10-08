@@ -22,7 +22,12 @@ const Wishlist = props => {
       <Link to="/add/wishlist">
         <i className="material-icons small icon-link float-right">add_circle</i>
       </Link>
-      <TableList movies={props.wishlist} editable={true} deletable={false} />
+      <TableList
+        movies={props.wishlist}
+        type="wishlist"
+        editable={true}
+        deletable={false}
+      />
       <div className="dev-options">
         <a className="dev-option" onClick={() => props.deleteAll("wishlist")}>
           Delete wishlist

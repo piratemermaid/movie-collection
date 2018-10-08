@@ -16,7 +16,8 @@ class AddMovie extends Component {
       added: "",
       titleErr: "",
       yearErr: "",
-      tagsErr: ""
+      tagsErr: "",
+      releaseDate: ""
     };
   }
 
@@ -55,6 +56,9 @@ class AddMovie extends Component {
         info.added = formatTodaysDate();
       }
       const type = this.props.match.params.type;
+      if (type === "wishlist") {
+        info.releaseDate = this.state.releaseDate || "unknown";
+      }
       this.props.addMovie(info, type);
       this.props.history.push(`/${type}`);
     }
@@ -79,6 +83,10 @@ class AddMovie extends Component {
 
   onAddedChange(e) {
     this.setState({ added: e.target.value });
+  }
+
+  onReleaseDateChange(e) {
+    this.setState({ releaseDate: e.target.value });
   }
 
   updateTags(tag) {
@@ -184,6 +192,17 @@ class AddMovie extends Component {
                 />
                 <div className="form-err">{this.state.dateErr}</div>
               </div>
+              {type === "wishlist" ? (
+                <div className="input-field col s12">
+                  <p className="form-label">Release date (if known)</p>
+                  <input
+                    id="input-release"
+                    type="text"
+                    value={this.state.release}
+                    onChange={e => this.onreleaseDateChange(e)}
+                  />
+                </div>
+              ) : null}
               <div className="input-field col s12">
                 <button
                   className="btn waves-effect waves-light blue lighten-2"
