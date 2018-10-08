@@ -13,6 +13,25 @@ export function formatTodaysDate() {
   return `${month}/${day}/${year}`;
 }
 
+export function titleFromTags(arr) {
+  let title = "";
+  let titleArr = arr.split("&");
+  if (titleArr.length === 1) {
+    title = titleArr[0];
+  } else if (titleArr.length === 2) {
+    title = titleArr[0] + " & " + titleArr[1];
+  } else {
+    for (let i in titleArr) {
+      if (i < titleArr.length - 1) {
+        title += titleArr[i] + ", ";
+      } else {
+        title += " & " + titleArr[i];
+      }
+    }
+  }
+  return title;
+}
+
 export function devFillMovies() {
   const collection = [
     {
