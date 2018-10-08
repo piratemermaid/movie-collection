@@ -93,6 +93,14 @@ export function devFillMovies() {
       watched: true,
       year: "2016",
       releaseDate: "released"
+    },
+    {
+      added: "10/06/2018",
+      tags: ["animals", "animated", "musical"],
+      title: "Sing!",
+      watched: true,
+      year: "2017",
+      releaseDate: "released"
     }
   ];
 
