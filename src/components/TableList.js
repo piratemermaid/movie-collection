@@ -95,7 +95,7 @@ class TableList extends Component {
             {movie.title}
             {this.props.deletable ? (
               <i
-                className="material-icons tiny icon-link"
+                className="material-icons tiny icon-link-blue"
                 onClick={() => this.removeFromList(movie.title)}
               >
                 delete
@@ -103,7 +103,7 @@ class TableList extends Component {
             ) : null}
             {this.props.editable ? (
               <Link to={`/edit/${movie.title}`}>
-                <i className="material-icons tiny icon-link">edit</i>
+                <i className="material-icons tiny icon-link-blue">edit</i>
               </Link>
             ) : null}
           </td>
@@ -156,7 +156,7 @@ class TableList extends Component {
     let icon;
     let iconClass = "material-icons tiny icon-link";
     if (this.state.sortBy === type) {
-      iconClass += " icon-link-active";
+      iconClass += " icon-link-blue";
       if (this.state.ascending) {
         icon = "up";
       } else {
