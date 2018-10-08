@@ -85,6 +85,14 @@ export function devFillMovies() {
       watched: true,
       year: "1998",
       releaseDate: "released"
+    },
+    {
+      added: "10/06/2018",
+      tags: ["animated", "disney", "family", "feminism", "magic", "musical"],
+      title: "Frozen",
+      watched: true,
+      year: "2016",
+      releaseDate: "released"
     }
   ];
 
