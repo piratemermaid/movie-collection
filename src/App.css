@@ -98,6 +98,11 @@ h5 {
   color: black;
 }
 
+.sort-option:hover {
+  cursor: pointer;
+  color: #1e88e5;
+}
+
 .sort-option-active {
   color: #64b5f6;
 }
