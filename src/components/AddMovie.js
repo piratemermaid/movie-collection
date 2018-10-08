@@ -14,6 +14,7 @@ class AddMovie extends Component {
       tags: [],
       watched: false,
       added: "",
+      formErr: "",
       titleErr: "",
       yearErr: "",
       tagsErr: "",
@@ -43,9 +44,34 @@ class AddMovie extends Component {
     } else {
       tags = [];
     }
+
+    const type = this.props.match.params.type;
+    const movies = this.props.movies[type];
+
+    /**
+     * If the movie title is already in the list,
+     * and the year is different, add the year
+     * to both movie titles (to differentiate remakes)
+     */
+    let newAddTitle;
+    for (let i in movies) {
+      if (movies[i].title === this.state.title) {
+        if (movies[i].year !== this.state.year) {
+          newAddTitle = `${this.state.title} (${this.state.year})`;
+          let newEditTitle = `${movies[i].title} (${movies[i].year})`;
+          movies[i].title = newEditTitle;
+          this.props.editMovie(movies[i].title, "", type);
+          break;
+        } else {
+          this.setState({ formErr: `Movie is already in ${type}` });
+          errors = true;
+        }
+      }
+    }
+
     if (!errors) {
       const info = {
-        title: this.state.title,
+        title: newAddTitle || this.state.title,
         year: this.state.year,
         tags,
         watched: this.state.watched,
@@ -55,7 +81,7 @@ class AddMovie extends Component {
         // TODO: check date format
         info.added = formatTodaysDate();
       }
-      const type = this.props.match.params.type;
+
       if (type === "wishlist") {
         info.releaseDate = this.state.releaseDate || "unknown";
       }
@@ -65,28 +91,28 @@ class AddMovie extends Component {
   }
 
   onTitleChange(e) {
-    this.setState({ title: e.target.value, titleErr: "" });
+    this.setState({ title: e.target.value, titleErr: "", formErr: "" });
   }
 
   onYearChange(e) {
-    this.setState({ year: e.target.value, yearErr: "" });
+    this.setState({ year: e.target.value, yearErr: "", formErr: "" });
   }
 
   onWatchedChange(e) {
-    this.setState({ watched: e.target.checked });
+    this.setState({ watched: e.target.checked, formErr: "" });
   }
 
   onTagsChange(e) {
     // TODO: better way to input than separating by spaces
-    this.setState({ tags: e.target.value, tagsErr: "" });
+    this.setState({ tags: e.target.value, tagsErr: "", formErr: "" });
   }
 
   onAddedChange(e) {
-    this.setState({ added: e.target.value });
+    this.setState({ added: e.target.value, formErr: "" });
   }
 
   onReleaseDateChange(e) {
-    this.setState({ releaseDate: e.target.value });
+    this.setState({ releaseDate: e.target.value, formErr: "" });
   }
 
   updateTags(tag) {
@@ -207,6 +233,7 @@ class AddMovie extends Component {
                 </div>
               ) : null}
               <div className="input-field col s12">
+                <p className="form-err">{this.state.formErr}</p>{" "}
                 <button
                   className="btn waves-effect waves-light blue lighten-2"
                   onClick={e => this.addMovie(e)}

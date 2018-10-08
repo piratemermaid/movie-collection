@@ -99,6 +99,7 @@ class App extends Component {
   }
 
   render() {
+    const { collection, wishlist } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
@@ -110,30 +111,29 @@ class App extends Component {
                   exact
                   path="/"
                   render={() => (
-                    <Search
-                      movies={this.state.collection}
-                      getAllTags={this.getAllTags}
-                    />
+                    <Search movies={collection} getAllTags={this.getAllTags} />
                   )}
                 />
                 <Route
                   path="/search/unwatched"
-                  render={() => <Result movies={this.state.collection} />}
+                  render={() => <Result movies={collection} />}
                 />
                 <Route
                   path="/search/tags/:tags/:options"
-                  render={() => <Result movies={this.state.collection} />}
+                  render={() => <Result movies={collection} />}
                 />
                 <Route
                   path="/search/year/:year/:options"
-                  render={() => <Result movies={this.state.collection} />}
+                  render={() => <Result movies={collection} />}
                 />
                 <Route
                   path="/add/:type"
                   render={() => (
                     <AddMovie
                       addMovie={this.addMovie}
+                      editMovie={this.editMovie}
                       getAllTags={this.getAllTags}
+                      movies={this.state}
                     />
                   )}
                 />
@@ -151,7 +151,7 @@ class App extends Component {
                   path="/collection"
                   render={() => (
                     <Collection
-                      movies={this.state.collection}
+                      movies={collection}
                       deleteAll={this.deleteAll}
                       devFillMovies={this.devFillMovies}
                     />
@@ -161,7 +161,7 @@ class App extends Component {
                   path="/wishlist"
                   render={() => (
                     <Wishlist
-                      wishlist={this.state.wishlist}
+                      wishlist={wishlist}
                       deleteAll={this.deleteAll}
                       devFillMovies={this.devFillMovies}
                     />
