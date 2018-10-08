@@ -30,9 +30,15 @@ const Collection = props => {
         </a>
         <a
           className="dev-option"
-          onClick={() => props.devFillMovies("collection")}
+          onClick={() => props.fillMovies("collection", "dev")}
         >
-          Fill movies
+          Dev fill movies
+        </a>
+        <a
+          className="dev-option"
+          onClick={() => props.fillMovies("collection", "personal")}
+        >
+          Fill with my movies
         </a>
       </div>
     </div>

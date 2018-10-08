@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import { devFillMovies } from "./utils";
+import { fillMyMovies } from "./myMovies";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Result from "./components/Result";
@@ -25,7 +26,7 @@ class App extends Component {
     this.deleteMovie = this.deleteMovie.bind(this);
     this.deleteAll = this.deleteAll.bind(this);
     this.getAllTags = this.getAllTags.bind(this);
-    this.devFillMovies = this.devFillMovies.bind(this);
+    this.fillMovies = this.fillMovies.bind(this);
   }
 
   updateLocalStorage() {
@@ -84,9 +85,14 @@ class App extends Component {
     return tagList;
   }
 
-  devFillMovies(type) {
-    const movies = devFillMovies(type)[type];
-    this.setState({ [type]: movies });
+  fillMovies(collType, movieType) {
+    let movies;
+    if (movieType === "dev") {
+      movies = devFillMovies(collType)[collType];
+    } else {
+      movies = fillMyMovies(collType)[collType];
+    }
+    this.setState({ [collType]: movies });
   }
 
   componentDidUpdate() {
@@ -153,7 +159,7 @@ class App extends Component {
                     <Collection
                       movies={collection}
                       deleteAll={this.deleteAll}
-                      devFillMovies={this.devFillMovies}
+                      fillMovies={this.fillMovies}
                     />
                   )}
                 />
@@ -163,7 +169,7 @@ class App extends Component {
                     <Wishlist
                       wishlist={wishlist}
                       deleteAll={this.deleteAll}
-                      devFillMovies={this.devFillMovies}
+                      fillMovies={this.fillMovies}
                     />
                   )}
                 />

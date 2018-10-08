@@ -34,9 +34,15 @@ const Wishlist = props => {
         </a>
         <a
           className="dev-option"
-          onClick={() => props.devFillMovies("wishlist")}
+          onClick={() => props.fillMovies("wishlist", "dev")}
         >
-          Fill movies
+          Dev fill movies
+        </a>
+        <a
+          className="dev-option"
+          onClick={() => props.fillMovies("wishlist", "personal")}
+        >
+          Fill with my movies
         </a>
       </div>
     </div>
