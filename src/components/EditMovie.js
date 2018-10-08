@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
+import { formatTodaysDate } from "../utils";
+
 class EditMovie extends Component {
   constructor(props) {
     super(props);
@@ -93,6 +95,28 @@ class EditMovie extends Component {
     this.setState(info);
   }
 
+  moveToCollection() {
+    // add to collection
+    const wishlist = this.props.movies.wishlist;
+    let info;
+    for (let i in wishlist) {
+      if (wishlist[i].title === this.state.title) {
+        info = wishlist[i];
+      }
+    }
+    let tags = info.tags;
+    if (typeof info.tags === "string") {
+      let tags = info.tags.split(" ");
+      info.tags = tags;
+    }
+    delete info["releaseDate"];
+    info.added = formatTodaysDate();
+    this.props.addMovie(info, "collection");
+
+    // delete from wishlist
+    this.props.deleteMovie(this.state.title, "wishlist");
+  }
+
   render() {
     return (
       <div>
@@ -105,10 +129,23 @@ class EditMovie extends Component {
             onClick={() =>
               this.props.deleteMovie(this.state.title, this.state.type)
             }
+            title={`Remove from ${this.state.type}`}
           >
             delete
           </i>
         </Link>
+        {this.state.type === "wishlist" ? (
+          <Link to="/collection">
+            <i
+              className="material-icons small icon-link float-right"
+              title="Move to collection"
+              style={{ marginRight: "10px" }}
+              onClick={() => this.moveToCollection()}
+            >
+              move_to_inbox
+            </i>
+          </Link>
+        ) : null}
         <h5>edit {this.state.title}</h5>
         <div className="row">
           <form onSubmit={e => this.updateMovie(e)}>

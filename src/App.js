@@ -151,6 +151,7 @@ class App extends Component {
                   render={() => (
                     <EditMovie
                       movies={this.state}
+                      addMovie={this.addMovie}
                       editMovie={this.editMovie}
                       deleteMovie={this.deleteMovie}
                     />
