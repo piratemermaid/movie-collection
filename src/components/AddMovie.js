@@ -97,9 +97,13 @@ class AddMovie extends Component {
     const allTags = this.props.getAllTags();
     let tagArr = [];
     for (let i in allTags) {
+      let tagClass = "search-tag col s2";
+      if (this.state.tags.includes(allTags[i])) {
+        tagClass += " tag-match";
+      }
       tagArr.push(
         <div
-          className="search-tag col s2"
+          className={tagClass}
           key={i}
           onClick={() => this.updateTags(allTags[i])}
         >
