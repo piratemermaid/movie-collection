@@ -92,6 +92,9 @@ class App extends Component {
     } else {
       movies = fillMyMovies(collType)[collType];
     }
+    for (let i in movies) {
+      movies[i].tags.sort();
+    }
     this.setState({ [collType]: movies });
   }
 
