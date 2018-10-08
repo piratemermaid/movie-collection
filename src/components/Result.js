@@ -15,7 +15,7 @@ const Result = props => {
   let yearOption;
   let fromYear;
   let excludeOption;
-  let excludeStr;
+  let excludeTitle;
 
   if (tags) {
     let urlOptions = dotProp.get(props.match, "params.options");
@@ -24,11 +24,10 @@ const Result = props => {
       tagsOption = "all";
     }
     if (options.includes("exclude")) {
-      excludeStr = urlOptions.split("exclude=");
+      let excludes = urlOptions.split("exclude=")[1];
+      excludeTitle = titleFromTags(excludes);
       // excludeOption = ;
     }
-
-    // console.log(tagsOption, excludeOption);
 
     title = titleFromTags(tags);
   } else if (year) {
@@ -132,6 +131,12 @@ const Result = props => {
       </Link>
       <br />
       <h5 className="result-title">Movies matching "{title}"</h5>
+      {excludeTitle ? (
+        <h5 className="result-title">
+          (Excluding "{excludeTitle}
+          ")
+        </h5>
+      ) : null}
       {getMatches().length > 0 ? (
         <TableList
           movies={getMatches()}
