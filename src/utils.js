@@ -102,24 +102,28 @@ export function devFillMovies() {
       tags: ["comedy"],
       title: "Airplane",
       watched: true,
-      year: "1998",
-      releaseDate: "released"
+      year: "1998"
     },
     {
       added: "10/06/2018",
       tags: ["animated", "disney", "feminism", "magic", "musical"],
       title: "Frozen",
       watched: true,
-      year: "2016",
-      releaseDate: "released"
+      year: "2016"
     },
     {
       added: "10/06/2018",
       tags: ["animals", "animated", "musical"],
       title: "Sing!",
       watched: true,
-      year: "2017",
-      releaseDate: "released"
+      year: "2017"
+    },
+    {
+      added: "10/08/2018",
+      tags: ["animals", "animated", "disney"],
+      title: "Zootopia",
+      watched: true,
+      year: "2016"
     }
   ];
 
