@@ -4,3 +4,20 @@ export function fillMyMovies() {
 
   return { collection, wishlist };
 }
+
+// {
+//     added: "",
+//     tags: [],
+//     title: "",
+//     watched: false,
+//     year: "",
+//   }
+
+// {
+//     added: "",
+//     tags: [],
+//     title: "",
+//     watched: false,
+//     year: "",
+//     releaseDate: ""
+//   }
