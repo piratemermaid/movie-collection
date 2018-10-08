@@ -50,15 +50,16 @@ class App extends Component {
     this.setState({ [type]: newMovies });
   }
 
-  deleteMovie(title) {
-    let newCollection = [];
-    for (let i in this.state.collection) {
-      if (this.state.collection[i].title !== title) {
-        newCollection.push(this.state.collection[i]);
+  deleteMovie(title, type) {
+    let newMovies = [];
+
+    for (let i in this.state[type]) {
+      if (this.state[type][i].title !== title) {
+        newMovies.push(this.state[type][i]);
       }
     }
 
-    this.setState({ collection: newCollection });
+    this.setState({ [type]: newMovies });
   }
 
   getAllTags() {
