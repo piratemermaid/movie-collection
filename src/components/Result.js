@@ -25,8 +25,8 @@ const Result = props => {
     }
     if (options.includes("exclude")) {
       let excludes = urlOptions.split("exclude=")[1];
+      excludeOption = excludes.split("&");
       excludeTitle = titleFromTags(excludes);
-      // excludeOption = ;
     }
 
     title = titleFromTags(tags);
@@ -119,6 +119,28 @@ const Result = props => {
           return movie.title;
         } else return null;
       });
+    }
+
+    /**
+     * If we have the option to exclude tags,
+     * go through the matches and remove
+     * matches with the excluded tag.
+     */
+    if (excludeOption) {
+      let newMatches = [];
+      let excluded = false;
+      for (let i in matches) {
+        for (let j in matches[i].tags) {
+          if (excludeOption.includes(matches[i].tags[j])) {
+            excluded = true;
+            break;
+          }
+        }
+        if (!excluded) {
+          newMatches.push(matches[i]);
+        }
+      }
+      return newMatches;
     }
 
     return matches;
