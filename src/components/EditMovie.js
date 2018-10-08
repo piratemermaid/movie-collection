@@ -150,7 +150,7 @@ class EditMovie extends Component {
               </p>
               <input
                 id="input-added"
-                type="date"
+                type="text"
                 value={this.state.added}
                 onChange={e => this.onAddedChange(e)}
               />
