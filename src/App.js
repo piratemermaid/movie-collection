@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
+import { devFillMovies } from "./utils";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Result from "./components/Result";
@@ -22,7 +23,9 @@ class App extends Component {
     this.addMovie = this.addMovie.bind(this);
     this.editMovie = this.editMovie.bind(this);
     this.deleteMovie = this.deleteMovie.bind(this);
+    this.deleteAll = this.deleteAll.bind(this);
     this.getAllTags = this.getAllTags.bind(this);
+    this.devFillMovies = this.devFillMovies.bind(this);
   }
 
   updateLocalStorage() {
@@ -62,6 +65,10 @@ class App extends Component {
     this.setState({ [type]: newMovies });
   }
 
+  deleteAll(type) {
+    this.setState({ [type]: [] });
+  }
+
   getAllTags() {
     let tagList = [];
 
@@ -75,6 +82,11 @@ class App extends Component {
 
     tagList = tagList.sort();
     return tagList;
+  }
+
+  devFillMovies(type) {
+    const movies = devFillMovies(type)[type];
+    this.setState({ [type]: movies });
   }
 
   componentDidUpdate() {
@@ -137,11 +149,23 @@ class App extends Component {
                 />
                 <Route
                   path="/collection"
-                  render={() => <Collection movies={this.state.collection} />}
+                  render={() => (
+                    <Collection
+                      movies={this.state.collection}
+                      deleteAll={this.deleteAll}
+                      devFillMovies={this.devFillMovies}
+                    />
+                  )}
                 />
                 <Route
                   path="/wishlist"
-                  render={() => <Wishlist wishlist={this.state.wishlist} />}
+                  render={() => (
+                    <Wishlist
+                      wishlist={this.state.wishlist}
+                      deleteAll={this.deleteAll}
+                      devFillMovies={this.devFillMovies}
+                    />
+                  )}
                 />
               </Switch>
             </div>

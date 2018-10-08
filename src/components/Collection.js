@@ -24,6 +24,17 @@ const Collection = props => {
         <i className="material-icons small icon-link float-right">add_circle</i>
       </Link>
       <TableList movies={props.movies} editable={true} deletable={false} />
+      <div className="dev-options">
+        <a className="dev-option" onClick={() => props.deleteAll("collection")}>
+          Delete collection
+        </a>
+        <a
+          className="dev-option"
+          onClick={() => props.devFillMovies("collection")}
+        >
+          Fill movies
+        </a>
+      </div>
     </div>
   );
 };
