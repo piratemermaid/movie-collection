@@ -96,7 +96,10 @@ class SearchByTag extends Component {
   }
 
   handleSearch() {
-    let options = "none";
+    let options;
+    this.state.optionAll || this.state.optionExclude
+      ? (options = "")
+      : (options = "none");
 
     if (this.state.selectedTags.length < 1) {
       this.setState({ error: "Please select at least 1 tag" });
@@ -106,18 +109,22 @@ class SearchByTag extends Component {
     let tagStr = this.state.selectedTags.toString();
     tagStr = tagStr.replace(/,/g, "&");
 
+    let exclude = this.state.optionExclude && this.state.exclude.length > 0;
+
     if (this.state.optionAll) {
       options = "all";
-      if (this.state.optionExclude && this.state.exclude.length > 0) {
-        options += "&exclude=";
-      }
-    } else {
-      if (this.state.optionExclude && this.state.optionExclude.length > 0) {
-        options = "exclude=";
+      if (exclude) {
+        options += "&";
       }
     }
 
-    this.props.history.push(`/search/tags/${tagStr}/options=${options}`);
+    if (exclude) {
+      const excludeStr = this.state.exclude.toString().replace(/,/g, "&");
+      options += "exclude=" + excludeStr;
+    }
+
+    const url = `/search/tags/${tagStr}/options=${options}`;
+    this.props.history.push(url);
   }
 
   onOptionAllChange(e) {
