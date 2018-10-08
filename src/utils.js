@@ -79,21 +79,24 @@ export function devFillMovies() {
       tags: ["nerdy", "magic"],
       title: "Fantastic Beasts 2",
       watched: false,
-      year: "2018"
+      year: "2018",
+      releaseDate: "Unknown"
     },
     {
       added: "10/08/2018",
       tags: ["disney", "superhero"],
       title: "Incredibles 2",
       watched: true,
-      year: "2018"
+      year: "2018",
+      releaseDate: "October"
     },
     {
       added: "10/08/2018",
       tags: ["romantic", "comedy"],
       title: "Crazy Rich Asians",
       watched: false,
-      year: "2018"
+      year: "2018",
+      releaseDate: "November"
     }
   ];
 

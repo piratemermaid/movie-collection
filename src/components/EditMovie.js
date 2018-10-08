@@ -30,6 +30,10 @@ class EditMovie extends Component {
     this.setState({ added: e.target.value });
   }
 
+  onReleaseDateChange(e) {
+    this.setState({ releaseDate: e.target.value });
+  }
+
   updateMovie(e) {
     e.preventDefault();
 
@@ -48,6 +52,10 @@ class EditMovie extends Component {
       watched: this.state.watched,
       added: this.state.added
     };
+
+    if (this.state.type === "wishlist") {
+      info.releaseDate = this.state.releaseDate || "Unknown";
+    }
 
     this.props.editMovie(info, this.props.match.params.title, this.state.type);
     this.props.history.push(`/${this.state.type}`);
@@ -158,6 +166,17 @@ class EditMovie extends Component {
               />
               <div className="form-err">{this.state.titleErr}</div>
             </div>
+            {this.state.type === "wishlist" ? (
+              <div className="input-field col s12">
+                <p className="form-label">Release date (if known)</p>
+                <input
+                  id="input-release"
+                  type="text"
+                  value={this.state.releaseDate}
+                  onChange={e => this.onReleaseDateChange(e)}
+                />
+              </div>
+            ) : null}
             <div className="input-field col s12">
               <button
                 className="btn waves-effect waves-light blue lighten-2"
