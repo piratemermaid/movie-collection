@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
+import { formatTodaysDate } from "../utils";
+
 class AddMovie extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +52,7 @@ class AddMovie extends Component {
       };
       if (!this.state.added) {
         // TODO: check date format
-        info.added = this.formatTodaysDate();
+        info.added = formatTodaysDate();
       }
       const type = this.props.match.params.type;
       this.props.addMovie(info, type);
@@ -108,23 +110,8 @@ class AddMovie extends Component {
     return tagArr;
   }
 
-  formatTodaysDate() {
-    const now = new Date();
-    let day = now.getDay();
-    if (day < 10) {
-      day = "0" + String(day);
-    }
-    let month = now.getMonth() + 1;
-    if (month < 10) {
-      month = "0" + String(month);
-    }
-    const year = now.getFullYear();
-
-    return `${month}/${day}/${year}`;
-  }
-
   componentWillMount() {
-    const today = this.formatTodaysDate();
+    const today = formatTodaysDate();
     this.setState({ added: today });
   }
 
