@@ -168,7 +168,10 @@ class EditMovie extends Component {
             </div>
             {this.state.type === "wishlist" ? (
               <div className="input-field col s12">
-                <p className="form-label">Release date (if known)</p>
+                <p className="form-label">
+                  Release date if known, or can put "released" if already
+                  released
+                </p>
                 <input
                   id="input-release"
                   type="text"
