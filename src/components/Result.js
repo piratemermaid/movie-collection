@@ -13,12 +13,15 @@ const Result = props => {
   let year = parseInt(dotProp.get(props.match, "params.year"), 10);
   let yearOption;
   let fromYear;
+  let excludeOption;
 
   if (tags) {
     let options = dotProp.get(props.match, "params.options").split("=")[1];
     if (options === "all") {
       tagsOption = "all";
     }
+    console.log(options);
+
     let titleArr = tags.split("&");
     if (titleArr.length === 1) {
       title = titleArr[0];
