@@ -83,8 +83,16 @@ class SearchByTag extends Component {
 
   updateExcludedTags(tag) {
     let newExclude = this.state.exclude;
+    let newTagArr = this.state.selectedTags;
+
     newExclude.push(tag);
-    this.setState({ exclude: newExclude });
+
+    if (this.state.selectedTags.includes(tag)) {
+      let index = this.state.selectedTags.indexOf(tag);
+      newTagArr.splice(index, 1);
+    }
+
+    this.setState({ selectedTags: newTagArr, exclude: newExclude });
   }
 
   handleSearch() {
