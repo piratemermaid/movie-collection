@@ -16,6 +16,10 @@ h5 {
   text-transform: lowercase;
 }
 
+.result-title {
+  margin-bottom: 20px;
+}
+
 .flex {
   display: flex;
   flex-wrap: wrap;

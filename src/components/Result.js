@@ -133,7 +133,7 @@ const Result = props => {
         <i className="material-icons small icon-link">arrow_back</i>
       </Link>
       <br />
-      <h5>Movies matching "{title}"</h5>
+      <h5 className="result-title">Movies matching "{title}"</h5>
       <TableList
         movies={getMatches()}
         tags={tags}

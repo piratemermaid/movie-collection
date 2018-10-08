@@ -146,7 +146,7 @@ class EditMovie extends Component {
             </div>
             <div className="input-field col s12">
               <p className="form-label">
-                Added to collection (defaults to now)
+                Added to {this.state.type} (defaults to now)
               </p>
               <input
                 id="input-added"
