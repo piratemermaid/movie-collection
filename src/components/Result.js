@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import dotProp from "dot-prop";
 
+import { titleFromTags } from "../utils";
 import TableList from "./TableList";
 
 const Result = props => {
@@ -14,28 +15,22 @@ const Result = props => {
   let yearOption;
   let fromYear;
   let excludeOption;
+  let excludeStr;
 
   if (tags) {
-    let options = dotProp.get(props.match, "params.options").split("=")[1];
-    if (options === "all") {
+    let urlOptions = dotProp.get(props.match, "params.options");
+    let options = urlOptions.split("=")[1];
+    if (options.includes("all")) {
       tagsOption = "all";
     }
-    console.log(options);
-
-    let titleArr = tags.split("&");
-    if (titleArr.length === 1) {
-      title = titleArr[0];
-    } else if (titleArr.length === 2) {
-      title = titleArr[0] + " & " + titleArr[1];
-    } else {
-      for (let i in titleArr) {
-        if (i < titleArr.length - 1) {
-          title += titleArr[i] + ", ";
-        } else {
-          title += " & " + titleArr[i];
-        }
-      }
+    if (options.includes("exclude")) {
+      excludeStr = urlOptions.split("exclude=");
+      // excludeOption = ;
     }
+
+    // console.log(tagsOption, excludeOption);
+
+    title = titleFromTags(tags);
   } else if (year) {
     let options = dotProp.get(props.match, "params.options").split("=")[1];
     title = year;
