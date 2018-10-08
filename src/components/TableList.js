@@ -109,7 +109,9 @@ class TableList extends Component {
           </td>
           <td>{this.renderTags(movie.tags)}</td>
           <td>{movie.year}</td>
-          <td>{movie.watched ? "Yes" : "No"}</td>
+          <td style={{ textAlign: "center" }}>
+            {movie.watched ? "Yes" : "No"}
+          </td>
           {this.props.type === "wishlist" ? <td>{movie.releaseDate}</td> : null}
         </tr>
       );
