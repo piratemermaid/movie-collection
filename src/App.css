@@ -85,6 +85,10 @@ h5 {
   color: #2196f3;
 }
 
+.tag-exclude {
+  text-decoration: line-through;
+}
+
 .hidden {
   display: none;
 }
