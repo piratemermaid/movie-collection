@@ -16,23 +16,23 @@ export function formatTodaysDate() {
 export function devFillMovies() {
   const collection = [
     {
-      title: "Star Wars I",
+      title: "Star Wars",
       added: "10/07/2018",
-      tags: ["scifi", "nerdy", "action", "nostalgic"],
+      tags: ["action", "nerdy", "nostalgic", "scifi"],
       watched: true,
       year: "1995"
     },
     {
-      title: "Harry Potter 1",
+      title: "Harry Potter",
       added: "10/05/2018",
-      tags: ["nerdy", "magic", "nostalgic"],
+      tags: ["magic", "nerdy", "nostalgic"],
       watched: true,
       year: "1997"
     },
     {
       title: "Moana",
       added: "10/07/2018",
-      tags: ["disney", "animated", "musical"],
+      tags: ["animated", "disney", "musical"],
       watched: true,
       year: "2016"
     },
@@ -52,31 +52,46 @@ export function devFillMovies() {
     },
     {
       added: "10/08/2018",
-      tags: ["nerdy", "action", "superhero"],
+      tags: ["action", "nerdy", "superhero"],
       title: "The Avengers",
       watched: false,
       year: "2008"
     },
     {
-      added: "10/08/2018",
-      tags: ["nerdy", "action", "superhero"],
-      title: "The Avengers",
+      added: "10/07/2018",
+      tags: ["documentary", "feminism"],
+      title: "Miss Representation",
+      watched: true,
+      year: "2015"
+    },
+    {
+      added: "10/07/2018",
+      tags: ["animals", "cats", "documentary"],
+      title: "Kedi",
       watched: false,
-      year: "2008"
+      year: "2018"
     },
     {
       added: "10/08/2018",
-      tags: ["nerdy", "action", "superhero", "feminism"],
+      tags: ["action", "feminism", "nerdy", "superhero"],
       title: "Wonder Woman",
       watched: true,
       year: "2017"
+    },
+    {
+      added: "10/06/2018",
+      tags: ["comedy"],
+      title: "Airplane",
+      watched: true,
+      year: "1998",
+      releaseDate: "released"
     }
   ];
 
   const wishlist = [
     {
       added: "10/08/2018",
-      tags: ["nerdy", "magic"],
+      tags: ["magic", "nerdy"],
       title: "Fantastic Beasts 2",
       watched: false,
       year: "2018",
@@ -92,11 +107,19 @@ export function devFillMovies() {
     },
     {
       added: "10/08/2018",
-      tags: ["romantic", "comedy"],
+      tags: ["comedy", "romantic"],
       title: "Crazy Rich Asians",
       watched: false,
       year: "2018",
       releaseDate: "November"
+    },
+    {
+      added: "10/08/2018",
+      tags: ["#deep", "comedy"],
+      title: "The Truman Show",
+      watched: false,
+      year: "2000",
+      releaseDate: "released"
     }
   ];
 
