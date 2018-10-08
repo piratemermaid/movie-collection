@@ -152,8 +152,25 @@ class TableList extends Component {
     }
   }
 
+  getSortOption(type) {
+    let icon;
+    let iconClass = "material-icons tiny icon-link";
+    if (this.state.sortBy === type) {
+      iconClass += " icon-link-active";
+      if (this.state.ascending) {
+        icon = "up";
+      } else {
+        icon = "down";
+      }
+    } else {
+      icon = "up";
+    }
+
+    return <i className={iconClass}>{`arrow_drop_${icon}`}</i>;
+  }
+
   render() {
-    const { sortBy, ascending } = this.state;
+    const { sortBy } = this.state;
     return (
       <div>
         <div id="sort-options">
@@ -168,12 +185,7 @@ class TableList extends Component {
           >
             date added
           </a>
-          {sortBy === "dateAdded" && ascending === true ? (
-            <i className="material-icons tiny icon-link">arrow_drop_up</i>
-          ) : null}
-          {sortBy === "dateAdded" && ascending === false ? (
-            <i className="material-icons tiny icon-link">arrow_drop_down</i>
-          ) : null}
+          {this.getSortOption("dateAdded")}
           {" | "}
           <a
             onClick={() => this.changeSortMethod("title")}
@@ -184,13 +196,8 @@ class TableList extends Component {
             }
           >
             title
+            {this.getSortOption("title")}
           </a>
-          {sortBy === "title" && ascending === true ? (
-            <i className="material-icons tiny icon-link">arrow_drop_up</i>
-          ) : null}
-          {sortBy === "title" && ascending === false ? (
-            <i className="material-icons tiny icon-link">arrow_drop_down</i>
-          ) : null}
           {" | "}
           <a
             onClick={() => this.changeSortMethod("year")}
@@ -202,12 +209,7 @@ class TableList extends Component {
           >
             year
           </a>
-          {sortBy === "year" && ascending === true ? (
-            <i className="material-icons tiny icon-link">arrow_drop_up</i>
-          ) : null}
-          {sortBy === "year" && ascending === false ? (
-            <i className="material-icons tiny icon-link">arrow_drop_down</i>
-          ) : null}
+          {this.getSortOption("year")}
         </div>
         <table>
           <thead>
