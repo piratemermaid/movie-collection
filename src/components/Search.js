@@ -13,7 +13,7 @@ import SearchByReview from "./subcomponents/SearchByReview";
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = { display: "review" }; //TODO: change back to 'tags'
+    this.state = { display: "tags" };
   }
 
   render() {
