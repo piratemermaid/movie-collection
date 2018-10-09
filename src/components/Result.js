@@ -2,25 +2,24 @@ import _ from "lodash";
 import React from "react";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-import dotProp from "dot-prop";
 
 import { titleFromTags } from "../utils";
 import TableList from "./TableList";
 
 const Result = props => {
   let title = "";
-  let tags = dotProp.get(props.match, "params.tags");
+  let tags = props.match.params.tags;
   let tagsOption;
-  let year = parseInt(dotProp.get(props.match, "params.year"), 10);
+  let year = parseInt(props.match.params.year, 10);
   let yearOption;
   let fromYear;
   let excludeOption;
   let excludeTitle;
-  let review = parseInt(dotProp.get(props.match, "params.review"), 10);
+  let review = parseInt(props.match.params.review, 10);
   let reviewOption;
 
   if (tags) {
-    let urlOptions = dotProp.get(props.match, "params.options");
+    let urlOptions = props.match.params.options;
     let options = urlOptions.split("=")[1];
     if (options.includes("all")) {
       tagsOption = "all";
@@ -33,7 +32,7 @@ const Result = props => {
 
     title = titleFromTags(tags);
   } else if (year) {
-    let options = dotProp.get(props.match, "params.options").split("=")[1];
+    let options = props.match.params.options.split("=")[1];
     title = year;
 
     if (options !== "none") {
