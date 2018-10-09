@@ -491,19 +491,19 @@ export function fillMyMovies() {
     {
       added: date,
       tags: ["musical", "comedy"],
-      title: "Pitch Perfect",
+      title: "Pitch Perfect 2",
       watched: true,
       year: "2015",
-      series: "Pitch Perfect 2",
+      series: "Pitch Perfect",
       review: 2
     },
     {
       added: date,
       tags: ["musical", "comedy"],
-      title: "Pitch Perfect",
+      title: "Pitch Perfect 3",
       watched: true,
       year: "?",
-      series: "Pitch Perfect 3",
+      series: "Pitch Perfect",
       review: 2
     },
     {
