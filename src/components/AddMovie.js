@@ -18,7 +18,8 @@ class AddMovie extends Component {
       titleErr: "",
       yearErr: "",
       tagsErr: "",
-      releaseDate: ""
+      releaseDate: "",
+      series: ""
     };
   }
 
@@ -75,7 +76,8 @@ class AddMovie extends Component {
         year: this.state.year,
         tags,
         watched: this.state.watched,
-        added: this.state.added
+        added: this.state.added,
+        series: this.state.series
       };
       if (!this.state.added) {
         // TODO: check date format
@@ -113,6 +115,10 @@ class AddMovie extends Component {
 
   onReleaseDateChange(e) {
     this.setState({ releaseDate: e.target.value, formErr: "" });
+  }
+
+  onSeriesChange(e) {
+    this.setState({ series: e.target.value, formErr: "" });
   }
 
   updateTags(tag) {
@@ -208,7 +214,7 @@ class AddMovie extends Component {
               </div>
               <div className="input-field col s12">
                 <p className="form-label">
-                  Added to collection (defaults to today, format MM/DD/YYYY)
+                  Added to {type} (defaults to today, format MM/DD/YYYY)
                 </p>
                 <input
                   id="input-added"
@@ -217,6 +223,18 @@ class AddMovie extends Component {
                   onChange={e => this.onAddedChange(e)}
                 />
                 <div className="form-err">{this.state.dateErr}</div>
+              </div>
+              <div className="input-field col s12">
+                <p className="form-label">
+                  Series if applicable (e.g. Harry Potter and the Half-Blood
+                  Prince is part of "Harry Potter")
+                </p>
+                <input
+                  id="input-series"
+                  type="text"
+                  value={this.state.series}
+                  onChange={e => this.onSeriesChange(e)}
+                />
               </div>
               {type === "wishlist" ? (
                 <div className="input-field col s12">

@@ -36,6 +36,10 @@ class EditMovie extends Component {
     this.setState({ releaseDate: e.target.value });
   }
 
+  onSeriesChange(e) {
+    this.setState({ series: e.target.value });
+  }
+
   updateMovie(e) {
     e.preventDefault();
 
@@ -52,7 +56,8 @@ class EditMovie extends Component {
       year: this.state.year,
       tags,
       watched: this.state.watched,
-      added: this.state.added
+      added: this.state.added,
+      series: this.state.series
     };
 
     if (this.state.type === "wishlist") {
@@ -201,6 +206,18 @@ class EditMovie extends Component {
                 onChange={e => this.onAddedChange(e)}
               />
               <div className="form-err">{this.state.titleErr}</div>
+            </div>
+            <div className="input-field col s12">
+              <p className="form-label">
+                Series if applicable (e.g. Harry Potter and the Half-Blood
+                Prince is part of "Harry Potter")
+              </p>
+              <input
+                id="input-series"
+                type="text"
+                value={this.state.series}
+                onChange={e => this.onSeriesChange(e)}
+              />
             </div>
             {this.state.type === "wishlist" ? (
               <div className="input-field col s12">
