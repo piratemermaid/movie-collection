@@ -135,7 +135,7 @@ const Result = props => {
       switch (reviewOption) {
         case "up":
           matches = props.movies.filter(movie => {
-            if (movie.review >= review) {
+            if (movie.review && movie.review >= review) {
               return movie.title;
             } else {
               return null;
@@ -144,7 +144,7 @@ const Result = props => {
           break;
         case "down":
           matches = props.movies.filter(movie => {
-            if (movie.review <= review) {
+            if (movie.review && movie.review <= review) {
               return movie.title;
             } else {
               return null;
@@ -153,7 +153,7 @@ const Result = props => {
           break;
         default:
           matches = props.movies.filter(movie => {
-            if (movie.review === review) {
+            if (movie.review && movie.review === review) {
               return movie.title;
             } else {
               return null;
