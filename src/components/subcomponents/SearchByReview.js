@@ -107,7 +107,9 @@ class SearchByReview extends Component {
             onChange={() => this.onOptionChange("up")}
             className="checkbox-blue"
           />
-          <label htmlFor="review-up">Chosen star number and up</label>
+          <label htmlFor="review-up">
+            {this.state.review || "Chosen"} stars and up
+          </label>
         </div>
         <div className="input-field col s12" style={{ marginBottom: "20px" }}>
           <input
@@ -117,7 +119,9 @@ class SearchByReview extends Component {
             onChange={() => this.onOptionChange("down")}
             className="checkbox-blue"
           />
-          <label htmlFor="review-down">Chosen star number and down</label>
+          <label htmlFor="review-down">
+            {this.state.review || "Chosen"} stars and down
+          </label>
         </div>
         <br />
         <div className="row col s12" style={{ marginTop: "20px" }}>
