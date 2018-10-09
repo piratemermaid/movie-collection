@@ -8,8 +8,7 @@ export function fillMyMovies() {
       title: "American Hustle",
       watched: false,
       year: "2013",
-      series: "",
-      review: false
+      series: ""
     },
     {
       added: date,
@@ -17,8 +16,7 @@ export function fillMyMovies() {
       title: "American Sniper",
       watched: false,
       year: "2014",
-      series: "",
-      review: false
+      series: ""
     },
     {
       added: date,
@@ -35,8 +33,7 @@ export function fillMyMovies() {
       title: "Atomic Blonde",
       watched: false,
       year: "2017",
-      series: "",
-      review: false
+      series: ""
     },
     {
       added: date,
@@ -44,8 +41,7 @@ export function fillMyMovies() {
       title: "Baby Driver",
       watched: false,
       year: "2017",
-      series: "",
-      review: false
+      series: ""
     },
     {
       added: date,
@@ -53,13 +49,12 @@ export function fillMyMovies() {
       title: "Baywatch",
       watched: false,
       year: "?",
-      series: "",
-      review: false
+      series: ""
     },
     {
       added: date,
       tags: ["disney", "musical"],
-      title: "Beauty and the Beast",
+      title: "Beauty and the Beast (2017)",
       watched: true,
       year: "2017",
       series: "",
@@ -188,8 +183,7 @@ export function fillMyMovies() {
       title: "Doctor Strange",
       watched: true,
       year: "2016",
-      series: "",
-      review: false
+      series: ""
     },
     {
       added: date,
@@ -206,8 +200,7 @@ export function fillMyMovies() {
       title: "Dunkirk",
       watched: false,
       year: "2017",
-      series: "",
-      review: false
+      series: ""
     },
     {
       added: date,
@@ -422,8 +415,7 @@ export function fillMyMovies() {
       title: "Kubo and the Two Strings",
       watched: false,
       year: "2016",
-      series: "",
-      review: false
+      series: ""
     },
     {
       added: date,
@@ -431,8 +423,7 @@ export function fillMyMovies() {
       title: "La La Land",
       watched: false,
       year: "2017 or 2016?",
-      series: "",
-      review: false
+      series: ""
     },
     {
       added: date,
@@ -584,8 +575,7 @@ export function fillMyMovies() {
       title: "The Big Sick",
       watched: false,
       year: "2017",
-      series: "",
-      review: false
+      series: ""
     },
     {
       added: date,
@@ -701,8 +691,7 @@ export function fillMyMovies() {
       title: "The Lego Ninjago Movie",
       watched: true,
       year: "?",
-      series: "Lego Movie",
-      review: false
+      series: "Lego Movie"
     },
     {
       added: date,
@@ -778,6 +767,14 @@ export function fillMyMovies() {
     }
   ];
   const wishlist = [
+    {
+      added: "10/08/18",
+      tags: ["spoopy", "disney", "animated"],
+      title: "The Nightmare Before Christmas",
+      watched: false,
+      year: "?",
+      releaseDate: "released"
+    },
     {
       added: "10/08/18",
       tags: ["comedy", "#deep"],
