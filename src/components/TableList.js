@@ -2,6 +2,8 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import SortOptions from "./subcomponents/SortOptions";
+
 /**
  * @param {string} sortBy: 'dateAdded', 'year', 'title'
  * @param {boolean} ascending: true or false
@@ -12,6 +14,8 @@ class TableList extends Component {
   constructor(props) {
     super(props);
     this.state = { sortBy: "dateAdded", ascending: true };
+    this.changeSortMethod = this.changeSortMethod.bind(this);
+    this.getSortOption = this.getSortOption.bind(this);
   }
 
   removeFromList(title) {
@@ -95,7 +99,7 @@ class TableList extends Component {
             {movie.title}
             {this.props.deletable ? (
               <i
-                className="material-icons tiny icon-link-blue"
+                className="material-icons tiny icon-link icon-link-blue"
                 onClick={() => this.removeFromList(movie.title)}
               >
                 delete
@@ -103,7 +107,9 @@ class TableList extends Component {
             ) : null}
             {this.props.editable ? (
               <Link to={`/edit/${movie.title}`}>
-                <i className="material-icons tiny icon-link-blue">edit</i>
+                <i className="material-icons tiny icon-link icon-link-blue">
+                  edit
+                </i>
               </Link>
             ) : null}
           </td>
@@ -175,44 +181,11 @@ class TableList extends Component {
     const { sortBy } = this.state;
     return (
       <div>
-        <div id="sort-options">
-          Sort options:{" "}
-          <a
-            onClick={() => this.changeSortMethod("dateAdded")}
-            className={
-              sortBy === "dateAdded"
-                ? "sort-option sort-option-active"
-                : "sort-option"
-            }
-          >
-            date added
-          </a>
-          {this.getSortOption("dateAdded")}
-          {" | "}
-          <a
-            onClick={() => this.changeSortMethod("title")}
-            className={
-              sortBy === "title"
-                ? "sort-option sort-option-active"
-                : "sort-option"
-            }
-          >
-            title
-            {this.getSortOption("title")}
-          </a>
-          {" | "}
-          <a
-            onClick={() => this.changeSortMethod("year")}
-            className={
-              sortBy === "year"
-                ? "sort-option sort-option-active"
-                : "sort-option"
-            }
-          >
-            year
-          </a>
-          {this.getSortOption("year")}
-        </div>
+        <SortOptions
+          sortBy={sortBy}
+          changeSortMethod={this.changeSortMethod}
+          getSortOption={this.getSortOption}
+        />
         <table>
           <thead>
             <tr>
