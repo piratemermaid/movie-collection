@@ -40,6 +40,22 @@ class EditMovie extends Component {
     this.setState({ series: e.target.value });
   }
 
+  onReviewChange(num) {
+    if (num === this.state.review) {
+      this.setState({ review: false });
+    } else {
+      this.setState({ review: num });
+    }
+  }
+
+  getStarClass(num) {
+    let starClass = "material-icons small icon-link review-star";
+    if (this.state.review && this.state.review >= num) {
+      starClass += " review-star-active";
+    }
+    return starClass;
+  }
+
   updateMovie(e) {
     e.preventDefault();
 
@@ -57,7 +73,8 @@ class EditMovie extends Component {
       tags,
       watched: this.state.watched,
       added: this.state.added,
-      series: this.state.series
+      series: this.state.series,
+      review: this.state.review
     };
 
     if (this.state.type === "wishlist") {
@@ -219,6 +236,41 @@ class EditMovie extends Component {
                 onChange={e => this.onSeriesChange(e)}
               />
             </div>
+            {this.state.type === "collection" ? (
+              <div className="input-field col s12">
+                <p className="form-label">Your review</p>
+                <i
+                  className={this.getStarClass(1)}
+                  onClick={() => this.onReviewChange(1)}
+                >
+                  star
+                </i>
+                <i
+                  className={this.getStarClass(2)}
+                  onClick={() => this.onReviewChange(2)}
+                >
+                  star
+                </i>
+                <i
+                  className={this.getStarClass(3)}
+                  onClick={() => this.onReviewChange(3)}
+                >
+                  star
+                </i>
+                <i
+                  className={this.getStarClass(4)}
+                  onClick={() => this.onReviewChange(4)}
+                >
+                  star
+                </i>
+                <i
+                  className={this.getStarClass(5)}
+                  onClick={() => this.onReviewChange(5)}
+                >
+                  star
+                </i>
+              </div>
+            ) : null}
             {this.state.type === "wishlist" ? (
               <div className="input-field col s12">
                 <p className="form-label">
