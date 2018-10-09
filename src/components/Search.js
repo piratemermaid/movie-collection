@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 
 import SearchByYear from "./subcomponents/SearchByYear";
 import SearchByTag from "./subcomponents/SearchByTag";
+import SearchByReview from "./subcomponents/SearchByReview";
 
 /**
  * @param {string} display: render input for the selected type of display
@@ -12,7 +13,7 @@ import SearchByTag from "./subcomponents/SearchByTag";
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = { display: "tags" }; //TODO: change back to 'unwatched'
+    this.state = { display: "tags" };
   }
 
   render() {
@@ -20,7 +21,7 @@ class Search extends Component {
 
     return (
       <div className="row flex">
-        <div className="col s4 flex center-align">
+        <div className="col s3 flex center-align">
           <div
             className={
               this.state.display === "tags"
@@ -29,10 +30,10 @@ class Search extends Component {
             }
             onClick={() => this.setState({ display: "tags" })}
           >
-            <h5>search by tag(s)</h5>
+            <h6>search by tag(s)</h6>
           </div>
         </div>
-        <div className="col s4 flex center-align">
+        <div className="col s3 flex center-align">
           <div
             className={
               this.state.display === "year"
@@ -41,16 +42,28 @@ class Search extends Component {
             }
             onClick={() => this.setState({ display: "year" })}
           >
-            <h5>search by year</h5>
+            <h6>search by year</h6>
           </div>
         </div>
-        <div className="col s4 flex center-align">
+        <div className="col s3 flex center-align">
           <div
             className={cardClass}
             onClick={() => this.props.history.push("/search/unwatched")}
           >
-            <h5>view all unwatched</h5>
+            <h6>view all unwatched</h6>
             <i className="material-icons small icon-link">arrow_forward</i>
+          </div>
+        </div>
+        <div className="col s3 flex center-align">
+          <div
+            className={
+              this.state.display === "review"
+                ? `${cardClass} card-link-active`
+                : cardClass
+            }
+            onClick={() => this.setState({ display: "review" })}
+          >
+            <h6>search by review</h6>
           </div>
         </div>
         <div className="row">
@@ -59,6 +72,7 @@ class Search extends Component {
             {this.state.display === "tags" ? (
               <SearchByTag getAllTags={this.props.getAllTags} />
             ) : null}
+            {this.state.display === "review" ? <SearchByReview /> : null}
           </div>
         </div>
       </div>

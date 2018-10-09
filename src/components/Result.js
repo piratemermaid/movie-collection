@@ -16,6 +16,8 @@ const Result = props => {
   let fromYear;
   let excludeOption;
   let excludeTitle;
+  let review = parseInt(dotProp.get(props.match, "params.review"), 10);
+  let reviewOption;
 
   if (tags) {
     let urlOptions = dotProp.get(props.match, "params.options");
@@ -51,7 +53,24 @@ const Result = props => {
         yearOption = "after";
       }
     }
+  } else if (review) {
+    reviewOption = props.match.params.option;
+    switch (reviewOption) {
+      case "exact":
+        title = `${review} stars`;
+        break;
+      case "up":
+        title = `${review} stars and up`;
+        break;
+      case "down":
+        title = `${review} stars and down`;
+        break;
+      default:
+        title = review;
+        break;
+    }
   } else {
+    // unwatched
     title = String(props.match.path.substring(props.match.path.length, 8));
   }
 
@@ -112,6 +131,37 @@ const Result = props => {
           } else return null;
         });
       }
+    } else if (review) {
+      switch (reviewOption) {
+        case "up":
+          matches = props.movies.filter(movie => {
+            if (movie.review && movie.review >= review) {
+              return movie.title;
+            } else {
+              return null;
+            }
+          });
+          break;
+        case "down":
+          matches = props.movies.filter(movie => {
+            if (movie.review && movie.review <= review) {
+              return movie.title;
+            } else {
+              return null;
+            }
+          });
+          break;
+        default:
+          matches = props.movies.filter(movie => {
+            if (movie.review && movie.review === review) {
+              return movie.title;
+            } else {
+              return null;
+            }
+          });
+          break;
+      }
+      return matches;
     } else {
       // title = 'unwatched'
       matches = props.movies.filter(movie => {
