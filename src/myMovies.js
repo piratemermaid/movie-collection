@@ -8,7 +8,8 @@ export function fillMyMovies() {
       title: "American Sniper",
       watched: false,
       year: "2014",
-      series: ""
+      series: "",
+      review: false
     },
     {
       added: date,
@@ -16,7 +17,8 @@ export function fillMyMovies() {
       title: "Anastasia",
       watched: true,
       year: "?",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -24,7 +26,8 @@ export function fillMyMovies() {
       title: "Atomic Blonde",
       watched: false,
       year: "2017",
-      series: ""
+      series: "",
+      review: false
     },
     {
       added: date,
@@ -32,7 +35,8 @@ export function fillMyMovies() {
       title: "Baby Driver",
       watched: false,
       year: "2017",
-      series: ""
+      series: "",
+      review: false
     },
     {
       added: date,
@@ -40,7 +44,8 @@ export function fillMyMovies() {
       title: "Baywatch",
       watched: false,
       year: "?",
-      series: ""
+      series: "",
+      review: false
     },
     {
       added: date,
@@ -48,7 +53,8 @@ export function fillMyMovies() {
       title: "Beauty and the Beast",
       watched: true,
       year: "2017",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -56,7 +62,8 @@ export function fillMyMovies() {
       title: "Beauty and the Beast",
       watched: true,
       year: "old one",
-      series: ""
+      series: "",
+      review: 3
     },
     {
       added: date,
@@ -64,7 +71,8 @@ export function fillMyMovies() {
       title: "Big Hero 6",
       watched: true,
       year: "2014",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -72,7 +80,8 @@ export function fillMyMovies() {
       title: "Black Panther",
       watched: true,
       year: "2018",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -80,7 +89,8 @@ export function fillMyMovies() {
       title: "Captain America",
       watched: true,
       year: "?",
-      series: "Captain America"
+      series: "Captain America",
+      review: 3
     },
     {
       added: date,
@@ -88,7 +98,8 @@ export function fillMyMovies() {
       title: "Captain America: Winter Soldier",
       watched: true,
       year: "2014",
-      series: "Captain America"
+      series: "Captain America",
+      review: 3
     },
     {
       added: date,
@@ -96,7 +107,8 @@ export function fillMyMovies() {
       title: "Coco",
       watched: true,
       year: "2017",
-      series: ""
+      series: "",
+      review: 5
     },
     {
       added: date,
@@ -104,7 +116,8 @@ export function fillMyMovies() {
       title: "Deadpool",
       watched: true,
       year: "2016",
-      series: "Deadpool"
+      series: "Deadpool",
+      review: 4
     },
     {
       added: date,
@@ -112,7 +125,8 @@ export function fillMyMovies() {
       title: "Deadpool 2",
       watched: true,
       year: "2018",
-      series: "Deadpool"
+      series: "Deadpool",
+      review: 4
     },
     {
       added: date,
@@ -120,7 +134,8 @@ export function fillMyMovies() {
       title: "Divergent",
       watched: true,
       year: "?",
-      series: "Divergent"
+      series: "Divergent",
+      review: 2
     },
     {
       added: date,
@@ -128,7 +143,8 @@ export function fillMyMovies() {
       title: "Doctor Strange",
       watched: true,
       year: "2016",
-      series: ""
+      series: "",
+      review: false
     },
     {
       added: date,
@@ -136,7 +152,8 @@ export function fillMyMovies() {
       title: "Dr. Horrible's Sing-Along Blog",
       watched: true,
       year: "?",
-      series: ""
+      series: "",
+      review: 5
     },
     {
       added: date,
@@ -144,7 +161,8 @@ export function fillMyMovies() {
       title: "Dunkirk",
       watched: false,
       year: "2017",
-      series: ""
+      series: "",
+      review: false
     },
     {
       added: date,
@@ -152,7 +170,8 @@ export function fillMyMovies() {
       title: "Fantastic Beasts",
       watched: true,
       year: "2016",
-      series: "Fantastic Beasts"
+      series: "Fantastic Beasts",
+      review: 4
     },
     {
       added: date,
@@ -160,7 +179,8 @@ export function fillMyMovies() {
       title: "Finding Dory",
       watched: true,
       year: "2016",
-      series: "Finding Nemo"
+      series: "Finding Nemo",
+      review: 3
     },
     {
       added: date,
@@ -168,7 +188,8 @@ export function fillMyMovies() {
       title: "Frozen",
       watched: true,
       year: "?",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -176,7 +197,8 @@ export function fillMyMovies() {
       title: "Guardians of the Galaxy",
       watched: true,
       year: "2014",
-      series: "Guardians of the Galaxy"
+      series: "Guardians of the Galaxy",
+      review: 3
     },
     {
       added: date,
@@ -184,7 +206,8 @@ export function fillMyMovies() {
       title: "Guardians of the Galaxy: Vol. 2",
       watched: true,
       year: "2017",
-      series: "Guardians of the Galaxy"
+      series: "Guardians of the Galaxy",
+      review: 2
     },
     {
       added: date,
@@ -192,7 +215,8 @@ export function fillMyMovies() {
       title: "Ghostbusters (2016)",
       watched: true,
       year: "2016",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -200,7 +224,8 @@ export function fillMyMovies() {
       title: "Hairspray",
       watched: true,
       year: "?",
-      series: ""
+      series: "",
+      review: 3
     },
     {
       added: date,
@@ -208,7 +233,8 @@ export function fillMyMovies() {
       title: "Harry Potter",
       watched: true,
       year: "?",
-      series: "Harry Potter"
+      series: "Harry Potter",
+      review: 5
     },
     {
       added: date,
@@ -216,7 +242,8 @@ export function fillMyMovies() {
       title: "Hidden Figures",
       watched: true,
       year: "?",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -224,7 +251,8 @@ export function fillMyMovies() {
       title: "How to Train Your Dragon",
       watched: true,
       year: "?",
-      series: "How to Train Your Dragon"
+      series: "How to Train Your Dragon",
+      review: 4
     },
     {
       added: date,
@@ -232,7 +260,8 @@ export function fillMyMovies() {
       title: "How to Train Your Dragon 2",
       watched: true,
       year: "2014",
-      series: "How to Train Your Dragon"
+      series: "How to Train Your Dragon",
+      review: 3
     },
     {
       added: date,
@@ -240,7 +269,8 @@ export function fillMyMovies() {
       title: "I, Tonya",
       watched: true,
       year: "2017",
-      series: ""
+      series: "",
+      review: 5
     },
     {
       added: date,
@@ -248,7 +278,8 @@ export function fillMyMovies() {
       title: "Ice Age",
       watched: true,
       year: "?",
-      series: "Ice Age"
+      series: "Ice Age",
+      review: 4
     },
     {
       added: date,
@@ -256,7 +287,8 @@ export function fillMyMovies() {
       title: "Inside Out",
       watched: true,
       year: "2015",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -264,7 +296,8 @@ export function fillMyMovies() {
       title: "Insurgent",
       watched: true,
       year: "2014",
-      series: "Divergent"
+      series: "Divergent",
+      review: 2
     },
     {
       added: date,
@@ -272,7 +305,8 @@ export function fillMyMovies() {
       title: "Interstellar",
       watched: true,
       year: "2014",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -280,7 +314,8 @@ export function fillMyMovies() {
       title: "Into the Woods",
       watched: true,
       year: "2014",
-      series: ""
+      series: "",
+      review: 3
     },
     {
       added: date,
@@ -288,7 +323,8 @@ export function fillMyMovies() {
       title: "Iron Man",
       watched: true,
       year: "?",
-      series: "Iron Man"
+      series: "Iron Man",
+      review: 3
     },
     {
       added: date,
@@ -296,7 +332,8 @@ export function fillMyMovies() {
       title: "Iron Man 2",
       watched: true,
       year: "?",
-      series: "Iron Man"
+      series: "Iron Man",
+      review: 2
     },
     {
       added: date,
@@ -304,7 +341,8 @@ export function fillMyMovies() {
       title: "Iron Man 3",
       watched: true,
       year: "?",
-      series: "Iron Man"
+      series: "Iron Man",
+      review: 2
     },
     {
       added: date,
@@ -312,7 +350,8 @@ export function fillMyMovies() {
       title: "Isle of Dogs",
       watched: true,
       year: "2018",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -320,7 +359,8 @@ export function fillMyMovies() {
       title: "Jurassic World",
       watched: true,
       year: "2015",
-      series: "Jurassic World"
+      series: "Jurassic World",
+      review: 3
     },
     {
       added: date,
@@ -328,7 +368,8 @@ export function fillMyMovies() {
       title: "Jurassic World: #2",
       watched: true,
       year: "2018",
-      series: "Jurassic World"
+      series: "Jurassic World",
+      review: 2
     },
     {
       added: date,
@@ -336,7 +377,8 @@ export function fillMyMovies() {
       title: "Kubo and the Two Strings",
       watched: false,
       year: "2016",
-      series: ""
+      series: "",
+      review: false
     },
     {
       added: date,
@@ -344,7 +386,8 @@ export function fillMyMovies() {
       title: "La La Land",
       watched: false,
       year: "2017 or 2016?",
-      series: ""
+      series: "",
+      review: false
     },
     {
       added: date,
@@ -352,7 +395,8 @@ export function fillMyMovies() {
       title: "Les Miserables",
       watched: true,
       year: "?",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -360,7 +404,8 @@ export function fillMyMovies() {
       title: "Lord of the Rings: #1",
       watched: true,
       year: "?",
-      series: "Lord of the Rings"
+      series: "Lord of the Rings",
+      review: 3
     },
     {
       added: date,
@@ -368,7 +413,8 @@ export function fillMyMovies() {
       title: "Lord of the Rings: #2",
       watched: true,
       year: "?",
-      series: "Lord of the Rings"
+      series: "Lord of the Rings",
+      review: 3
     },
     {
       added: date,
@@ -376,7 +422,8 @@ export function fillMyMovies() {
       title: "Lord of the Rings: #3",
       watched: true,
       year: "?",
-      series: "Lord of the Rings"
+      series: "Lord of the Rings",
+      review: 3
     },
     {
       added: date,
@@ -384,7 +431,8 @@ export function fillMyMovies() {
       title: "Moana",
       watched: true,
       year: "?",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -392,7 +440,8 @@ export function fillMyMovies() {
       title: "Pitch Perfect",
       watched: true,
       year: "?",
-      series: "Pitch Perfect"
+      series: "Pitch Perfect",
+      review: 4
     },
     {
       added: date,
@@ -400,7 +449,8 @@ export function fillMyMovies() {
       title: "Pitch Perfect",
       watched: true,
       year: "2015",
-      series: "Pitch Perfect 2"
+      series: "Pitch Perfect 2",
+      review: 2
     },
     {
       added: date,
@@ -408,7 +458,8 @@ export function fillMyMovies() {
       title: "Pitch Perfect",
       watched: true,
       year: "?",
-      series: "Pitch Perfect 3"
+      series: "Pitch Perfect 3",
+      review: 2
     },
     {
       added: date,
@@ -416,7 +467,8 @@ export function fillMyMovies() {
       title: "Rogue One: A Star Wars Story",
       watched: true,
       year: "2016",
-      series: "Star Wars"
+      series: "Star Wars",
+      review: 4
     },
     {
       added: date,
@@ -424,7 +476,8 @@ export function fillMyMovies() {
       title: "Suicide Squad",
       watched: true,
       year: "2016",
-      series: ""
+      series: "",
+      review: 1
     },
     {
       added: date,
@@ -432,7 +485,8 @@ export function fillMyMovies() {
       title: "The Avengers",
       watched: true,
       year: "?",
-      series: "Avengers"
+      series: "Avengers",
+      review: 3
     },
     {
       added: date,
@@ -440,7 +494,8 @@ export function fillMyMovies() {
       title: "The Avengers: Age of Ultron",
       watched: true,
       year: "2015",
-      series: "Avengers"
+      series: "Avengers",
+      review: 3
     },
     {
       added: date,
@@ -448,7 +503,8 @@ export function fillMyMovies() {
       title: "Sing!",
       watched: true,
       year: "?",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -456,7 +512,8 @@ export function fillMyMovies() {
       title: "Spiderman: Homecoming",
       watched: true,
       year: "2017",
-      series: "Spiderman"
+      series: "Spiderman",
+      review: 4
     },
     {
       added: date,
@@ -464,7 +521,8 @@ export function fillMyMovies() {
       title: "Star Wars",
       watched: true,
       year: "?",
-      series: "Star Wars"
+      series: "Star Wars",
+      review: 4
     },
     {
       added: date,
@@ -472,7 +530,8 @@ export function fillMyMovies() {
       title: "The Avengers: Infinity War",
       watched: true,
       year: "?",
-      series: "Avengers"
+      series: "Avengers",
+      review: 4
     },
     {
       added: date,
@@ -480,7 +539,8 @@ export function fillMyMovies() {
       title: "The Big Sick",
       watched: false,
       year: "2017",
-      series: ""
+      series: "",
+      review: false
     },
     {
       added: date,
@@ -488,7 +548,8 @@ export function fillMyMovies() {
       title: "The Hangover",
       watched: true,
       year: "?",
-      series: "The Hangover"
+      series: "The Hangover",
+      review: 4
     },
     {
       added: date,
@@ -496,7 +557,8 @@ export function fillMyMovies() {
       title: "The Help",
       watched: true,
       year: "?",
-      series: ""
+      series: "",
+      review: 2
     },
     {
       added: date,
@@ -504,7 +566,8 @@ export function fillMyMovies() {
       title: "The Hobbit",
       watched: true,
       year: "?",
-      series: "The Hobbit"
+      series: "The Hobbit",
+      review: 3
     },
     {
       added: date,
@@ -512,7 +575,8 @@ export function fillMyMovies() {
       title: "The Hobbit #2",
       watched: true,
       year: "?",
-      series: "The Hobbit"
+      series: "The Hobbit",
+      review: 3
     },
     {
       added: date,
@@ -520,7 +584,8 @@ export function fillMyMovies() {
       title: "The Hobbit: The Battle of the Five Armies",
       watched: true,
       year: "2014",
-      series: "The Hobbit"
+      series: "The Hobbit",
+      review: 3
     },
     {
       added: date,
@@ -528,7 +593,8 @@ export function fillMyMovies() {
       title: "The Hunger Games",
       watched: true,
       year: "?",
-      series: "Hunger Games"
+      series: "Hunger Games",
+      review: 4
     },
     {
       added: date,
@@ -536,7 +602,8 @@ export function fillMyMovies() {
       title: "The Hunger Games: Catching Fire",
       watched: true,
       year: "?",
-      series: "Hunger Games"
+      series: "Hunger Games",
+      review: 3
     },
     {
       added: date,
@@ -544,7 +611,8 @@ export function fillMyMovies() {
       title: "The Hunger Games: Mockingjay Part 1",
       watched: true,
       year: "2014",
-      series: "Hunger Games"
+      series: "Hunger Games",
+      review: 3
     },
     {
       added: date,
@@ -552,7 +620,8 @@ export function fillMyMovies() {
       title: "The Hunger Games: Mockingjay Part 2",
       watched: true,
       year: "2015",
-      series: "Hunger Games"
+      series: "Hunger Games",
+      review: 3
     },
     {
       added: date,
@@ -560,7 +629,8 @@ export function fillMyMovies() {
       title: "The Imitation Game",
       watched: true,
       year: "2014",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -568,7 +638,8 @@ export function fillMyMovies() {
       title: "The Lego Movie",
       watched: true,
       year: "2014",
-      series: "Lego Movie"
+      series: "Lego Movie",
+      review: 4
     },
     {
       added: date,
@@ -576,7 +647,8 @@ export function fillMyMovies() {
       title: "The Lego Batman Movie",
       watched: true,
       year: "?",
-      series: "Lego Movie"
+      series: "Lego Movie",
+      review: 3
     },
     {
       added: date,
@@ -584,7 +656,8 @@ export function fillMyMovies() {
       title: "The Lego Ninjago Movie",
       watched: true,
       year: "?",
-      series: "Lego Movie"
+      series: "Lego Movie",
+      review: false
     },
     {
       added: date,
@@ -592,7 +665,8 @@ export function fillMyMovies() {
       title: "The Maze Runner",
       watched: true,
       year: "2014",
-      series: "The Maze Runner"
+      series: "The Maze Runner",
+      review: 2
     },
     {
       added: date,
@@ -600,7 +674,8 @@ export function fillMyMovies() {
       title: "The Zookeeper's Wife",
       watched: true,
       year: "2017",
-      series: ""
+      series: "",
+      review: 3
     },
     {
       added: date,
@@ -608,7 +683,8 @@ export function fillMyMovies() {
       title: "Thor",
       watched: true,
       year: "?",
-      series: "Thor"
+      series: "Thor",
+      review: 3
     },
     {
       added: date,
@@ -616,7 +692,8 @@ export function fillMyMovies() {
       title: "Thor: The Dark World",
       watched: true,
       year: "?",
-      series: "Thor"
+      series: "Thor",
+      review: 2
     },
     {
       added: date,
@@ -624,7 +701,8 @@ export function fillMyMovies() {
       title: "Thor: Ragnarok",
       watched: true,
       year: "2017",
-      series: "Thor"
+      series: "Thor",
+      review: 3
     },
     {
       added: date,
@@ -632,7 +710,8 @@ export function fillMyMovies() {
       title: "Wonder Woman",
       watched: true,
       year: "2017",
-      series: ""
+      series: "",
+      review: 4
     },
     {
       added: date,
@@ -640,7 +719,8 @@ export function fillMyMovies() {
       title: "Zootopia",
       watched: true,
       year: "2016",
-      series: ""
+      series: "",
+      review: 4
     }
   ];
   const wishlist = [
