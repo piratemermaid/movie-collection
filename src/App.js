@@ -1,3 +1,5 @@
+// TODO: add user review and way to search by review
+
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
