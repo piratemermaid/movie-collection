@@ -4,6 +4,15 @@ export function fillMyMovies() {
   const collection = [
     {
       added: date,
+      tags: ["crime", "drama"],
+      title: "American Hustle",
+      watched: false,
+      year: "2013",
+      series: "",
+      review: false
+    },
+    {
+      added: date,
       tags: ["war", "action"],
       title: "American Sniper",
       watched: false,
@@ -85,6 +94,15 @@ export function fillMyMovies() {
     },
     {
       added: date,
+      tags: ["disney", "animated", "feminism", "adventure", "action"],
+      title: "Brave",
+      watched: true,
+      year: "2012",
+      series: "",
+      review: 4
+    },
+    {
+      added: date,
       tags: ["action", "superhero", "marvel"],
       title: "Captain America",
       watched: true,
@@ -127,6 +145,33 @@ export function fillMyMovies() {
       year: "2018",
       series: "Deadpool",
       review: 4
+    },
+    {
+      added: date,
+      tags: ["animated", "comedy", "cute"],
+      title: "Despicable Me",
+      watched: true,
+      year: "?",
+      series: "Despicable Me",
+      review: 4
+    },
+    {
+      added: date,
+      tags: ["animated", "comedy", "cute"],
+      title: "Despicable Me 2",
+      watched: true,
+      year: "2013",
+      series: "Despicable Me",
+      review: 3
+    },
+    {
+      added: date,
+      tags: ["animated", "comedy", "cute"],
+      title: "Despicable Me 3",
+      watched: true,
+      year: "?",
+      series: "Despicable Me",
+      review: 3
     },
     {
       added: date,
@@ -187,7 +232,7 @@ export function fillMyMovies() {
       tags: ["disney", "animated", "musical", "feminism", "magic", "family"],
       title: "Frozen",
       watched: true,
-      year: "?",
+      year: "2013",
       series: "",
       review: 4
     },
@@ -340,7 +385,7 @@ export function fillMyMovies() {
       tags: ["action", "superhero", "marvel"],
       title: "Iron Man 3",
       watched: true,
-      year: "?",
+      year: "2013",
       series: "Iron Man",
       review: 2
     },
@@ -382,7 +427,7 @@ export function fillMyMovies() {
     },
     {
       added: date,
-      tags: ["musical", "romantic"],
+      tags: ["musical", "romance"],
       title: "La La Land",
       watched: false,
       year: "2017 or 2016?",
@@ -394,7 +439,7 @@ export function fillMyMovies() {
       tags: ["musical", "history", "drama"],
       title: "Les Miserables",
       watched: true,
-      year: "?",
+      year: "2012",
       series: "",
       review: 4
     },
@@ -439,7 +484,7 @@ export function fillMyMovies() {
       tags: ["musical", "comedy"],
       title: "Pitch Perfect",
       watched: true,
-      year: "?",
+      year: "2012",
       series: "Pitch Perfect",
       review: 4
     },
@@ -484,7 +529,7 @@ export function fillMyMovies() {
       tags: ["action", "superhero", "marvel"],
       title: "The Avengers",
       watched: true,
-      year: "?",
+      year: "2012",
       series: "Avengers",
       review: 3
     },
@@ -572,9 +617,9 @@ export function fillMyMovies() {
     {
       added: date,
       tags: ["action", "adventure", "nerdy"],
-      title: "The Hobbit #2",
+      title: "The Hobbit: The Desolation of Smaug",
       watched: true,
-      year: "?",
+      year: "2013",
       series: "The Hobbit",
       review: 3
     },
@@ -592,7 +637,7 @@ export function fillMyMovies() {
       tags: ["action", "angsty", "dystopia"],
       title: "The Hunger Games",
       watched: true,
-      year: "?",
+      year: "2012",
       series: "Hunger Games",
       review: 4
     },
@@ -601,7 +646,7 @@ export function fillMyMovies() {
       tags: ["action", "angsty", "dystopia"],
       title: "The Hunger Games: Catching Fire",
       watched: true,
-      year: "?",
+      year: "2013",
       series: "Hunger Games",
       review: 3
     },
@@ -691,7 +736,7 @@ export function fillMyMovies() {
       tags: ["action", "superhero", "marvel"],
       title: "Thor: The Dark World",
       watched: true,
-      year: "?",
+      year: "2013",
       series: "Thor",
       review: 2
     },
@@ -715,6 +760,15 @@ export function fillMyMovies() {
     },
     {
       added: date,
+      tags: ["animated", "disney", "cute"],
+      title: "Wreck-It Ralph",
+      watched: true,
+      year: "2012",
+      series: "Wreck-It Ralph",
+      review: 4
+    },
+    {
+      added: date,
       tags: ["disney", "animated", "animals"],
       title: "Zootopia",
       watched: true,
@@ -734,7 +788,7 @@ export function fillMyMovies() {
     },
     {
       added: "10/01/18",
-      tags: ["romantic", "comedy"],
+      tags: ["romance", "comedy"],
       title: "Crazy Rich Asians",
       watched: false,
       year: "2018",
@@ -797,6 +851,25 @@ export function fillMyMovies() {
       year: "2018",
       series: "Ant-Man",
       releaseDate: "?"
+    },
+    {
+      added: date,
+      tags: ["horror", "romance"],
+      title: "Warm Bodies",
+      watched: true,
+      year: "2013",
+      series: "",
+      releaseDate: "released",
+      review: 3
+    },
+    {
+      added: date,
+      tags: ["animated", "disney", "cute"],
+      title: "Wreck-It Ralph 2",
+      watched: true,
+      year: "2012",
+      releaseDate: "?",
+      series: "Wreck-It Ralph"
     }
   ];
 
