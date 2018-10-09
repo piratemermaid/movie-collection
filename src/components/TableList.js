@@ -119,11 +119,24 @@ class TableList extends Component {
             {movie.watched ? "Yes" : "No"}
           </td>
           {this.props.type === "wishlist" ? <td>{movie.releaseDate}</td> : null}
+          {this.props.type !== "wishlist" ? (
+            <td>{this.getStars(movie.review)}</td>
+          ) : null}
         </tr>
       );
     }
 
     return rows;
+  }
+
+  getStars(num) {
+    let starsArr = [];
+    for (let i = 0; i < num; i++) {
+      starsArr.push(
+        <i className="material-icons tiny icon-link icon-link-blue">star</i>
+      );
+    }
+    return starsArr;
   }
 
   renderTags(tags) {
@@ -194,6 +207,7 @@ class TableList extends Component {
               <th>Year</th>
               <th>Watched?</th>
               {this.props.type === "wishlist" ? <th>Release Date</th> : null}
+              {this.props.type !== "wishlist" ? <th>Your Review</th> : null}
             </tr>
           </thead>
           <tbody>{this.renderMovies(this.props.movies)}</tbody>
