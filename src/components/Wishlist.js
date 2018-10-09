@@ -32,18 +32,6 @@ const Wishlist = props => {
         <a className="dev-option" onClick={() => props.deleteAll("wishlist")}>
           Delete wishlist
         </a>
-        <a
-          className="dev-option"
-          onClick={() => props.fillMovies("wishlist", "dev")}
-        >
-          Dev fill movies
-        </a>
-        <a
-          className="dev-option"
-          onClick={() => props.fillMovies("wishlist", "personal")}
-        >
-          Fill with my movies
-        </a>
       </div>
     </div>
   );

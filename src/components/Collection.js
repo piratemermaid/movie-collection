@@ -28,18 +28,6 @@ const Collection = props => {
         <a className="dev-option" onClick={() => props.deleteAll("collection")}>
           Delete collection
         </a>
-        <a
-          className="dev-option"
-          onClick={() => props.fillMovies("collection", "dev")}
-        >
-          Dev fill movies
-        </a>
-        <a
-          className="dev-option"
-          onClick={() => props.fillMovies("collection", "personal")}
-        >
-          Fill with my movies
-        </a>
       </div>
     </div>
   );
