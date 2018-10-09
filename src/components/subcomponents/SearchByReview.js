@@ -20,7 +20,7 @@ class SearchByReview extends Component {
       this.setState({ formErr: "Please choose a search option" });
     } else {
       //   '/search/reviews/:review/:option'
-      let url = `/search/reviews/${this.state.review}/${this.state.option}`;
+      let url = `/search/review/${this.state.review}/${this.state.option}`;
       this.props.history.push(url);
     }
   }

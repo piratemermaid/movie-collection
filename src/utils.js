@@ -39,84 +39,96 @@ export function devFillMovies() {
       added: "10/07/2018",
       tags: ["action", "nerdy", "nostalgic", "scifi"],
       watched: true,
-      year: "1995"
+      year: "1995",
+      review: 3
     },
     {
       title: "Harry Potter",
       added: "10/05/2018",
       tags: ["magic", "nerdy", "nostalgic"],
       watched: true,
-      year: "1997"
+      year: "1997",
+      review: 3
     },
     {
       title: "Moana",
       added: "10/07/2018",
       tags: ["animated", "disney", "musical"],
       watched: true,
-      year: "2016"
+      year: "2016",
+      review: 3
     },
     {
       added: "10/08/2018",
       tags: ["animated", "musical"],
       title: "Anastasia",
       watched: true,
-      year: "1993"
+      year: "1993",
+      review: 4
     },
     {
       added: "10/08/2018",
       tags: ["musical"],
       title: "Hairspray",
       watched: false,
-      year: "2003"
+      year: "2003",
+      review: 4
     },
     {
       added: "10/08/2018",
       tags: ["action", "nerdy", "superhero"],
       title: "The Avengers",
       watched: false,
-      year: "2008"
+      year: "2008",
+      review: 4
     },
     {
       added: "10/07/2018",
       tags: ["documentary", "feminism"],
       title: "Miss Representation",
       watched: true,
-      year: "2015"
+      year: "2015",
+      review: 5
     },
     {
       added: "10/07/2018",
       tags: ["animals", "cats", "documentary"],
       title: "Kedi",
       watched: false,
-      year: "2018"
+      year: "2018",
+      review: 5
     },
     {
       added: "10/08/2018",
       tags: ["action", "feminism", "nerdy", "superhero"],
       title: "Wonder Woman",
       watched: true,
-      year: "2017"
+      year: "2017",
+      review: 2
     },
     {
       added: "10/06/2018",
       tags: ["comedy"],
       title: "Airplane",
       watched: true,
-      year: "1998"
+      year: "1998",
+      review: 2
     },
     {
       added: "10/06/2018",
       tags: ["animated", "disney", "feminism", "magic", "musical"],
       title: "Frozen",
       watched: true,
-      year: "2016"
+      year: "2016",
+      review: 1
     },
     {
       added: "10/06/2018",
       tags: ["animals", "animated", "musical"],
       title: "Sing!",
       watched: true,
-      year: "2017"
+      year: "2017",
+      review: 1
     },
     {
       added: "10/08/2018",
