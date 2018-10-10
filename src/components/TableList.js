@@ -69,7 +69,7 @@ class TableList extends Component {
       sorted.push(first);
     }
 
-    if (this.state.sortBy === "review") {
+    if (sortBy === "review" || sortBy === "added") {
       sorted.reverse();
     }
 
