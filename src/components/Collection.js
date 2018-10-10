@@ -23,7 +23,13 @@ const Collection = props => {
       <Link to="/add/collection">
         <i className="material-icons small icon-link float-right">add_circle</i>
       </Link>
-      <TableList movies={props.movies} editable={true} deletable={false} />
+      <TableList
+        movies={props.movies}
+        editable={true}
+        deletable={false}
+        sortOption={props.sortOption}
+        changeSortOption={props.changeSortOption}
+      />
       <div className="dev-options">
         <a className="dev-option" onClick={() => props.deleteAll("collection")}>
           Delete collection

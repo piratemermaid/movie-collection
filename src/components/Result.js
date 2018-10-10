@@ -214,6 +214,8 @@ const Result = props => {
           tags={tags}
           editable={false}
           deletable={true}
+          sortOption={props.sortOption}
+          changeSortOption={props.changeSortOption}
         />
       ) : (
         <p>No matches...</p>
