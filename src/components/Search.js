@@ -13,7 +13,6 @@ import SearchByReview from "./subcomponents/SearchByReview";
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = { display: "tags" };
   }
 
   render() {
@@ -24,11 +23,11 @@ class Search extends Component {
         <div className="col s3 flex center-align">
           <div
             className={
-              this.state.display === "tags"
+              this.props.display === "tags"
                 ? `${cardClass} card-link-active`
                 : cardClass
             }
-            onClick={() => this.setState({ display: "tags" })}
+            onClick={() => this.props.changeSearchDisplay("tags")}
           >
             <h6>search by tag(s)</h6>
           </div>
@@ -36,11 +35,11 @@ class Search extends Component {
         <div className="col s3 flex center-align">
           <div
             className={
-              this.state.display === "year"
+              this.props.display === "year"
                 ? `${cardClass} card-link-active`
                 : cardClass
             }
-            onClick={() => this.setState({ display: "year" })}
+            onClick={() => this.props.changeSearchDisplay("year")}
           >
             <h6>search by year</h6>
           </div>
@@ -57,22 +56,22 @@ class Search extends Component {
         <div className="col s3 flex center-align">
           <div
             className={
-              this.state.display === "review"
+              this.props.display === "review"
                 ? `${cardClass} card-link-active`
                 : cardClass
             }
-            onClick={() => this.setState({ display: "review" })}
+            onClick={() => this.props.changeSearchDisplay("review")}
           >
             <h6>search by review</h6>
           </div>
         </div>
         <div className="row">
           <div className="col s12">
-            {this.state.display === "year" ? <SearchByYear /> : null}
-            {this.state.display === "tags" ? (
+            {this.props.display === "year" ? <SearchByYear /> : null}
+            {this.props.display === "tags" ? (
               <SearchByTag getAllTags={this.props.getAllTags} />
             ) : null}
-            {this.state.display === "review" ? <SearchByReview /> : null}
+            {this.props.display === "review" ? <SearchByReview /> : null}
           </div>
         </div>
       </div>
