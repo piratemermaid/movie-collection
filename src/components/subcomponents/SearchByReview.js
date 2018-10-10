@@ -89,7 +89,7 @@ class SearchByReview extends Component {
         <div className="row col s12">
           <p className="info">Options:</p>
         </div>
-        <div className="input-field col s12" style={{ marginBottom: "20px" }}>
+        <div className="input-field col s4" style={{ marginBottom: "20px" }}>
           <input
             id="review-exact"
             type="checkbox"
@@ -99,7 +99,7 @@ class SearchByReview extends Component {
           />
           <label htmlFor="review-exact">Exact amount of stars</label>
         </div>
-        <div className="input-field col s12" style={{ marginBottom: "20px" }}>
+        <div className="input-field col s4" style={{ marginBottom: "20px" }}>
           <input
             id="review-up"
             type="checkbox"
@@ -111,7 +111,7 @@ class SearchByReview extends Component {
             {this.state.review || "Chosen"} stars and up
           </label>
         </div>
-        <div className="input-field col s12" style={{ marginBottom: "20px" }}>
+        <div className="input-field col s4" style={{ marginBottom: "20px" }}>
           <input
             id="review-down"
             type="checkbox"
