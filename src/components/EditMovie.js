@@ -64,9 +64,11 @@ class EditMovie extends Component {
     if (String(this.state.tags.length) > 0) {
       tags = this.state.tags.split(" ");
       tags = tags.filter(val => val); // get rid of empty values
+      tags = tags.sort();
     } else {
       tags = [];
     }
+
     const info = {
       title: this.state.title,
       year: this.state.year,

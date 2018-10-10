@@ -75,7 +75,7 @@ class AddMovie extends Component {
       const info = {
         title: newAddTitle || this.state.title,
         year: this.state.year,
-        tags,
+        tags: tags.sort(),
         watched: this.state.watched,
         added: this.state.added,
         series: this.state.series,
