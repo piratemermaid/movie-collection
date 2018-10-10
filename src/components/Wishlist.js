@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import TableList from "./TableList";
 
 const Wishlist = props => {
-  let myProps = props.wishlist;
-  for (let i in props.wishlist) {
-    if (typeof props.wishlist[i].tags === "string") {
+  const wishlist = props.wishlist;
+  for (let i in wishlist) {
+    if (typeof wishlist[i].tags === "string") {
       let tags;
-      if (props.wishlist[i].tags.length > 0) {
-        tags = props.wishlist[i].tags.split(" ");
+      if (wishlist[i].tags.length > 0) {
+        tags = wishlist[i].tags.split(" ");
         tags = tags.filter(val => val); // get rid of empty values
       } else {
         tags = [];
       }
-      myProps[i].tags = tags;
+      wishlist[i].tags = tags;
     }
   }
 
@@ -23,7 +23,7 @@ const Wishlist = props => {
         <i className="material-icons small icon-link float-right">add_circle</i>
       </Link>
       <TableList
-        movies={props.wishlist}
+        movies={wishlist}
         type="wishlist"
         editable={true}
         deletable={false}
