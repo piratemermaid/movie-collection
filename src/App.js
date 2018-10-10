@@ -19,7 +19,7 @@ class App extends Component {
       collection: [],
       wishlist: [],
       searchDisplay: "tags",
-      sortOption: "dateAdded"
+      sortOption: { method: "dateAdded", ascending: true }
     };
 
     this.addMovie = this.addMovie.bind(this);
@@ -28,6 +28,7 @@ class App extends Component {
     this.deleteAll = this.deleteAll.bind(this);
     this.getAllTags = this.getAllTags.bind(this);
     this.changeSearchDisplay = this.changeSearchDisplay.bind(this);
+    this.changeSortOption = this.changeSortOption.bind(this);
   }
 
   updateLocalStorage() {
@@ -90,6 +91,10 @@ class App extends Component {
     this.setState({ searchDisplay });
   }
 
+  changeSortOption(sortOption) {
+    this.setState({ sortOption });
+  }
+
   componentDidUpdate() {
     this.updateLocalStorage();
   }
@@ -105,7 +110,7 @@ class App extends Component {
   }
 
   render() {
-    const { collection, wishlist } = this.state;
+    const { collection, wishlist, searchDisplay, sortOption } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
@@ -120,26 +125,50 @@ class App extends Component {
                     <Search
                       movies={collection}
                       getAllTags={this.getAllTags}
-                      display={this.state.searchDisplay}
+                      display={searchDisplay}
                       changeSearchDisplay={this.changeSearchDisplay}
                     />
                   )}
                 />
                 <Route
                   path="/search/unwatched"
-                  render={() => <Result movies={collection} />}
+                  render={() => (
+                    <Result
+                      movies={collection}
+                      sortOption={sortOption}
+                      changeSortOption={this.changeSortOption}
+                    />
+                  )}
                 />
                 <Route
                   path="/search/tags/:tags/:options"
-                  render={() => <Result movies={collection} />}
+                  render={() => (
+                    <Result
+                      movies={collection}
+                      sortOption={sortOption}
+                      changeSortOption={this.changeSortOption}
+                    />
+                  )}
                 />
                 <Route
                   path="/search/year/:year/:options"
-                  render={() => <Result movies={collection} />}
+                  render={() => (
+                    <Result
+                      movies={collection}
+                      sortOption={sortOption}
+                      changeSortOption={this.changeSortOption}
+                    />
+                  )}
                 />
                 <Route
                   path="/search/review/:review/:option"
-                  render={() => <Result movies={collection} />}
+                  render={() => (
+                    <Result
+                      movies={collection}
+                      sortOption={sortOption}
+                      changeSortOption={this.changeSortOption}
+                    />
+                  )}
                 />
                 <Route
                   path="/add/:type"
@@ -169,13 +198,20 @@ class App extends Component {
                     <Collection
                       movies={collection}
                       deleteAll={this.deleteAll}
+                      sortOption={sortOption}
+                      changeSortOption={this.changeSortOption}
                     />
                   )}
                 />
                 <Route
                   path="/wishlist"
                   render={() => (
-                    <Wishlist wishlist={wishlist} deleteAll={this.deleteAll} />
+                    <Wishlist
+                      wishlist={wishlist}
+                      deleteAll={this.deleteAll}
+                      sortOption={sortOption}
+                      changeSortOption={this.changeSortOption}
+                    />
                   )}
                 />
                 <Route

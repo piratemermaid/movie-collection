@@ -27,6 +27,8 @@ const Wishlist = props => {
         type="wishlist"
         editable={true}
         deletable={false}
+        sortOption={props.sortOption}
+        changeSortOption={props.changeSortOption}
       />
       <div className="dev-options">
         <a className="dev-option" onClick={() => props.deleteAll("wishlist")}>

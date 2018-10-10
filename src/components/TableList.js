@@ -13,9 +13,9 @@ import SortOptions from "./subcomponents/SortOptions";
 class TableList extends Component {
   constructor(props) {
     super(props);
-    this.state = { sortBy: "dateAdded", ascending: true };
-    this.changeSortMethod = this.changeSortMethod.bind(this);
+    this.state = {};
     this.getSortOption = this.getSortOption.bind(this);
+    this.changeSortMethod = this.changeSortMethod.bind(this);
   }
 
   removeFromList(title) {
@@ -79,13 +79,12 @@ class TableList extends Component {
   renderMovies(movies) {
     let rows = [];
 
-    // TODO: use state to sort movies
-    const { sortBy, ascending } = this.state;
+    const { method, ascending } = this.props.sortOption;
 
     let sortedMovies;
-    sortBy === "dateAdded"
+    method === "dateAdded"
       ? (sortedMovies = this.sortByMethod("added", movies))
-      : (sortedMovies = this.sortByMethod(sortBy, movies));
+      : (sortedMovies = this.sortByMethod(method, movies));
 
     if (!ascending) {
       sortedMovies.reverse();
@@ -168,23 +167,23 @@ class TableList extends Component {
   }
 
   changeSortMethod(type) {
-    if (this.state.sortBy === type) {
-      if (this.state.ascending) {
-        this.setState({ ascending: false });
+    if (this.props.sortOption.method === type) {
+      if (this.props.sortOption.ascending) {
+        this.props.changeSortOption({ method: type, ascending: false });
       } else {
-        this.setState({ ascending: true });
+        this.props.changeSortOption({ method: type, ascending: true });
       }
     } else {
-      this.setState({ sortBy: type, ascending: true });
+      this.props.changeSortOption({ method: type, ascending: true });
     }
   }
 
   getSortOption(type) {
     let icon;
     let iconClass = "material-icons tiny icon-link";
-    if (this.state.sortBy === type) {
+    if (this.props.sortOption.method === type) {
       iconClass += " icon-link-blue";
-      if (this.state.ascending) {
+      if (this.props.sortOption.ascending) {
         icon = "up";
       } else {
         icon = "down";
@@ -197,11 +196,10 @@ class TableList extends Component {
   }
 
   render() {
-    const { sortBy } = this.state;
     return (
       <div>
         <SortOptions
-          sortBy={sortBy}
+          sortBy={this.props.sortOption.method}
           changeSortMethod={this.changeSortMethod}
           getSortOption={this.getSortOption}
         />
