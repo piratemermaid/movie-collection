@@ -137,7 +137,9 @@ class TableList extends Component {
     let starsArr = [];
     for (let i = 0; i < num; i++) {
       starsArr.push(
-        <i className="material-icons tiny icon-link icon-link-blue">star</i>
+        <i key={i} className="material-icons tiny icon-link icon-link-blue">
+          star
+        </i>
       );
     }
     return starsArr;
