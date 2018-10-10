@@ -17,7 +17,9 @@ class App extends Component {
 
     this.state = {
       collection: [],
-      wishlist: []
+      wishlist: [],
+      searchDisplay: "tags",
+      sortOption: "dateAdded"
     };
 
     this.addMovie = this.addMovie.bind(this);
@@ -25,6 +27,7 @@ class App extends Component {
     this.deleteMovie = this.deleteMovie.bind(this);
     this.deleteAll = this.deleteAll.bind(this);
     this.getAllTags = this.getAllTags.bind(this);
+    this.changeSearchDisplay = this.changeSearchDisplay.bind(this);
   }
 
   updateLocalStorage() {
@@ -83,6 +86,10 @@ class App extends Component {
     return tagList;
   }
 
+  changeSearchDisplay(searchDisplay) {
+    this.setState({ searchDisplay });
+  }
+
   componentDidUpdate() {
     this.updateLocalStorage();
   }
@@ -110,7 +117,12 @@ class App extends Component {
                   exact
                   path="/"
                   render={() => (
-                    <Search movies={collection} getAllTags={this.getAllTags} />
+                    <Search
+                      movies={collection}
+                      getAllTags={this.getAllTags}
+                      display={this.state.searchDisplay}
+                      changeSearchDisplay={this.changeSearchDisplay}
+                    />
                   )}
                 />
                 <Route
