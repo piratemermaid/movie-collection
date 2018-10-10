@@ -88,7 +88,12 @@ class App extends Component {
   }
 
   componentWillMount() {
-    const state = JSON.parse(localStorage.getItem("movieState")) || {};
+    let state = JSON.parse(localStorage.getItem("movieState")) || {};
+    // sorts all tags in collection, this shouldn't be needed anymore
+    for (let i in state.collection) {
+      state.collection[i].tags.sort();
+    }
+
     this.setState({ collection: state.collection, wishlist: state.wishlist });
   }
 
