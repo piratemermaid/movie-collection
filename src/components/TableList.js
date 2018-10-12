@@ -131,11 +131,8 @@ class TableList extends Component {
 
   renderMovies(movies) {
     let rows = [];
-
     const { method, ascending } = this.props.sortOption;
-
     let sortedMovies = this.sortByMethod(method, movies);
-
     if (!ascending) {
       sortedMovies.reverse();
     }
@@ -166,7 +163,9 @@ class TableList extends Component {
               </Link>
             ) : null}
           </td>
-          <td>{this.renderTags(movie.tags)}</td>
+          <td>
+            <ul className="tags-ul">{this.renderTags(movie.tags)}</ul>
+          </td>
           <td>{movie.year}</td>
           <td style={{ textAlign: "center" }}>
             {movie.watched ? "Yes" : "No"}
@@ -208,9 +207,9 @@ class TableList extends Component {
         tagClass += " tag-match";
       }
       renderTagArr.push(
-        <span className={tagClass} key={i}>
+        <li className={tagClass} key={i}>
           {tags[i]}
-        </span>
+        </li>
       );
     }
     return renderTagArr;
