@@ -10,14 +10,15 @@ class AddMovie extends Component {
 
     this.state = {
       title: "",
+      titleErr: "",
       year: "",
+      yearErr: "",
       tags: [],
+      tagsErr: "",
       watched: false,
       added: "",
+      addedErr: "",
       formErr: "",
-      titleErr: "",
-      yearErr: "",
-      tagsErr: "",
       releaseDate: "",
       series: "",
       review: false
@@ -34,6 +35,20 @@ class AddMovie extends Component {
     }
     if (this.state.year && this.state.year.length !== 4) {
       this.setState({ yearErr: "Please enter a valid year." });
+      errors = true;
+    }
+    // Some rough error checking on the date.
+    // Make sure it's 10 digits, has a slash,
+    // month is < 12 and day is < 31.
+    if (
+      this.state.added.length !== 10 ||
+      !this.state.added.includes("/") ||
+      this.state.added.split("/")[0] > 12 ||
+      this.state.added.split("/")[1] > 31
+    ) {
+      this.setState({
+        addedErr: "Please enter a date in the format mm/dd/yyyy"
+      });
       errors = true;
     }
 
@@ -112,7 +127,7 @@ class AddMovie extends Component {
   }
 
   onAddedChange(e) {
-    this.setState({ added: e.target.value, formErr: "" });
+    this.setState({ added: e.target.value, addedErr: "", formErr: "" });
   }
 
   onReleaseDateChange(e) {
@@ -240,7 +255,7 @@ class AddMovie extends Component {
                   value={this.state.added}
                   onChange={e => this.onAddedChange(e)}
                 />
-                <div className="form-err">{this.state.dateErr}</div>
+                <div className="form-err">{this.state.addedErr}</div>
               </div>
               <div className="input-field col s12">
                 <p className="form-label">

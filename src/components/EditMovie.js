@@ -8,7 +8,7 @@ class EditMovie extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { type: "" };
+    this.state = { type: "", addedErr: "" };
   }
 
   onTitleChange(e) {
@@ -29,7 +29,7 @@ class EditMovie extends Component {
   }
 
   onAddedChange(e) {
-    this.setState({ added: e.target.value });
+    this.setState({ added: e.target.value, addedErr: "" });
   }
 
   onReleaseDateChange(e) {
@@ -58,33 +58,54 @@ class EditMovie extends Component {
 
   updateMovie(e) {
     e.preventDefault();
-
-    let tags;
-
-    if (String(this.state.tags.length) > 0) {
-      tags = this.state.tags.split(" ");
-      tags = tags.filter(val => val); // get rid of empty values
-      tags = tags.sort();
-    } else {
-      tags = [];
+    let errors = false;
+    // Some rough error checking on the date.
+    // Make sure it's 10 digits, has a slash,
+    // month is < 12 and day is < 31.
+    if (
+      this.state.added.length !== 10 ||
+      !this.state.added.includes("/") ||
+      this.state.added.split("/")[0] > 12 ||
+      this.state.added.split("/")[1] > 31
+    ) {
+      this.setState({
+        addedErr: "Please enter a date in the format mm/dd/yyyy"
+      });
+      errors = true;
     }
 
-    const info = {
-      title: this.state.title,
-      year: this.state.year,
-      tags,
-      watched: this.state.watched,
-      added: this.state.added,
-      series: this.state.series,
-      review: this.state.review
-    };
+    if (!errors) {
+      let tags;
 
-    if (this.state.type === "wishlist") {
-      info.releaseDate = this.state.releaseDate || "Unknown";
+      if (String(this.state.tags.length) > 0) {
+        tags = this.state.tags.split(" ");
+        tags = tags.filter(val => val); // get rid of empty values
+        tags = tags.sort();
+      } else {
+        tags = [];
+      }
+
+      const info = {
+        title: this.state.title,
+        year: this.state.year,
+        tags,
+        watched: this.state.watched,
+        added: this.state.added,
+        series: this.state.series,
+        review: this.state.review
+      };
+
+      if (this.state.type === "wishlist") {
+        info.releaseDate = this.state.releaseDate || "Unknown";
+      }
+
+      this.props.editMovie(
+        info,
+        this.props.match.params.title,
+        this.state.type
+      );
+      this.props.history.push(`/${this.state.type}`);
     }
-
-    this.props.editMovie(info, this.props.match.params.title, this.state.type);
-    this.props.history.push(`/${this.state.type}`);
   }
 
   componentWillMount() {
@@ -224,7 +245,7 @@ class EditMovie extends Component {
                 value={this.state.added}
                 onChange={e => this.onAddedChange(e)}
               />
-              <div className="form-err">{this.state.titleErr}</div>
+              <div className="form-err">{this.state.addedErr}</div>
             </div>
             <div className="input-field col s12">
               <p className="form-label">
