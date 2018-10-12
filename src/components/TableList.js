@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
@@ -31,49 +30,103 @@ class TableList extends Component {
     }
   }
 
-  sortByMethod(sortBy, movies) {
-    let sorted = [];
-    for (let i in movies) {
-      let first = movies[i];
-      let firstInArr = _.some(sorted, { title: movies[i].title });
-      for (let j in movies) {
-        let inArr = _.some(sorted, { title: movies[j].title });
-        if (movies[j][sortBy] < first[sortBy]) {
-          if (!inArr) {
-            first = movies[j];
-            firstInArr = _.some(sorted, { title: first.title });
+  sortByMethod(method, movies) {
+    if (method === "year" || method === "review") {
+      return movies.sort(function(a, b) {
+        // If same year or review or no year or review, sort by title
+        if (a[method] === b[method]) {
+          const titleA = a.title.toLowerCase();
+          const titleB = b.title.toLowerCase();
+          if (titleA < titleB) {
+            return -1;
           }
-        } else if (movies[j][sortBy] === first[sortBy]) {
-          // If same year, put in alphabetical order
-          if (sortBy === "year") {
-            if (movies[j].title < first.title && !inArr) {
-              first = movies[j];
-              firstInArr = false;
-            } else {
-              if (firstInArr) {
-                first = movies[j];
-                firstInArr = _.some(sorted, { title: first.title });
-              }
-            }
-          }
-          // TODO: if same title, put in order of year
-          // e.g. Cinderella original vs 2015 Cinderella
-        } else {
-          if (firstInArr && !inArr) {
-            first = movies[j];
-            firstInArr = false;
+          if (titleA > titleB) {
+            return 1;
           }
         }
-      }
+        // If no value, put at end
+        if (!a[method] || a[method] === "?") {
+          return 1;
+        }
+        if (!b[method] || b[method] === "?") {
+          return -1;
+        }
+        return b[method] - a[method];
+      });
+    } else if (method === "title") {
+      return movies.sort(function(a, b) {
+        const titleA = a.title.toLowerCase();
+        const titleB = b.title.toLowerCase();
+        if (titleA < titleB) {
+          return -1;
+        }
+        if (titleA > titleB) {
+          return 1;
+        }
+        // If same title, sort by year
+        if (titleA === titleB) {
+          return a.year - b.year;
+        }
+        return 0;
+      });
+    } else if (method === "dateAdded") {
+      // Split mm/dd/yyyy string into parts and compare each,
+      // first compare year (2), then month (0), then day (1)
+      return movies.sort(function(a, b) {
+        let dateA = a.added.split("/");
+        let dateB = b.added.split("/");
 
-      sorted.push(first);
+        // Temp fix for yy formatted string
+        // TODO: make sure movies have 4 digits for year
+        if (dateA[2].length === 2) {
+          dateA[2] = "20" + dateA[2];
+        }
+        if (dateB[2].length === 2) {
+          dateB[2] = "20" + dateB[2];
+        }
+
+        if (dateA[2] > dateB[2]) {
+          return -1;
+        }
+        if (dateA[2] < dateB[2]) {
+          return 1;
+        }
+        if (dateA[2] === dateB[2]) {
+          if (dateA[0] > dateB[0]) {
+            return -1;
+          }
+          if (dateA[0] < dateB[0]) {
+            return 1;
+          }
+          if (dateA[0] === dateB[0]) {
+            if (dateA[1] > dateB[1]) {
+              return -1;
+            }
+            if (dateA[1] < dateB[1]) {
+              return 1;
+            }
+            // If date is exactly the same, go by title
+            if (dateA[1] === dateB[1]) {
+              const titleA = a.title.toLowerCase();
+              const titleB = b.title.toLowerCase();
+              if (titleA < titleB) {
+                return -1;
+              }
+              if (titleA > titleB) {
+                return 1;
+              }
+              if (titleA === titleB) {
+                // TODO: show most recent first
+              }
+              return 0;
+            }
+            return 0;
+          }
+          return 0;
+        }
+        return 0;
+      });
     }
-
-    if (sortBy === "review" || sortBy === "added") {
-      sorted.reverse();
-    }
-
-    return sorted;
   }
 
   renderMovies(movies) {
@@ -81,10 +134,7 @@ class TableList extends Component {
 
     const { method, ascending } = this.props.sortOption;
 
-    let sortedMovies;
-    method === "dateAdded"
-      ? (sortedMovies = this.sortByMethod("added", movies))
-      : (sortedMovies = this.sortByMethod(method, movies));
+    let sortedMovies = this.sortByMethod(method, movies);
 
     if (!ascending) {
       sortedMovies.reverse();
