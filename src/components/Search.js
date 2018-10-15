@@ -41,15 +41,6 @@ const Search = props => {
       </div>
       <div className="col s3 flex center-align">
         <div
-          className={cardClass}
-          onClick={() => props.history.push("/search/unwatched")}
-        >
-          <h6>view all unwatched</h6>
-          <i className="material-icons small icon-link">arrow_forward</i>
-        </div>
-      </div>
-      <div className="col s3 flex center-align">
-        <div
           className={
             props.display === "review"
               ? `${cardClass} card-link-active`
@@ -58,6 +49,15 @@ const Search = props => {
           onClick={() => props.changeSearchDisplay("review")}
         >
           <h6>search by review</h6>
+        </div>
+      </div>
+      <div className="col s3 flex center-align">
+        <div
+          className={cardClass}
+          onClick={() => props.history.push("/search/unwatched")}
+        >
+          <h6>view all unwatched</h6>
+          <i className="material-icons small icon-link">arrow_forward</i>
         </div>
       </div>
       <div className="row">
