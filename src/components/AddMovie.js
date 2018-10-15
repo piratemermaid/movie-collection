@@ -33,6 +33,10 @@ class AddMovie extends Component {
       this.setState({ titleErr: "Please enter a title." });
       errors = true;
     }
+    if (this.state.title.includes("#")) {
+      this.setState({ titleErr: "Title cannot inclue a '#'" });
+      errors = true;
+    }
     if (this.state.year && this.state.year.length !== 4) {
       this.setState({ yearErr: "Please enter a valid year." });
       errors = true;

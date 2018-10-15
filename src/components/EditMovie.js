@@ -59,6 +59,15 @@ class EditMovie extends Component {
   updateMovie(e) {
     e.preventDefault();
     let errors = false;
+    if (!this.state.title) {
+      this.setState({ titleErr: "Please enter a title." });
+      errors = true;
+    }
+    if (this.state.title.includes("#")) {
+      this.setState({ titleErr: "Title cannot inclue a '#'" });
+      errors = true;
+    }
+
     // Some rough error checking on the date.
     // Make sure it's 10 digits, has a slash,
     // month is < 12 and day is < 31.
