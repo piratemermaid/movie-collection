@@ -106,6 +106,15 @@ class App extends Component {
       state.collection[i].tags.sort();
     }
 
+    // Temporary fix for movies with '#' in the title borking things up
+    // TODO: remove this
+    for (let i in state.collection) {
+      if (state.collection[i].title.includes("#")) {
+        state.collection.splice(i, 1);
+      }
+    }
+
+    localStorage.setItem("movieState", JSON.stringify(state));
     this.setState({ collection: state.collection, wishlist: state.wishlist });
   }
 
