@@ -244,6 +244,15 @@ class TableList extends Component {
     return <i className={iconClass}>{`arrow_drop_${icon}`}</i>;
   }
 
+  componentWillMount() {
+    if (
+      this.props.type === "wishlist" &&
+      this.props.sortOption.method === "review"
+    ) {
+      this.changeSortMethod("dateAdded");
+    }
+  }
+
   render() {
     return (
       <div>
@@ -251,6 +260,7 @@ class TableList extends Component {
           sortBy={this.props.sortOption.method}
           changeSortMethod={this.changeSortMethod}
           getSortOption={this.getSortOption}
+          type={this.props.type}
         />
         <table>
           <thead>

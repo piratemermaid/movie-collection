@@ -39,18 +39,22 @@ const SortOptions = props => {
         year
       </a>
       {props.getSortOption("year")}
-      {" | "}
-      <a
-        onClick={() => props.changeSortMethod("review")}
-        className={
-          props.sortBy === "review"
-            ? "sort-option sort-option-active"
-            : "sort-option"
-        }
-      >
-        review
-      </a>
-      {props.getSortOption("review")}
+      {props.type !== "wishlist" ? (
+        <span>
+          {" | "}
+          <a
+            onClick={() => props.changeSortMethod("review")}
+            className={
+              props.sortBy === "review"
+                ? "sort-option sort-option-active"
+                : "sort-option"
+            }
+          >
+            review
+          </a>
+          {props.getSortOption("review")}
+        </span>
+      ) : null}
     </div>
   );
 };
