@@ -97,7 +97,6 @@ class AddMovie extends Component {
         review: this.state.review
       };
       if (!this.state.added) {
-        // TODO: check date format
         info.added = formatTodaysDate();
       }
 

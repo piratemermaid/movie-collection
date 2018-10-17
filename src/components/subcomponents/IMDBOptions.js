@@ -7,7 +7,7 @@ const IMDBOptions = props => {
       i++;
       return (
         <div
-          className="col l3 m4 s12 imdb-result"
+          className="col l3 m4 s12 imdb-result flex"
           key={movie.Title}
           onClick={() => props.chooseMovie(movie.Title)}
         >
@@ -28,7 +28,7 @@ const IMDBOptions = props => {
     });
   }
 
-  return <div className="row">{displayOptions()}</div>;
+  return <div className="row flex">{displayOptions()}</div>;
 };
 
 export default IMDBOptions;
