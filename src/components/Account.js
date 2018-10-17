@@ -23,8 +23,9 @@ class Account extends Component {
   }
 
   importData(e) {
-    // localStorage.setItem("movieState", this.state.importData);
-    // alert("Import successful. Please refresh the page.");
+    const movies = JSON.parse(this.state.importData);
+    this.props.updateLocalStorage(movies.collection, movies.wishlist);
+    alert("Import successful.");
   }
 
   componentWillMount() {
@@ -35,8 +36,10 @@ class Account extends Component {
     return (
       <div>
         <div className="row">
-          <div className="input-field col s12">
+          <div className="input-field col m6 s12">
             <p className="form-label">
+              <b>EXPORT DATA</b>
+              <br />
               Copy your data and save it in a JSON file
             </p>
             <button
@@ -53,9 +56,11 @@ class Account extends Component {
               onChange={e => this.onExportDataChange(e)}
             />
           </div>
-          <div className="input-field col s12">
+          <div className="input-field col m6 s12">
             <p className="form-label">
-              Paste your data here to import it, then refresh the page
+              <b>IMPORT DATA</b>
+              <br />
+              Paste your data here and click "Import Data"
             </p>
             <button
               className="btn blue lighten-2"
