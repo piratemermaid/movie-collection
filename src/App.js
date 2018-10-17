@@ -23,6 +23,8 @@ class App extends Component {
       sortOption: { method: "dateAdded", ascending: true }
     };
 
+    this.updateLocalStorage = this.updateLocalStorage.bind(this);
+    this.updateState = this.updateState.bind(this);
     this.addMovie = this.addMovie.bind(this);
     this.editMovie = this.editMovie.bind(this);
     this.deleteMovie = this.deleteMovie.bind(this);
@@ -32,13 +34,13 @@ class App extends Component {
     this.changeSortOption = this.changeSortOption.bind(this);
   }
 
-  updateLocalStorage() {
+  updateLocalStorage(collection, wishlist) {
     // Divide into 4 to prevent maxing out localStorage
     let coll_1 = [];
     let coll_2 = [];
     let coll_3 = [];
     let coll_4 = [];
-    const coll = this.state.collection;
+    const coll = collection;
 
     for (let i in coll) {
       switch (i % 4) {
@@ -64,10 +66,16 @@ class App extends Component {
     localStorage.setItem("movieState_collection_2", JSON.stringify(coll_2));
     localStorage.setItem("movieState_collection_3", JSON.stringify(coll_3));
     localStorage.setItem("movieState_collection_4", JSON.stringify(coll_4));
-    localStorage.setItem(
-      "movieState_wishlist",
-      JSON.stringify(this.state.wishlist)
-    );
+    localStorage.setItem("movieState_wishlist", JSON.stringify(wishlist));
+  }
+
+  updateState(coll_1, coll_2, coll_3, coll_4) {
+    const coll = _.union(coll_1, coll_2, coll_3, coll_4);
+
+    this.setState({
+      collection: coll || [],
+      wishlist: JSON.parse(localStorage.getItem("movieState_wishlist")) || []
+    });
   }
 
   addMovie(movie, type) {
@@ -131,7 +139,7 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    this.updateLocalStorage();
+    this.updateLocalStorage(this.state.collection, this.state.wishlist);
   }
 
   componentWillMount() {
@@ -139,12 +147,7 @@ class App extends Component {
     const coll_2 = JSON.parse(localStorage.getItem("movieState_collection_2"));
     const coll_3 = JSON.parse(localStorage.getItem("movieState_collection_3"));
     const coll_4 = JSON.parse(localStorage.getItem("movieState_collection_4"));
-    const coll = _.union(coll_1, coll_2, coll_3, coll_4);
-
-    this.setState({
-      collection: coll || [],
-      wishlist: JSON.parse(localStorage.getItem("movieState_wishlist")) || []
-    });
+    this.updateState(coll_1, coll_2, coll_3, coll_4);
   }
 
   render() {
@@ -254,7 +257,13 @@ class App extends Component {
                 />
                 <Route
                   path="/account"
-                  render={() => <Account movies={this.state} />}
+                  render={() => (
+                    <Account
+                      updateLocalStorage={this.updateLocalStorage}
+                      updateState={this.updateState}
+                      movies={this.state}
+                    />
+                  )}
                 />
               </Switch>
             </div>
