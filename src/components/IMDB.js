@@ -12,7 +12,7 @@ class IMDB extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: "Happy Feet",
+      search: "",
       data: [],
       display: "",
       chosenData: {}
@@ -28,32 +28,21 @@ class IMDB extends Component {
 
   getData(e) {
     e.preventDefault();
-    // TODO: add this back in after testing
-    // axios
-    //   .get(`${OMDB_API}type="movie"&s=${this.state.search}`)
-    //   .then(res => {
-    //     console.log(res.data.Search);
-    //     this.setState({ data: res.data.Search, display: "options" });
-    //     localStorage.setItem("movieSearch", JSON.stringify(res.data.Search));
-    //   })
-    //   .catch(function(err) {
-    //     console.log(err);
-    //   });
-    this.setState({ display: "options" });
+    axios
+      .get(`${OMDB_API}type="movie"&s=${this.state.search}`)
+      .then(res => {
+        this.setState({ data: res.data.Search, display: "options" });
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
   }
 
   chooseMovie(title) {
-    console.log(title);
     const chosenData = this.state.data.filter(movie => {
       return movie.Title === title;
     });
     this.setState({ chosenData, display: "result" });
-  }
-
-  componentWillMount() {
-    // TODO: remove this, it is for testing
-    // so we don't call the API a million times
-    this.setState({ data: JSON.parse(localStorage.getItem("movieSearch")) });
   }
 
   render() {
