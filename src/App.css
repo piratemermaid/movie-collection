@@ -72,6 +72,12 @@ h5 {
   text-align: left;
 }
 
+.btn-multiline {
+  height: 50px;
+  line-height: 18px;
+  padding: 8px;
+}
+
 /*///////////////////////////////////////////////////////
 // RESULT STYLES
 ///////////////////////////////////////////////////////*/
@@ -153,6 +159,32 @@ h5 {
 
 .review-star-active {
   color: #64b5f6;
+}
+
+/*///////////////////////////////////////////////////////
+// IMDB STYLES
+///////////////////////////////////////////////////////*/
+.imdb-result {
+  text-align: center;
+}
+
+.imdb-result:hover {
+  background: #e3f2fd;
+  cursor: pointer;
+}
+
+.imdb-title {
+  font-weight: bold;
+  color: #64b5f6;
+  font-size: 16px;
+}
+
+.movie-poster {
+  width: 100px; /*TODO: make responsive*/
+}
+
+.movie-poster-lg {
+  width: 200px;
 }
 
 /*///////////////////////////////////////////////////////

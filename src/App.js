@@ -11,6 +11,7 @@ import EditMovie from "./components/EditMovie";
 import Collection from "./components/Collection";
 import Wishlist from "./components/Wishlist";
 import Account from "./components/Account";
+import IMDB from "./components/IMDB";
 
 class App extends Component {
   constructor(props) {
@@ -265,6 +266,7 @@ class App extends Component {
                     />
                   )}
                 />
+                <Route path="/imdb" render={() => <IMDB />} />
               </Switch>
             </div>
           </div>
