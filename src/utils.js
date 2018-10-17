@@ -1,3 +1,5 @@
+export const OMDB_API = "http://www.omdbapi.com/?apikey=b502230&";
+
 export function formatTodaysDate() {
   const now = new Date();
   let day = now.getDate();

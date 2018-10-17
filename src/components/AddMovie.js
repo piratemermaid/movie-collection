@@ -200,6 +200,9 @@ class AddMovie extends Component {
           <Link to={`/${type}`}>
             <i className="material-icons small icon-link">arrow_back</i>
           </Link>
+          <Link to={"/imdb"} className="right">
+            IMDB Search <i className="material-icons tiny icon-link">search</i>
+          </Link>
           <h5>Add to {type === "collection" ? "Collection" : "Wishlist"}</h5>
           <div className="row">
             <form onSubmit={e => this.addMovie(e)}>
