@@ -266,7 +266,10 @@ class App extends Component {
                     />
                   )}
                 />
-                <Route path="/imdb" render={() => <IMDB />} />
+                <Route
+                  path="/imdb"
+                  render={() => <IMDB addMovie={this.addMovie} />}
+                />
               </Switch>
             </div>
           </div>

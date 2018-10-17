@@ -73,6 +73,13 @@ class TableList extends Component {
       // Split mm/dd/yyyy string into parts and compare each,
       // first compare year (2), then month (0), then day (1)
       return movies.sort(function(a, b) {
+        if (!a.added) {
+          return -1;
+        }
+        if (!b.added) {
+          return 1;
+        }
+
         let dateA = a.added.split("/");
         let dateB = b.added.split("/");
 

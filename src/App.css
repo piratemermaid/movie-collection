@@ -179,6 +179,11 @@ h5 {
   font-size: 16px;
 }
 
+.imdb-action:hover {
+  cursor: pointer;
+  color: #64b5f6;
+}
+
 .movie-poster {
   width: 100px; /*TODO: make responsive*/
 }
