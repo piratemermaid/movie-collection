@@ -23,12 +23,12 @@ class Account extends Component {
   }
 
   importData(e) {
-    localStorage.setItem("movieState", this.state.importData);
-    alert("Import successful. Please refresh the page.");
+    // localStorage.setItem("movieState", this.state.importData);
+    // alert("Import successful. Please refresh the page.");
   }
 
   componentWillMount() {
-    this.setState({ exportData: localStorage.getItem("movieState") });
+    // this.setState({ exportData: localStorage.getItem("movieState") });
   }
 
   render() {

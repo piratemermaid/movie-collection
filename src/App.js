@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -32,7 +33,41 @@ class App extends Component {
   }
 
   updateLocalStorage() {
-    localStorage.setItem("movieState", JSON.stringify(this.state));
+    // Divide into 4 to prevent maxing out localStorage
+    let coll_1 = [];
+    let coll_2 = [];
+    let coll_3 = [];
+    let coll_4 = [];
+    const coll = this.state.collection;
+
+    for (let i in coll) {
+      switch (i % 4) {
+        case 0:
+          coll_1.push(coll[i]);
+          break;
+        case 1:
+          coll_2.push(coll[i]);
+          break;
+        case 2:
+          coll_3.push(coll[i]);
+          break;
+        case 3:
+          coll_4.push(coll[i]);
+          break;
+        default:
+          coll_1.push(coll[i]);
+          break;
+      }
+    }
+
+    localStorage.setItem("movieState_collection_1", JSON.stringify(coll_1));
+    localStorage.setItem("movieState_collection_2", JSON.stringify(coll_2));
+    localStorage.setItem("movieState_collection_3", JSON.stringify(coll_3));
+    localStorage.setItem("movieState_collection_4", JSON.stringify(coll_4));
+    localStorage.setItem(
+      "movieState_wishlist",
+      JSON.stringify(this.state.wishlist)
+    );
   }
 
   addMovie(movie, type) {
@@ -100,22 +135,16 @@ class App extends Component {
   }
 
   componentWillMount() {
-    let state = JSON.parse(localStorage.getItem("movieState")) || {};
-    // sorts all tags in collection, this shouldn't be needed anymore
-    for (let i in state.collection) {
-      state.collection[i].tags.sort();
-    }
+    const coll_1 = JSON.parse(localStorage.getItem("movieState_collection_1"));
+    const coll_2 = JSON.parse(localStorage.getItem("movieState_collection_2"));
+    const coll_3 = JSON.parse(localStorage.getItem("movieState_collection_3"));
+    const coll_4 = JSON.parse(localStorage.getItem("movieState_collection_4"));
+    const coll = _.union(coll_1, coll_2, coll_3, coll_4);
 
-    // Temporary fix for movies with '#' in the title borking things up
-    // TODO: remove this
-    for (let i in state.collection) {
-      if (state.collection[i].title.includes("#")) {
-        state.collection.splice(i, 1);
-      }
-    }
-
-    localStorage.setItem("movieState", JSON.stringify(state));
-    this.setState({ collection: state.collection, wishlist: state.wishlist });
+    this.setState({
+      collection: coll || [],
+      wishlist: JSON.parse(localStorage.getItem("movieState_wishlist")) || []
+    });
   }
 
   render() {
