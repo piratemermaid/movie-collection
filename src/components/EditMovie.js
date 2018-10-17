@@ -146,6 +146,10 @@ class EditMovie extends Component {
       info.tags = tagStr;
     }
 
+    if (!info.added) {
+      info.added = formatTodaysDate();
+    }
+
     this.setState(info);
   }
 

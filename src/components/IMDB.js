@@ -75,7 +75,10 @@ class IMDB extends Component {
           <IMDBOptions data={this.state.data} chooseMovie={this.chooseMovie} />
         ) : null}
         {this.state.display === "result" ? (
-          <IMDBResult chosenData={this.state.chosenData} />
+          <IMDBResult
+            chosenData={this.state.chosenData}
+            addMovie={this.props.addMovie}
+          />
         ) : null}
       </div>
     );
