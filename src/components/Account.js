@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-function exportData(e) {
+function copyExportData(e) {
   var copyData = document.getElementById("account-export");
   copyData.select();
   document.execCommand("copy");
@@ -28,25 +28,21 @@ class Account extends Component {
   }
 
   componentWillMount() {
-    // this.setState({ exportData: localStorage.getItem("movieState") });
+    this.setState({ exportData: JSON.stringify(this.props.movies) });
   }
 
   render() {
     return (
       <div>
-        <p>
-          Since this app doesn't have a backend yet, your data is stored in
-          localStorage, so it's not saved if you switch devices. You can copy
-          your file and import a file here to save/move your data. Not the best
-          way to do this but it's what I've got for now!
-        </p>
         <div className="row">
-          <div className="input-field col s6">
-            <p className="form-label">Copy your data to save it somewhere</p>
+          <div className="input-field col s12">
+            <p className="form-label">
+              Copy your data and save it in a JSON file
+            </p>
             <button
               className="btn blue lighten-2"
               style={{ margin: "22px 0" }}
-              onClick={e => exportData(e)}
+              onClick={e => copyExportData(e)}
             >
               Copy to Clipboard
             </button>
@@ -57,7 +53,7 @@ class Account extends Component {
               onChange={e => this.onExportDataChange(e)}
             />
           </div>
-          <div className="input-field col s6">
+          <div className="input-field col s12">
             <p className="form-label">
               Paste your data here to import it, then refresh the page
             </p>
