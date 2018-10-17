@@ -78,13 +78,9 @@ class AddMovie extends Component {
     for (let i in movies) {
       if (movies[i].title === this.state.title) {
         if (movies[i].year !== this.state.year) {
-          newAddTitle = `${this.state.title} (${this.state.year})`;
-          let newEditTitle = `${movies[i].title} (${movies[i].year})`;
-          movies[i].title = newEditTitle;
-          this.props.editMovie(movies[i].title, "", type);
           break;
         } else {
-          this.setState({ formErr: `Movie is already in ${type}` });
+          this.setState({ titleErr: `Movie is already in ${type}` });
           errors = true;
         }
       }
