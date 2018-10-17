@@ -8,7 +8,7 @@ const IMDBOptions = props => {
       return (
         <div
           className="col l3 m4 s12 imdb-result flex"
-          key={movie.Title}
+          key={i}
           onClick={() => props.chooseMovie(movie.Title)}
         >
           {movie.Poster !== "N/A" ? (
