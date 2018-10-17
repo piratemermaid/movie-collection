@@ -10,6 +10,13 @@ const IMDBResult = props => {
   const data = props.chosenData[0];
   return (
     <div className="row">
+      <div className="col s12 link">
+        <a onClick={() => props.changeDisplay("options")}>
+          {" "}
+          <i className="material-icons tiny icon-link">arrow_back</i> Back to
+          view all results
+        </a>
+      </div>
       <div className="col m6 s12">
         <p className="imdb-title">
           {data.Title} ({data.Year})

@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React, { Component } from "react";
 import axios from "axios";
 import { OMDB_API } from "../utils";
@@ -20,6 +19,7 @@ class IMDB extends Component {
 
     this.getData = this.getData.bind(this);
     this.chooseMovie = this.chooseMovie.bind(this);
+    this.changeDisplay = this.changeDisplay.bind(this);
   }
 
   onSearchChange(e) {
@@ -45,6 +45,10 @@ class IMDB extends Component {
     this.setState({ chosenData, display: "result" });
   }
 
+  changeDisplay(display) {
+    this.setState({ display });
+  }
+
   render() {
     return (
       <div>
@@ -65,6 +69,7 @@ class IMDB extends Component {
         ) : null}
         {this.state.display === "result" ? (
           <IMDBResult
+            changeDisplay={this.changeDisplay}
             chosenData={this.state.chosenData}
             addMovie={this.props.addMovie}
           />
