@@ -3,9 +3,9 @@ import axios from "axios";
 import { OMDB_API } from "../utils";
 
 // options: displays all matching movies
-import IMDBOptions from "./subcomponents/IMDBOptions";
+import IMDBOptions from "../components/IMDBOptions";
 // results: shows only the movie the user selected
-import IMDBResult from "./subcomponents/IMDBResult";
+import IMDBResult from "../components/IMDBResult";
 
 class IMDB extends Component {
     constructor(props) {

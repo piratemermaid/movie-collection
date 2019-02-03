@@ -1,9 +1,9 @@
 import React from "react";
 import { withRouter } from "react-router";
 
-import SearchByYear from "./subcomponents/SearchByYear";
-import SearchByTag from "./subcomponents/SearchByTag";
-import SearchByReview from "./subcomponents/SearchByReview";
+import SearchByYear from "../components/SearchByYear";
+import SearchByTag from "../components/SearchByTag";
+import SearchByReview from "../components/SearchByReview";
 
 /**
  * @param {string} display: render input for the selected type of display
