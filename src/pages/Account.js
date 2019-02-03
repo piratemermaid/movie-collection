@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { fillMyMovies } from "../myMovies";
 
 function copyExportData(e) {
     var copyData = document.getElementById("account-export");
@@ -26,6 +27,10 @@ class Account extends Component {
         const movies = JSON.parse(this.state.importData);
         this.props.updateLocalStorage(movies.collection, movies.wishlist);
         alert("Import successful.");
+    }
+
+    fillDevMovies(obj) {
+        this.props.updateLocalStorage(obj.collection, obj.wishlist);
     }
 
     componentWillMount() {
@@ -76,6 +81,14 @@ class Account extends Component {
                             onChange={e => this.onImportDataChange(e)}
                         />
                     </div>
+                </div>
+                <div className="dev-options">
+                    <a
+                        className="dev-option"
+                        onClick={() => this.fillDevMovies(fillMyMovies())}
+                    >
+                        Fill dev movies
+                    </a>
                 </div>
             </div>
         );
