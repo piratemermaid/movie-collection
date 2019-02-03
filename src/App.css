@@ -9,28 +9,28 @@
 /* #1565c0 blue darken-3 */
 
 body {
-  font: sans-serif;
+    font: sans-serif;
 }
 
 h5 {
-  text-transform: lowercase;
+    text-transform: lowercase;
 }
 
 .result-title {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .flex {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .error {
-  color: #1565c0;
+    color: #1565c0;
 }
 
 .link {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 /*///////////////////////////////////////////////////////
@@ -38,48 +38,48 @@ h5 {
 ///////////////////////////////////////////////////////*/
 
 .search-tag {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 .search-tag:hover {
-  color: #64b5f6;
-  font-weight: bold;
-  cursor: pointer;
+    color: #64b5f6;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .search-section {
-  margin: 50px 0;
+    margin: 50px 0;
 }
 
 .link-hover:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .card-link {
-  padding: 10px;
+    padding: 10px;
 }
 
 .card-link:hover {
-  background: #e3f2fd;
+    background: #e3f2fd;
 }
 
 .card-link-active {
-  background: #bbdefb;
+    background: #bbdefb;
 }
 
 .card-link-active:hover {
-  background: #bbdefb;
+    background: #bbdefb;
 }
 
 .info {
-  font-style: italic;
-  margin-bottom: 40px;
-  text-align: left;
+    font-style: italic;
+    margin-bottom: 40px;
+    text-align: left;
 }
 
 .btn-multiline {
-  height: 50px;
-  line-height: 18px;
-  padding: 8px;
+    height: 50px;
+    line-height: 18px;
+    padding: 8px;
 }
 
 /*///////////////////////////////////////////////////////
@@ -87,20 +87,20 @@ h5 {
 ///////////////////////////////////////////////////////*/
 
 .tag-result {
-  margin: 6px;
-  font-size: 12px;
+    margin: 6px;
+    font-size: 12px;
 }
 
 .tag-match {
-  color: #2196f3;
+    color: #2196f3;
 }
 
 .tag-exclude {
-  text-decoration: line-through;
+    text-decoration: line-through;
 }
 
 .hidden {
-  display: none;
+    display: none;
 }
 
 /*///////////////////////////////////////////////////////
@@ -108,36 +108,36 @@ h5 {
 ///////////////////////////////////////////////////////*/
 
 .sort-option {
-  margin: 0 10px;
-  color: black;
+    margin: 0 10px;
+    color: black;
 }
 
 .sort-option:hover {
-  cursor: pointer;
-  color: #1e88e5;
+    cursor: pointer;
+    color: #1e88e5;
 }
 
 .sort-option-active {
-  color: #64b5f6;
+    color: #64b5f6;
 }
 
 .dev-options {
-  margin-top: 30px;
-  float: right;
-  font-size: 10px;
+    margin-top: 30px;
+    float: right;
+    font-size: 10px;
 }
 
 .dev-option {
-  margin: 0 10px;
+    margin: 0 10px;
 }
 
 .dev-option:hover {
-  font-weight: bold;
-  cursor: pointer;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .tags-ul li {
-  float: left;
+    float: left;
 }
 
 /*///////////////////////////////////////////////////////
@@ -145,56 +145,56 @@ h5 {
 ///////////////////////////////////////////////////////*/
 
 .icon-link-blue {
-  color: #64b5f6;
+    color: #64b5f6;
 }
 
 .icon-link:hover {
-  color: #2196f3;
-  cursor: pointer;
+    color: #2196f3;
+    cursor: pointer;
 }
 
 .float-right {
-  float: right;
+    float: right;
 }
 
 .review-star {
-  color: #e3f2fd;
+    color: #e3f2fd;
 }
 
 .review-star-active {
-  color: #64b5f6;
+    color: #64b5f6;
 }
 
 /*///////////////////////////////////////////////////////
 // IMDB STYLES
 ///////////////////////////////////////////////////////*/
 .imdb-result {
-  text-align: center;
-  margin-bottom: 14px;
+    text-align: center;
+    margin-bottom: 14px;
 }
 
 .imdb-result:hover {
-  background: #e3f2fd;
-  cursor: pointer;
+    background: #e3f2fd;
+    cursor: pointer;
 }
 
 .imdb-title {
-  font-weight: bold;
-  color: #64b5f6;
-  font-size: 16px;
+    font-weight: bold;
+    color: #64b5f6;
+    font-size: 16px;
 }
 
 .imdb-action:hover {
-  cursor: pointer;
-  color: #64b5f6;
+    cursor: pointer;
+    color: #64b5f6;
 }
 
 .movie-poster {
-  width: 100px; /*TODO: make responsive*/
+    width: 100px; /*TODO: make responsive*/
 }
 
 .movie-poster-lg {
-  width: 200px;
+    width: 200px;
 }
 
 /*///////////////////////////////////////////////////////
@@ -202,91 +202,91 @@ h5 {
 ///////////////////////////////////////////////////////*/
 /* label color */
 .input-field label {
-  color: #64b5f6;
+    color: #64b5f6;
 }
 /* label focus color */
 .input-field input[type="text"]:focus + label {
-  color: #64b5f6;
+    color: #64b5f6;
 }
 /* label underline focus color */
 .input-field input[type="text"]:focus {
-  border-bottom: 1px solid #64b5f6;
-  box-shadow: 0 1px 0 0 #64b5f6;
+    border-bottom: 1px solid #64b5f6;
+    box-shadow: 0 1px 0 0 #64b5f6;
 }
 /* valid color */
 .input-field input[type="text"].valid {
-  border-bottom: 1px solid #64b5f6;
-  box-shadow: 0 1px 0 0 #64b5f6;
+    border-bottom: 1px solid #64b5f6;
+    box-shadow: 0 1px 0 0 #64b5f6;
 }
 /* invalid color */
 .input-field input[type="text"].invalid {
-  border-bottom: 1px solid #64b5f6;
-  box-shadow: 0 1px 0 0 #64b5f6;
+    border-bottom: 1px solid #64b5f6;
+    box-shadow: 0 1px 0 0 #64b5f6;
 }
 /* label focus color */
 .input-field input[type="number"]:focus + label {
-  color: #64b5f6;
+    color: #64b5f6;
 }
 /* label underline focus color */
 .input-field input[type="number"]:focus {
-  border-bottom: 1px solid #64b5f6;
-  box-shadow: 0 1px 0 0 #64b5f6;
+    border-bottom: 1px solid #64b5f6;
+    box-shadow: 0 1px 0 0 #64b5f6;
 }
 /* valid color */
 .input-field input[type="number"].valid {
-  border-bottom: 1px solid #64b5f6;
-  box-shadow: 0 1px 0 0 #64b5f6;
+    border-bottom: 1px solid #64b5f6;
+    box-shadow: 0 1px 0 0 #64b5f6;
 }
 /* invalid color */
 .input-field input[type="number"].invalid {
-  border-bottom: 1px solid #64b5f6;
-  box-shadow: 0 1px 0 0 #64b5f6;
+    border-bottom: 1px solid #64b5f6;
+    box-shadow: 0 1px 0 0 #64b5f6;
 }
 /* label focus color */
 .input-field input[type="date"]:focus + label {
-  color: #64b5f6;
+    color: #64b5f6;
 }
 /* label underline focus color */
 .input-field input[type="date"]:focus {
-  border-bottom: 1px solid #64b5f6;
-  box-shadow: 0 1px 0 0 #64b5f6;
+    border-bottom: 1px solid #64b5f6;
+    box-shadow: 0 1px 0 0 #64b5f6;
 }
 /* valid color */
 .input-field input[type="date"].valid {
-  border-bottom: 1px solid #64b5f6;
-  box-shadow: 0 1px 0 0 #64b5f6;
+    border-bottom: 1px solid #64b5f6;
+    box-shadow: 0 1px 0 0 #64b5f6;
 }
 /* invalid color */
 .input-field input[type="date"].invalid {
-  border-bottom: 1px solid #64b5f6;
-  box-shadow: 0 1px 0 0 #64b5f6;
+    border-bottom: 1px solid #64b5f6;
+    box-shadow: 0 1px 0 0 #64b5f6;
 }
 textarea#account-import.materialize-textarea:focus {
-  border-bottom: 1px solid #64b5f6;
-  box-shadow: 0 1px 0 0 #64b5f6;
+    border-bottom: 1px solid #64b5f6;
+    box-shadow: 0 1px 0 0 #64b5f6;
 }
 textarea#account-export.materialize-textarea:focus {
-  border-bottom: 1px solid #64b5f6;
-  box-shadow: 0 1px 0 0 #64b5f6;
+    border-bottom: 1px solid #64b5f6;
+    box-shadow: 0 1px 0 0 #64b5f6;
 }
 /* icon prefix focus color */
 .input-field .prefix.active {
-  color: #64b5f6;
+    color: #64b5f6;
 }
 /* manually created labels to fix autocomplete issue */
 .form-label {
-  color: #64b5f6;
-  margin-bottom: 0;
+    color: #64b5f6;
+    margin-bottom: 0;
 }
 /* change checkbox color */
 .checkbox-blue[type="checkbox"]:checked + label:before {
-  border: 2px solid transparent;
-  border-bottom: 2px solid #64b5f6;
-  border-right: 2px solid #64b5f6;
-  background: transparent;
+    border: 2px solid transparent;
+    border-bottom: 2px solid #64b5f6;
+    border-right: 2px solid #64b5f6;
+    background: transparent;
 }
 .form-err {
-  color: #ff8a65;
-  margin-bottom: 20px;
-  margin-top: -10px;
+    color: #ff8a65;
+    margin-bottom: 20px;
+    margin-top: -10px;
 }
