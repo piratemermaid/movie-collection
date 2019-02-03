@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
+import TagSelect from "../components/TagSelect";
 import { formatTodaysDate } from "../utils";
 
 class AddMovie extends Component {
@@ -245,7 +246,9 @@ class AddMovie extends Component {
                                 <label htmlFor="input-movie">Watched?</label>
                             </div>
                             <div className="input-field col s12">
-                                <p className="form-label">
+                                <p className="form-label">Tags</p>
+                                <TagSelect getAllTags={this.props.getAllTags} />
+                                {/* <p className="form-label">
                                     Tags, separated by spaces (e.g. nerdy comedy
                                     romantic girlsnight)
                                 </p>
@@ -257,7 +260,7 @@ class AddMovie extends Component {
                                 />
                                 <div className="form-err">
                                     {this.state.tagsErr}
-                                </div>
+                                </div> */}
                             </div>
                             <div className="input-field col s12">
                                 <p className="form-label">
