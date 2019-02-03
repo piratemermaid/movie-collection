@@ -3,15 +3,15 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Header from "./components/Header";
-import Search from "./components/Search";
-import Result from "./components/Result";
-import AddMovie from "./components/AddMovie";
-import EditMovie from "./components/EditMovie";
-import Collection from "./components/Collection";
-import Wishlist from "./components/Wishlist";
-import Account from "./components/Account";
-import IMDB from "./components/IMDB";
+import Header from "./pages/Header";
+import Search from "./pages/Search";
+import Result from "./pages/Result";
+import AddMovie from "./pages/AddMovie";
+import EditMovie from "./pages/EditMovie";
+import Collection from "./pages/Collection";
+import Wishlist from "./pages/Wishlist";
+import Account from "./pages/Account";
+import IMDB from "./pages/IMDB";
 
 class App extends Component {
     constructor(props) {
