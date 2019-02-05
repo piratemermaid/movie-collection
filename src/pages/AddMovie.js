@@ -67,7 +67,7 @@ class AddMovie extends Component {
          * and the year is different, add the year
          * to both movie titles (to differentiate remakes)
          */
-        let newAddTitle;
+        // let newAddTitle;
         for (let i in movies) {
             if (movies[i].title === this.state.title) {
                 // if (movies[i].year !== this.state.year) {
@@ -83,7 +83,8 @@ class AddMovie extends Component {
 
         if (!errors) {
             const info = {
-                title: newAddTitle || this.state.title,
+                // title: newAddTitle || this.state.title,
+                title: this.state.title,
                 year: this.state.year,
                 tags: this.state.tags.sort(),
                 watched: this.state.watched,
