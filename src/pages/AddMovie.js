@@ -247,19 +247,6 @@ class AddMovie extends Component {
                                     getAllTags={this.props.getAllTags}
                                     getTagsFromSelect={this.getTagsFromSelect}
                                 />
-                                {/* <p className="form-label">
-                                    Tags, separated by spaces (e.g. nerdy comedy
-                                    romantic girlsnight)
-                                </p>
-                                <input
-                                    id="input-tags"
-                                    type="text"
-                                    value={this.state.tags}
-                                    onChange={e => this.onTagsChange(e)}
-                                />
-                                <div className="form-err">
-                                    {this.state.tagsErr}
-                                </div> */}
                             </div>
                             <div className="input-field col s12">
                                 <p className="form-label">
@@ -351,19 +338,6 @@ class AddMovie extends Component {
                                 </button>
                             </div>
                         </form>
-                    </div>
-                    <div className="row">
-                        <div className="card">
-                            <div className="card-content">
-                                <div
-                                    className="card-title"
-                                    style={{ marginBottom: "28px" }}
-                                >
-                                    Existing tags (click to add)
-                                </div>
-                                <div className="row">{this.renderTags()}</div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
