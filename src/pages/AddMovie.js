@@ -101,33 +101,11 @@ class AddMovie extends Component {
         }
     }
 
-    onTitleChange(e) {
-        this.setState({ title: e.target.value, titleErr: "", formErr: "" });
-    }
-
-    onYearChange(e) {
-        this.setState({ year: e.target.value, yearErr: "", formErr: "" });
-    }
-
-    onWatchedChange(e) {
-        this.setState({ watched: e.target.checked, formErr: "" });
-    }
-
-    onTagsChange(e) {
-        // TODO: better way to input than separating by spaces
-        this.setState({ tags: e.target.value, tagsErr: "", formErr: "" });
-    }
-
-    onAddedChange(e) {
-        this.setState({ added: e.target.value, addedErr: "", formErr: "" });
-    }
-
-    onReleaseDateChange(e) {
-        this.setState({ releaseDate: e.target.value, formErr: "" });
-    }
-
-    onSeriesChange(e) {
-        this.setState({ series: e.target.value, formErr: "" });
+    // When an input field changes,
+    // update state and remove any errors
+    onInputChange(e, label) {
+        const errLabel = label + "Err";
+        this.setState({ [label]: e.target.value, formErr: "", [errLabel]: "" });
     }
 
     onReviewChange(num) {
@@ -138,39 +116,8 @@ class AddMovie extends Component {
         }
     }
 
-    updateTags(tag) {
-        let tagStr = this.state.tags;
-        if (tagStr.includes(tag) || tag === "") {
-            return;
-        }
-        if (tagStr !== "") {
-            tagStr += " ";
-        }
-        tagStr += tag;
-        this.setState({ tags: tagStr });
-    }
-
-    renderTags() {
-        const allTags = this.props.getAllTags();
-        let tagArr = [];
-        for (let i in allTags) {
-            let tagClass = "search-tag col s2";
-            if (this.state.tags.includes(allTags[i])) {
-                tagClass += " tag-match";
-            }
-            tagArr.push(
-                <div
-                    className={tagClass}
-                    key={i}
-                    onClick={() => this.updateTags(allTags[i])}
-                >
-                    {allTags[i]}
-                </div>
-            );
-        }
-        return tagArr;
-    }
-
+    // Get the array of tags from the TagSelect component
+    // and set it in the state
     getTagsFromSelect(tags) {
         this.setState({ tags });
     }
@@ -214,7 +161,9 @@ class AddMovie extends Component {
                                     id="input-title"
                                     type="text"
                                     value={this.state.title}
-                                    onChange={e => this.onTitleChange(e)}
+                                    onChange={e =>
+                                        this.onInputChange(e, "title")
+                                    }
                                 />
                                 <div className="form-err">
                                     {this.state.titleErr}
@@ -226,7 +175,9 @@ class AddMovie extends Component {
                                     id="input-year"
                                     type="number"
                                     value={this.state.year}
-                                    onChange={e => this.onYearChange(e)}
+                                    onChange={e =>
+                                        this.onInputChange(e, "year")
+                                    }
                                 />
                                 <div className="form-err">
                                     {this.state.yearErr}
@@ -236,7 +187,9 @@ class AddMovie extends Component {
                                 <input
                                     id="input-movie"
                                     type="checkbox"
-                                    onClick={e => this.onWatchedChange(e)}
+                                    onClick={e =>
+                                        this.onInputChange(e, "watched")
+                                    }
                                     className="checkbox-blue"
                                 />
                                 <label htmlFor="input-movie">Watched?</label>
@@ -257,7 +210,9 @@ class AddMovie extends Component {
                                     id="input-added"
                                     type="text"
                                     value={this.state.added}
-                                    onChange={e => this.onAddedChange(e)}
+                                    onChange={e =>
+                                        this.onInputChange(e, "added")
+                                    }
                                 />
                                 <div className="form-err">
                                     {this.state.addedErr}
@@ -273,7 +228,9 @@ class AddMovie extends Component {
                                     id="input-series"
                                     type="text"
                                     value={this.state.series}
-                                    onChange={e => this.onSeriesChange(e)}
+                                    onChange={e =>
+                                        this.onInputChange(e, "series")
+                                    }
                                 />
                             </div>
                             {type === "collection" ? (
@@ -322,7 +279,7 @@ class AddMovie extends Component {
                                         type="text"
                                         value={this.state.release}
                                         onChange={e =>
-                                            this.onReleaseDateChange(e)
+                                            this.onInputChange(e, "releaseDate")
                                         }
                                     />
                                 </div>
