@@ -70,12 +70,14 @@ class AddMovie extends Component {
         let newAddTitle;
         for (let i in movies) {
             if (movies[i].title === this.state.title) {
-                if (movies[i].year !== this.state.year) {
-                    break;
-                } else {
-                    this.setState({ titleErr: `Movie is already in ${type}` });
-                    errors = true;
-                }
+                // if (movies[i].year !== this.state.year) {
+                //     break;
+                // } else {
+                this.setState({
+                    titleErr: `A movie with this title is already in your ${type}`
+                });
+                errors = true;
+                // }
             }
         }
 
