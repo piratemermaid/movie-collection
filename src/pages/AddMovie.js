@@ -24,6 +24,8 @@ class AddMovie extends Component {
             series: "",
             review: false
         };
+
+        this.getTagsFromSelect = this.getTagsFromSelect.bind(this);
     }
 
     addMovie(e) {
@@ -57,16 +59,6 @@ class AddMovie extends Component {
             errors = true;
         }
 
-        // not doing tags error for now because I think
-        // it's OK not to have tags
-        let tags;
-        if (this.state.tags.length > 0) {
-            tags = this.state.tags.split(" ");
-            tags = tags.filter(val => val); // get rid of empty values
-        } else {
-            tags = [];
-        }
-
         const type = this.props.match.params.type;
         const movies = this.props.movies[type];
 
@@ -91,7 +83,7 @@ class AddMovie extends Component {
             const info = {
                 title: newAddTitle || this.state.title,
                 year: this.state.year,
-                tags: tags.sort(),
+                tags: this.state.tags.sort(),
                 watched: this.state.watched,
                 added: this.state.added,
                 series: this.state.series,
@@ -179,6 +171,10 @@ class AddMovie extends Component {
         return tagArr;
     }
 
+    getTagsFromSelect(tags) {
+        this.setState({ tags });
+    }
+
     getStarClass(num) {
         let starClass = "material-icons small icon-link review-star";
         if (this.state.review && this.state.review >= num) {
@@ -247,7 +243,10 @@ class AddMovie extends Component {
                             </div>
                             <div className="input-field col s12">
                                 <p className="form-label">Tags</p>
-                                <TagSelect getAllTags={this.props.getAllTags} />
+                                <TagSelect
+                                    getAllTags={this.props.getAllTags}
+                                    getTagsFromSelect={this.getTagsFromSelect}
+                                />
                                 {/* <p className="form-label">
                                     Tags, separated by spaces (e.g. nerdy comedy
                                     romantic girlsnight)

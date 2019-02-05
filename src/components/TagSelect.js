@@ -21,13 +21,21 @@ class TagSelect extends Component {
         return options;
     }
 
+    handleChange(e) {
+        let tags = [];
+        for (let i in e) {
+            tags.push(e[i].value);
+        }
+        this.props.getTagsFromSelect(tags);
+    }
+
     render() {
-        console.log(this.props.collection);
         return (
             <Creatable
                 options={this.getOptions()}
                 isSearchable={true}
                 isMulti={true}
+                onChange={e => this.handleChange(e)}
             />
         );
     }
