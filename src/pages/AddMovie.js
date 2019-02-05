@@ -111,18 +111,18 @@ class AddMovie extends Component {
         this.setState({ [label]: e.target.value, formErr: "", [errLabel]: "" });
     }
 
+    // Get the array of tags from the TagSelect component
+    // and set it in the state
+    getTagsFromSelect(tags) {
+        this.setState({ tags });
+    }
+
     onReviewChange(num) {
         if (num === this.state.review) {
             this.setState({ review: false });
         } else {
             this.setState({ review: num });
         }
-    }
-
-    // Get the array of tags from the TagSelect component
-    // and set it in the state
-    getTagsFromSelect(tags) {
-        this.setState({ tags });
     }
 
     getStarClass(num) {
