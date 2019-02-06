@@ -1,71 +1,55 @@
 import React from "react";
-import { withRouter } from "react-router";
+// import { withRouter } from "react-router";
 
-import SearchByYear from "../components/SearchByYear";
-import SearchByTag from "../components/SearchByTag";
-import SearchByReview from "../components/SearchByReview";
+import TagSelect from "../components/TagSelect";
 
-/**
- * @param {string} display: render input for the selected type of display
- * e.g. when user clicks "search by year", display a form
- * where they can enter the year and search options
- */
+// TODO: error check include & exclude same tag
 const Search = props => {
-    let cardClass = "card search-section link-hover card-link";
+    const { searchOptions } = props;
+    // console.log(searchOptions);
 
-    function renderSearchType(type, text) {
-        return (
-            <div
-                className={
-                    props.display === type
-                        ? `${cardClass} card-link-active`
-                        : cardClass
-                }
-            >
-                {text}
-            </div>
-        );
+    function getTagsFromSelect(tags, type) {
+        if (type === "search_option_include") {
+            props.changeSearchOptions("includeTags", tags);
+        } else {
+            props.changeSearchOptions("excludeTags", tags);
+        }
     }
 
     return (
-        <div>
+        <div id="search">
+            search
             <div className="row">
                 <div className="col s12">
-                    <div className="col s3 flex center-align">
-                        {renderSearchType("tags", "search by tag(s)")}
-                    </div>
-                    <div className="col s3 flex center-align">
-                        {renderSearchType("year", "search by year")}
-                    </div>
-                    <div className="col s3 flex center-align">
-                        {renderSearchType("review", "search by review")}
-                    </div>
-                    <div className="col s3 flex center-align">
-                        <div
-                            className={cardClass}
-                            onClick={() =>
-                                props.history.push("/search/unwatched")
-                            }
-                        >
-                            <h6>view all unwatched</h6>
-                            <i className="material-icons small icon-link">
-                                arrow_forward
-                            </i>
-                        </div>
-                    </div>
+                    <h6>Include tags:</h6>
+                    <TagSelect
+                        creatable={false}
+                        getAllTags={props.getAllTags}
+                        getTagsFromSelect={getTagsFromSelect}
+                        type="search_option_include"
+                        skip={searchOptions.excludeTags}
+                    />
                 </div>
             </div>
+            {/* use only? */}
             <div className="row">
                 <div className="col s12">
-                    {props.display === "year" ? <SearchByYear /> : null}
-                    {props.display === "tags" ? (
-                        <SearchByTag getAllTags={props.getAllTags} />
-                    ) : null}
-                    {props.display === "review" ? <SearchByReview /> : null}
+                    <h6>Exclude tags:</h6>
+                    <TagSelect
+                        creatable={false}
+                        getAllTags={props.getAllTags}
+                        getTagsFromSelect={getTagsFromSelect}
+                        type="search_option_exclude"
+                        skip={searchOptions.includeTags}
+                    />
                 </div>
             </div>
+            {/* year slider */}
+            {/* review slider */}
+            {/* only unwatched */}
         </div>
     );
 };
 
-export default withRouter(Search);
+// export default withRouter(Search);
+export default Search;
