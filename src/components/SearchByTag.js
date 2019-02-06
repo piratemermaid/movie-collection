@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
 
+import TagSelect from "./TagSelect";
+
 class SearchByTag extends Component {
     constructor(props) {
         super(props);
@@ -12,91 +14,8 @@ class SearchByTag extends Component {
             optionExclude: false,
             exclude: []
         };
-    }
 
-    renderAllTags() {
-        const tagList = this.props.getAllTags();
-        let tagsRender = [];
-        for (let i in tagList) {
-            let tagClass = "search-tag col s2";
-            if (this.state.exclude.includes(tagList[i])) {
-                tagClass += " tag-exclude";
-            } else {
-                if (this.state.selectedTags.includes(tagList[i])) {
-                    tagClass += " tag-match";
-                }
-            }
-            tagsRender.push(
-                <div
-                    className={tagClass}
-                    key={i}
-                    onClick={() => this.updateSelectedTags(tagList[i])}
-                >
-                    {tagList[i]}
-                </div>
-            );
-        }
-
-        return tagsRender;
-    }
-
-    updateSelectedTags(tag) {
-        let newTagArr = this.state.selectedTags;
-        let newExclude = this.state.exclude;
-
-        if (this.state.exclude.includes(tag)) {
-            newTagArr.push(tag);
-            let index = newExclude.indexOf(tag);
-            newExclude.splice(index, 1);
-        } else if (!this.state.selectedTags.includes(tag)) {
-            newTagArr.push(tag);
-        } else {
-            let index = newTagArr.indexOf(tag);
-            newTagArr.splice(index, 1);
-        }
-
-        newTagArr = newTagArr.sort();
-
-        this.setState({
-            selectedTags: newTagArr,
-            exclude: newExclude,
-            error: ""
-        });
-    }
-
-    renderExcludeTags() {
-        const tagList = this.props.getAllTags();
-        let tagsRender = [];
-        let tagClass = "search-tag col s2";
-        for (let i in tagList) {
-            if (!this.state.exclude.includes(tagList[i])) {
-                tagsRender.push(
-                    <div
-                        className={tagClass}
-                        key={i}
-                        onClick={() => this.updateExcludedTags(tagList[i])}
-                    >
-                        {tagList[i]}
-                    </div>
-                );
-            }
-        }
-
-        return tagsRender;
-    }
-
-    updateExcludedTags(tag) {
-        let newExclude = this.state.exclude;
-        let newTagArr = this.state.selectedTags;
-
-        newExclude.push(tag);
-
-        if (this.state.selectedTags.includes(tag)) {
-            let index = this.state.selectedTags.indexOf(tag);
-            newTagArr.splice(index, 1);
-        }
-
-        this.setState({ selectedTags: newTagArr, exclude: newExclude });
+        this.getTagsFromSelect = this.getTagsFromSelect.bind(this);
     }
 
     handleSearch() {
@@ -131,6 +50,10 @@ class SearchByTag extends Component {
         this.props.history.push(url);
     }
 
+    getTagsFromSelect(tags) {
+        this.setState({ selectedTags: tags });
+    }
+
     onOptionAllChange(e) {
         this.setState({ optionAll: e.target.checked });
     }
@@ -145,11 +68,15 @@ class SearchByTag extends Component {
     render() {
         return (
             <div>
-                <p className="info">
-                    Click 1 or more tags you want to search for, add options if
-                    you want and hit "Search"
-                </p>
-                <div className="row">{this.renderAllTags()}</div>
+                <div className="row">
+                    <div className="col s12">
+                        <TagSelect
+                            getAllTags={this.props.getAllTags}
+                            getTagsFromSelect={this.getTagsFromSelect}
+                            creatable={false}
+                        />
+                    </div>
+                </div>
                 <div
                     className="search-option row"
                     style={{ marginLeft: "6px" }}
