@@ -203,6 +203,10 @@ class App extends Component {
                                         <SearchResult
                                             collection={collection}
                                             searchOptions={searchOptions}
+                                            sortOption={sortOption}
+                                            changeSortOption={
+                                                this.changeSortOption
+                                            }
                                         />
                                     )}
                                 />
