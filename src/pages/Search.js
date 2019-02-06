@@ -1,5 +1,5 @@
 import React from "react";
-// import { withRouter } from "react-router";
+import { withRouter } from "react-router";
 
 import TagSelect from "../components/TagSelect";
 
@@ -20,7 +20,7 @@ const Search = props => {
         // Error check
 
         // Reroute to SearchResult page
-        console.log(props.searchOptions);
+        props.history.push("/search_result");
     }
 
     return (
@@ -69,5 +69,4 @@ const Search = props => {
     );
 };
 
-// export default withRouter(Search);
-export default Search;
+export default withRouter(Search);
