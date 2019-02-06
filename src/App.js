@@ -12,6 +12,7 @@ import Collection from "./pages/Collection";
 import Wishlist from "./pages/Wishlist";
 import Account from "./pages/Account";
 import IMDB from "./pages/IMDB";
+import SearchResult from "./pages/SearchResult";
 
 class App extends Component {
     constructor(props) {
@@ -193,6 +194,15 @@ class App extends Component {
                                             changeSearchOptions={
                                                 this.changeSearchOptions
                                             }
+                                        />
+                                    )}
+                                />
+                                <Route
+                                    path="/search_result"
+                                    render={() => (
+                                        <SearchResult
+                                            collection={collection}
+                                            searchOptions={searchOptions}
                                         />
                                     )}
                                 />
