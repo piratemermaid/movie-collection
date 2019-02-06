@@ -3,36 +3,47 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
 const Header = props => {
-    function getClassName(link) {
+    function getClassName(url) {
         const path = props.location.pathname;
-        if (path === link) {
+        if (path === url) {
             return "active";
         } else {
-            if (path.includes("/search") && link === "/") {
-                return "active";
-            }
+            return "";
         }
+    }
+
+    function getText(url) {
+        switch (url) {
+            case "/collection":
+                return "My Collection";
+            case "/wishlist":
+                return "Wishlist";
+            case "/imdb":
+                return "IMDB";
+            case "/account":
+                return "Account";
+            default:
+                return "Pick a Movie";
+        }
+    }
+
+    function getLink(url) {
+        return (
+            <li className={getClassName(url)}>
+                <Link to={url}>{getText(url)}</Link>
+            </li>
+        );
     }
 
     return (
         <nav>
             <div className="nav-wrapper blue lighten-2">
                 <ul id="nav-mobile">
-                    <li className={getClassName("/")}>
-                        <Link to="/">Pick a Movie</Link>
-                    </li>
-                    <li className={getClassName("/collection")}>
-                        <Link to="/collection">My Collection</Link>
-                    </li>
-                    <li className={getClassName("/wishlist")}>
-                        <Link to="/wishlist">Wishlist</Link>
-                    </li>
-                    <li className={getClassName("/imdb")}>
-                        <Link to="/imdb">IMDB Search</Link>
-                    </li>
-                    <li className={getClassName("/account")}>
-                        <Link to="/account">Account</Link>
-                    </li>
+                    {getLink("/")}
+                    {getLink("/collection")}
+                    {getLink("/wishlist")}
+                    {getLink("/imdb")}
+                    {getLink("/account")}
                 </ul>
             </div>
         </nav>
