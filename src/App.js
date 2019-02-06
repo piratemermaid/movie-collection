@@ -5,7 +5,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Search from "./pages/Search";
-import Result from "./pages/Result";
 import AddMovie from "./pages/AddMovie";
 import EditMovie from "./pages/EditMovie";
 import Collection from "./pages/Collection";
@@ -203,54 +202,6 @@ class App extends Component {
                                         <SearchResult
                                             collection={collection}
                                             searchOptions={searchOptions}
-                                            sortOption={sortOption}
-                                            changeSortOption={
-                                                this.changeSortOption
-                                            }
-                                        />
-                                    )}
-                                />
-                                <Route
-                                    path="/search/unwatched"
-                                    render={() => (
-                                        <Result
-                                            movies={collection}
-                                            sortOption={sortOption}
-                                            changeSortOption={
-                                                this.changeSortOption
-                                            }
-                                        />
-                                    )}
-                                />
-                                <Route
-                                    path="/search/tags/:tags/:options"
-                                    render={() => (
-                                        <Result
-                                            movies={collection}
-                                            sortOption={sortOption}
-                                            changeSortOption={
-                                                this.changeSortOption
-                                            }
-                                        />
-                                    )}
-                                />
-                                <Route
-                                    path="/search/year/:year/:options"
-                                    render={() => (
-                                        <Result
-                                            movies={collection}
-                                            sortOption={sortOption}
-                                            changeSortOption={
-                                                this.changeSortOption
-                                            }
-                                        />
-                                    )}
-                                />
-                                <Route
-                                    path="/search/review/:review/:option"
-                                    render={() => (
-                                        <Result
-                                            movies={collection}
                                             sortOption={sortOption}
                                             changeSortOption={
                                                 this.changeSortOption
