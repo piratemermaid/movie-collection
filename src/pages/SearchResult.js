@@ -1,18 +1,7 @@
 import React from "react";
 
 const SearchResult = props => {
-    const { collection } = props;
-    // TODO: get searchOptions from props when done testing
-
-    const searchOptions = {
-        includeTags: ["animated"],
-        excludeTags: ["musical"],
-        yearMin: null,
-        yearMax: null,
-        reviewMin: null,
-        reviewMax: null,
-        onlyUnwatched: false
-    };
+    const { collection, searchOptions } = props;
 
     function getMatches() {
         let matchTestArr = [];
@@ -31,7 +20,6 @@ const SearchResult = props => {
             }
         }
 
-        console.log(matchTestArr);
         return matchTestArr;
     }
 
