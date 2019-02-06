@@ -1,12 +1,16 @@
 import React from "react";
 
+import TableList from "../components/TableList";
+
 const SearchResult = props => {
     const { collection, searchOptions } = props;
 
     function getMatches() {
-        let matchTestArr = [];
+        let matches = [];
+
         for (let movie in collection) {
-            const { tags, title } = collection[movie];
+            const movieInfo = collection[movie];
+            const { tags } = movieInfo;
             let hasIncludeTags = searchOptions.includeTags.some(
                 tag => tags.indexOf(tag) >= 0
             );
@@ -16,17 +20,23 @@ const SearchResult = props => {
             );
 
             if (hasIncludeTags && !hasExcludeTags) {
-                matchTestArr.push(<li key={title}>{title}</li>);
+                matches.push(movieInfo);
             }
         }
 
-        return matchTestArr;
+        return matches;
     }
 
     return (
         <div>
             <h2>Search Result</h2>
-            <ul>{getMatches()}</ul>
+            <TableList
+                movies={getMatches()}
+                editable={false}
+                deletable={false}
+                sortOption={props.sortOption}
+                changeSortOption={props.changeSortOption}
+            />
         </div>
     );
 };
