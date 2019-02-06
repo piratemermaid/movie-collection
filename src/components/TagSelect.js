@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Select from "react-select";
 import Creatable from "react-select/lib/Creatable";
 
 class TagSelect extends Component {
@@ -29,14 +30,25 @@ class TagSelect extends Component {
     }
 
     render() {
-        return (
-            <Creatable
-                options={this.getOptions()}
-                isSearchable={true}
-                isMulti={true}
-                onChange={e => this.handleChange(e)}
-            />
-        );
+        if (this.props.creatable) {
+            return (
+                <Creatable
+                    options={this.getOptions()}
+                    isSearchable={true}
+                    isMulti={true}
+                    onChange={e => this.handleChange(e)}
+                />
+            );
+        } else {
+            return (
+                <Select
+                    options={this.getOptions()}
+                    isSearchable={true}
+                    isMulti={true}
+                    onChange={e => this.handleChange(e)}
+                />
+            );
+        }
     }
 }
 

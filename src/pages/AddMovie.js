@@ -202,6 +202,7 @@ class AddMovie extends Component {
                                 <TagSelect
                                     getAllTags={this.props.getAllTags}
                                     getTagsFromSelect={this.getTagsFromSelect}
+                                    creatable={true}
                                 />
                             </div>
                             <div className="input-field col s12">
