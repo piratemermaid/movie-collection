@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import TableList from "./TableList";
+import TableList from "../components/TableList";
 
 const Collection = props => {
     // fix for tags becoming strings for no reason??? wtf

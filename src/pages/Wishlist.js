@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import TableList from "./TableList";
+import TableList from "../components/TableList";
 
 const Wishlist = props => {
     const wishlist = props.wishlist;

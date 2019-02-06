@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Header from "./pages/Header";
+import Header from "./components/Header";
 import Search from "./pages/Search";
 import Result from "./pages/Result";
 import AddMovie from "./pages/AddMovie";

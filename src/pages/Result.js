@@ -4,7 +4,7 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
 import { titleFromTags } from "../utils";
-import TableList from "./TableList";
+import TableList from "../components/TableList";
 
 const Result = props => {
     let title = "";
