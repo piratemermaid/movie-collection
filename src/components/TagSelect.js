@@ -15,7 +15,9 @@ class TagSelect extends Component {
 
         for (let i in tags) {
             const tag = tags[i];
-            options.push({ value: tag, label: tag });
+            if (!this.props.skip || !this.props.skip.includes(tag)) {
+                options.push({ value: tag, label: tag });
+            }
         }
 
         return options;
@@ -26,7 +28,7 @@ class TagSelect extends Component {
         for (let i in e) {
             tags.push(e[i].value);
         }
-        this.props.getTagsFromSelect(tags);
+        this.props.getTagsFromSelect(tags, this.props.type);
     }
 
     render() {

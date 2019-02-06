@@ -20,7 +20,15 @@ class App extends Component {
         this.state = {
             collection: [],
             wishlist: [],
-            searchDisplay: "tags",
+            searchOptions: {
+                includeTags: [],
+                excludeTags: [],
+                yearMin: null,
+                yearMax: null,
+                reviewMin: null,
+                reviewMax: null,
+                onlyUnwatched: false
+            },
             sortOption: { method: "dateAdded", ascending: true }
         };
 
@@ -31,7 +39,7 @@ class App extends Component {
         this.deleteMovie = this.deleteMovie.bind(this);
         this.deleteAll = this.deleteAll.bind(this);
         this.getAllTags = this.getAllTags.bind(this);
-        this.changeSearchDisplay = this.changeSearchDisplay.bind(this);
+        this.changeSearchOptions = this.changeSearchOptions.bind(this);
         this.changeSortOption = this.changeSortOption.bind(this);
     }
 
@@ -132,8 +140,10 @@ class App extends Component {
         return tagList;
     }
 
-    changeSearchDisplay(searchDisplay) {
-        this.setState({ searchDisplay });
+    changeSearchOptions(key, value) {
+        let searchOptions = this.state.searchOptions;
+        searchOptions[key] = value;
+        this.setState({ searchOptions });
     }
 
     changeSortOption(sortOption) {
@@ -161,7 +171,7 @@ class App extends Component {
     }
 
     render() {
-        const { collection, wishlist, searchDisplay, sortOption } = this.state;
+        const { collection, wishlist, searchOptions, sortOption } = this.state;
         return (
             <div className="App">
                 <BrowserRouter>
@@ -179,9 +189,9 @@ class App extends Component {
                                         <Search
                                             movies={collection}
                                             getAllTags={this.getAllTags}
-                                            display={searchDisplay}
-                                            changeSearchDisplay={
-                                                this.changeSearchDisplay
+                                            searchOptions={searchOptions}
+                                            changeSearchOptions={
+                                                this.changeSearchOptions
                                             }
                                         />
                                     )}
