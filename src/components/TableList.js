@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import SortOptions from "../components/SortOptions";
+import SortOptions from "./SortOptions";
 
 /**
  * @param {string} sortBy: 'dateAdded', 'year', 'title'
