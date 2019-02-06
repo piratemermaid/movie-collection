@@ -208,6 +208,15 @@ h5 {
 /*///////////////////////////////////////////////////////
 // INPUT STYLES
 ///////////////////////////////////////////////////////*/
+textarea.materialize-textarea {
+    height: 150px !important;
+    font-size: 14px;
+    border: 1px solid #9e9e9e;
+}
+textarea.materialize-textarea:focus {
+    border: 1px solid #64b5f6;
+}
+
 /* label color */
 .input-field label {
     color: #64b5f6;
