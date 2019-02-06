@@ -290,3 +290,7 @@ textarea#account-export.materialize-textarea:focus {
     margin-bottom: 20px;
     margin-top: -10px;
 }
+
+div.css-15k3avv {
+    z-index: 100;
+}
