@@ -36,17 +36,34 @@ const Header = props => {
     }
 
     return (
-        <nav>
-            <div className="nav-wrapper blue lighten-2">
-                <ul id="nav-mobile">
-                    {getLink("/")}
-                    {getLink("/collection")}
-                    {getLink("/wishlist")}
-                    {getLink("/imdb")}
-                    {getLink("/account")}
-                </ul>
-            </div>
-        </nav>
+        <div id="header">
+            <nav className="nav blue lighten-2">
+                <div className="nav-wrapper">
+                    <a className="brand-logo right">moviecola</a>
+                    <ul className="left hide-on-med-and-down">
+                        {getLink("/")}
+                        {getLink("/collection")}
+                        {getLink("/wishlist")}
+                        {getLink("/imdb")}
+                        {getLink("/account")}
+                    </ul>
+                    <a
+                        data-target="mobile-demo"
+                        className="sidenav-trigger hide-on-large"
+                    >
+                        <i className="material-icons">menu</i>
+                    </a>
+                </div>
+            </nav>
+
+            <ul className="sidenav hide-on-large" id="mobile-demo">
+                {getLink("/")}
+                {getLink("/collection")}
+                {getLink("/wishlist")}
+                {getLink("/imdb")}
+                {getLink("/account")}
+            </ul>
+        </div>
     );
 };
 
