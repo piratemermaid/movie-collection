@@ -16,9 +16,16 @@ const Search = props => {
         }
     }
 
+    function submitSearch() {
+        // Error check
+
+        // Reroute to SearchResult page
+        console.log(props.searchOptions);
+    }
+
     return (
         <div id="search">
-            search
+            <h2>Search</h2>
             <div className="row">
                 <div className="col s12">
                     <h6>Include tags:</h6>
@@ -47,6 +54,17 @@ const Search = props => {
             {/* year slider */}
             {/* review slider */}
             {/* only unwatched */}
+            <div className="row">
+                <div className="col s12">
+                    <br />
+                    <button
+                        className="btn blue lighten-2"
+                        onClick={() => submitSearch()}
+                    >
+                        Search
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };
