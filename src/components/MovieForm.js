@@ -244,7 +244,7 @@ class MovieForm extends Component {
                         className="btn waves-effect waves-light blue lighten-2"
                         onClick={e => this.submit(e)}
                     >
-                        Add
+                        {this.props.actionVar === "add" ? "Add" : "Update"}
                         <i className="material-icons right" />
                     </button>
                 </div>
