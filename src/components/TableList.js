@@ -177,15 +177,20 @@ class TableList extends Component {
                             {this.renderTags(movie.tags)}
                         </ul>
                     </td>
-                    <td>{movie.year}</td>
-                    <td style={{ textAlign: "center" }}>
+                    <td className="hide-on-med-and-down">{movie.year}</td>
+                    <td
+                        className="hide-on-small-only"
+                        style={{ textAlign: "center" }}
+                    >
                         {movie.watched ? "Yes" : "No"}
                     </td>
                     {this.props.type === "wishlist" ? (
                         <td>{movie.releaseDate}</td>
                     ) : null}
                     {this.props.type !== "wishlist" ? (
-                        <td>{this.getStars(movie.review)}</td>
+                        <td className="hide-on-small-only">
+                            {this.getStars(movie.review)}
+                        </td>
                     ) : null}
                 </tr>
             );
@@ -279,13 +284,15 @@ class TableList extends Component {
                         <tr>
                             <th>Title</th>
                             <th>Tags</th>
-                            <th>Year</th>
-                            <th>Watched?</th>
+                            <th className="hide-on-med-and-down">Year</th>
+                            <th className="hide-on-small-only">Watched?</th>
                             {this.props.type === "wishlist" ? (
                                 <th>Release Date</th>
                             ) : null}
                             {this.props.type !== "wishlist" ? (
-                                <th>Your Review</th>
+                                <th className="hide-on-small-only">
+                                    Your Review
+                                </th>
                             ) : null}
                         </tr>
                     </thead>
