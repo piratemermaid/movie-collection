@@ -216,12 +216,12 @@ class TableList extends Component {
 
     renderTags(tags) {
         let renderTagArr = [];
-        let tagClass = "tag-result";
 
         for (let i in tags) {
-            // if (tagsArr.includes(tags[i])) {
-            //     tagClass += " tag-match";
-            // }
+            let tagClass = "tag-result";
+            if (this.props.includeTags.includes(tags[i])) {
+                tagClass += " tag-match";
+            }
             renderTagArr.push(
                 <li className={tagClass} key={i}>
                     {tags[i]}

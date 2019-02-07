@@ -36,6 +36,7 @@ const SearchResult = props => {
                 deletable={false}
                 sortOption={props.sortOption}
                 changeSortOption={props.changeSortOption}
+                includeTags={searchOptions.includeTags}
             />
         </div>
     );
