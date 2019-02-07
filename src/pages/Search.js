@@ -6,7 +6,6 @@ import TagSelect from "../components/TagSelect";
 // TODO: error check include & exclude same tag
 const Search = props => {
     const { searchOptions } = props;
-    // console.log(searchOptions);
 
     function getTagsFromSelect(tags, type) {
         if (type === "search_option_include") {

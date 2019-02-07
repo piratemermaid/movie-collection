@@ -49,6 +49,7 @@ class AddMovie extends Component {
                     <div className="row">
                         <MovieForm
                             movieAction={this.addMovie}
+                            actionVar="add"
                             type={type}
                             getAllTags={this.props.getAllTags}
                         />
