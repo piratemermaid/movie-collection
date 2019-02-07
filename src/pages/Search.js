@@ -15,6 +15,13 @@ const Search = props => {
         }
     }
 
+    function onUnwatchedOnlyChange() {
+        props.changeSearchOptions(
+            "unwatchedOnly",
+            !props.searchOptions.unwatchedOnly
+        );
+    }
+
     function submitSearch() {
         // Error check
 
@@ -38,6 +45,7 @@ const Search = props => {
                         getTagsFromSelect={getTagsFromSelect}
                         type="search_option_include"
                         skip={searchOptions.excludeTags}
+                        tags={searchOptions.includeTags}
                     />
                 </div>
             </div>
@@ -51,12 +59,31 @@ const Search = props => {
                         getTagsFromSelect={getTagsFromSelect}
                         type="search_option_exclude"
                         skip={searchOptions.includeTags}
+                        tags={searchOptions.excludeTags}
                     />
                 </div>
             </div>
             {/* year slider */}
             {/* review slider */}
             {/* only unwatched */}
+            <br />
+            <div className="row">
+                <div className="col s12">
+                    <div
+                        className="col checkbox-wrapper"
+                        onClick={() => onUnwatchedOnlyChange()}
+                    >
+                        <input
+                            type="checkbox"
+                            checked={
+                                props.searchOptions.unwatchedOnly ? true : false
+                            }
+                            onChange={() => onUnwatchedOnlyChange()}
+                        />
+                        <span>Unwatched only</span>
+                    </div>
+                </div>
+            </div>
             <div className="row">
                 <div className="col s12">
                     <br />

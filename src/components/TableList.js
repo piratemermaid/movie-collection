@@ -219,7 +219,10 @@ class TableList extends Component {
 
         for (let i in tags) {
             let tagClass = "tag-result";
-            if (this.props.includeTags.includes(tags[i])) {
+            if (
+                this.props.includeTags &&
+                this.props.includeTags.includes(tags[i])
+            ) {
                 tagClass += " tag-match";
             }
             renderTagArr.push(
