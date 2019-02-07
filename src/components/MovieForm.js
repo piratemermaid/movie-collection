@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 import TagSelect from "./TagSelect";
 
@@ -105,6 +106,8 @@ class MovieForm extends Component {
         if (!formErrors) {
             this.props.movieAction(this.state.info, this.props.type);
         }
+
+        this.props.history.push(`/${this.props.type}`);
     }
 
     componentWillMount() {
@@ -250,4 +253,4 @@ class MovieForm extends Component {
     }
 }
 
-export default MovieForm;
+export default withRouter(MovieForm);
