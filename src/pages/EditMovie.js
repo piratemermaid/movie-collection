@@ -120,8 +120,8 @@ class EditMovie extends Component {
         }
     }
 
-    editMovie() {
-        console.log("edit");
+    editMovie(info, type) {
+        this.props.editMovie(info, this.props.match.params.title, type);
     }
 
     componentWillMount() {
