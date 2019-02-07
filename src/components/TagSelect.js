@@ -24,7 +24,6 @@ class TagSelect extends Component {
     }
 
     handleChange(e) {
-        console.log(e);
         this.setState({ selected: e });
 
         let tags = [];

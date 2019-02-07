@@ -36,8 +36,10 @@ class MovieForm extends Component {
         this.setState({ info, err });
     }
 
-    onWatchedChange(e) {
-        console.log(e);
+    onWatchedChange() {
+        let info = this.state.info;
+        info.watched = !info.watched;
+        this.setState({ info });
     }
 
     getStarClass(num) {
@@ -148,13 +150,17 @@ class MovieForm extends Component {
                     <div className="form-err">{this.state.yearErr}</div>
                 </div>
                 <div className="input-field col s4">
-                    <input
-                        id="input-movie"
-                        type="checkbox"
-                        onClick={e => this.onWatchedChange(e)}
-                        className="checkbox-blue"
-                    />
-                    <label htmlFor="input-movie">Watched?</label>
+                    <div
+                        className="col checkbox-wrapper"
+                        onClick={() => this.onWatchedChange()}
+                    >
+                        <input
+                            type="checkbox"
+                            checked={this.state.info.watched}
+                            onChange={() => this.onWatchedChange()}
+                        />
+                        <span>Watched?</span>
+                    </div>
                 </div>
                 <div className="input-field col s12">
                     <p className="form-label">Tags</p>
