@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
+import MovieForm from "../components/MovieForm";
 import { formatTodaysDate } from "../utils";
 
 class EditMovie extends Component {
@@ -9,6 +10,8 @@ class EditMovie extends Component {
         super(props);
 
         this.state = { type: "", addedErr: "" };
+
+        this.editMovie = this.editMovie.bind(this);
     }
 
     onTitleChange(e) {
@@ -117,6 +120,10 @@ class EditMovie extends Component {
         }
     }
 
+    editMovie() {
+        console.log("edit");
+    }
+
     componentWillMount() {
         const title = this.props.match.params.title;
         let obj;
@@ -135,16 +142,16 @@ class EditMovie extends Component {
             return movie.title === title;
         })[0];
 
-        if (typeof info.tags !== "string") {
-            let tagStr = "";
-            for (let i in info.tags) {
-                tagStr += info.tags[i];
-                if (i < info.tags.length - 1) {
-                    tagStr += " ";
-                }
-            }
-            info.tags = tagStr;
-        }
+        // if (typeof info.tags !== "string") {
+        //     let tagStr = "";
+        //     for (let i in info.tags) {
+        //         tagStr += info.tags[i];
+        //         if (i < info.tags.length - 1) {
+        //             tagStr += " ";
+        //         }
+        //     }
+        //     info.tags = tagStr;
+        // }
 
         if (!info.added) {
             info.added = formatTodaysDate();
@@ -175,6 +182,7 @@ class EditMovie extends Component {
     }
 
     render() {
+        const { type, title } = this.props.match.params;
         return (
             <div>
                 <Link to={`/${this.state.type}`}>
@@ -208,134 +216,14 @@ class EditMovie extends Component {
                 ) : null}
                 <h5>edit {this.state.title}</h5>
                 <div className="row">
-                    <form onSubmit={e => this.updateMovie(e)}>
-                        <div className="input-field col s12">
-                            <p className="form-label">Title</p>
-                            <input
-                                id="input-title"
-                                type="text"
-                                value={this.state.title}
-                                onChange={e => this.onTitleChange(e)}
-                            />
-                        </div>
-                        <div className="input-field col s8">
-                            <p className="form-label">Year</p>
-                            <input
-                                id="input-year"
-                                type="number"
-                                value={this.state.year}
-                                onChange={e => this.onYearChange(e)}
-                            />
-                            <div className="form-err">{this.state.yearErr}</div>
-                        </div>
-                        <div className="input-field col s4">
-                            <input
-                                id="input-movie"
-                                type="checkbox"
-                                checked={this.state.watched ? "checked" : ""}
-                                onChange={e => this.onWatchedChange(e)}
-                                className="checkbox-blue"
-                            />
-                            <label htmlFor="input-movie">Watched?</label>
-                        </div>
-                        <div className="input-field col s12">
-                            <p className="form-label">
-                                Tags, separated by spaces (e.g. nerdy comedy
-                                romantic girlsnight)
-                            </p>
-                            <input
-                                id="input-tags"
-                                type="text"
-                                value={this.state.tags}
-                                onChange={e => this.onTagsChange(e)}
-                            />
-                            <div className="form-err">{this.state.tagsErr}</div>
-                        </div>
-                        <div className="input-field col s12">
-                            <p className="form-label">
-                                Added to {this.state.type} (defaults to now)
-                            </p>
-                            <input
-                                id="input-added"
-                                type="text"
-                                value={this.state.added}
-                                onChange={e => this.onAddedChange(e)}
-                            />
-                            <div className="form-err">
-                                {this.state.addedErr}
-                            </div>
-                        </div>
-                        <div className="input-field col s12">
-                            <p className="form-label">
-                                Series if applicable (e.g. Harry Potter and the
-                                Half-Blood Prince is part of "Harry Potter")
-                            </p>
-                            <input
-                                id="input-series"
-                                type="text"
-                                value={this.state.series}
-                                onChange={e => this.onSeriesChange(e)}
-                            />
-                        </div>
-                        {this.state.type === "collection" ? (
-                            <div className="input-field col s12">
-                                <p className="form-label">Your review</p>
-                                <i
-                                    className={this.getStarClass(1)}
-                                    onClick={() => this.onReviewChange(1)}
-                                >
-                                    star
-                                </i>
-                                <i
-                                    className={this.getStarClass(2)}
-                                    onClick={() => this.onReviewChange(2)}
-                                >
-                                    star
-                                </i>
-                                <i
-                                    className={this.getStarClass(3)}
-                                    onClick={() => this.onReviewChange(3)}
-                                >
-                                    star
-                                </i>
-                                <i
-                                    className={this.getStarClass(4)}
-                                    onClick={() => this.onReviewChange(4)}
-                                >
-                                    star
-                                </i>
-                                <i
-                                    className={this.getStarClass(5)}
-                                    onClick={() => this.onReviewChange(5)}
-                                >
-                                    star
-                                </i>
-                            </div>
-                        ) : null}
-                        {this.state.type === "wishlist" ? (
-                            <div className="input-field col s12">
-                                <p className="form-label">
-                                    Release date if known, or can put "released"
-                                    if already released
-                                </p>
-                                <input
-                                    id="input-release"
-                                    type="text"
-                                    value={this.state.releaseDate}
-                                    onChange={e => this.onReleaseDateChange(e)}
-                                />
-                            </div>
-                        ) : null}
-                        <div className="input-field col s12">
-                            <button
-                                className="btn waves-effect waves-light blue lighten-2"
-                                onClick={e => this.updateMovie(e)}
-                            >
-                                Update
-                                <i className="material-icons right" />
-                            </button>
-                        </div>
-                    </form>
+                    <MovieForm
+                        movieAction={this.editMovie}
+                        actionVar="edit"
+                        type={type}
+                        title={title}
+                        getAllTags={this.props.getAllTags}
+                        movies={this.props.movies}
+                    />
                 </div>
             </div>
         );

@@ -221,11 +221,12 @@ class App extends Component {
                                     )}
                                 />
                                 <Route
-                                    path="/edit/:title"
+                                    path="/edit/:type/:title"
                                     render={() => (
                                         <EditMovie
                                             movies={this.state}
                                             addMovie={this.addMovie}
+                                            getAllTags={this.getAllTags}
                                             editMovie={this.editMovie}
                                             deleteMovie={this.deleteMovie}
                                         />

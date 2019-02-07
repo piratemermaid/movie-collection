@@ -163,7 +163,9 @@ class TableList extends Component {
                             </i>
                         ) : null}
                         {this.props.editable ? (
-                            <Link to={`/edit/${movie.title}`}>
+                            <Link
+                                to={`/edit/${this.props.type}/${movie.title}`}
+                            >
                                 <i className="material-icons tiny icon-link icon-link-blue">
                                     edit
                                 </i>
@@ -209,23 +211,19 @@ class TableList extends Component {
 
     renderTags(tags) {
         let renderTagArr = [];
-        let tagClass;
-        let tagsArr = [];
-        if (this.props.tags) {
-            tagsArr = this.props.tags.split("&");
-        }
+        let tagClass = "tag-result";
 
         for (let i in tags) {
-            tagClass = "tag-result";
-            if (tagsArr.includes(tags[i])) {
-                tagClass += " tag-match";
-            }
+            // if (tagsArr.includes(tags[i])) {
+            //     tagClass += " tag-match";
+            // }
             renderTagArr.push(
                 <li className={tagClass} key={i}>
                     {tags[i]}
                 </li>
             );
         }
+
         return renderTagArr;
     }
 

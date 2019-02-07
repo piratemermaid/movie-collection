@@ -35,6 +35,10 @@ class MovieForm extends Component {
         this.setState({ info, err });
     }
 
+    onWatchedChange(e) {
+        console.log(e);
+    }
+
     getStarClass(num) {
         let starClass = "material-icons small icon-link review-star";
         if (this.state.review && this.state.review >= num) {
@@ -103,6 +107,19 @@ class MovieForm extends Component {
         }
     }
 
+    componentWillMount() {
+        // If we're editing an existing movie,
+        // fill form with info
+        const { movies, type, title } = this.props;
+        if (this.props.actionVar === "edit") {
+            const movieInfo = movies[type].filter(movie => {
+                return movie.title === title;
+            })[0];
+            this.setState({ info: movieInfo });
+            console.log(movieInfo);
+        }
+    }
+
     render() {
         const { type } = this.props;
         const { info, err } = this.state;
@@ -132,7 +149,7 @@ class MovieForm extends Component {
                     <input
                         id="input-movie"
                         type="checkbox"
-                        onClick={e => this.onInputChange(e, "watched")}
+                        onClick={e => this.onWatchedChange(e)}
                         className="checkbox-blue"
                     />
                     <label htmlFor="input-movie">Watched?</label>
