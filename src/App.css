@@ -301,12 +301,15 @@ textarea#account-export.materialize-textarea:focus {
     margin-bottom: 0;
 }
 /* change checkbox color */
-.checkbox-blue[type="checkbox"]:checked + label:before {
-    border: 2px solid transparent;
-    border-bottom: 2px solid #64b5f6;
-    border-right: 2px solid #64b5f6;
-    background: transparent;
+.checkbox-container {
+    min-height: 20px;
 }
+
+[type="checkbox"]:checked + span:not(.lever):before {
+    border-right: 2px solid #64b5f6;
+    border-bottom: 2px solid #64b5f6;
+}
+
 .form-err {
     color: #ff8a65;
     margin-bottom: 20px;
