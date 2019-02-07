@@ -119,7 +119,6 @@ class MovieForm extends Component {
                 return movie.title === title;
             })[0];
             this.setState({ info: movieInfo });
-            console.log(movieInfo);
         }
     }
 
@@ -163,6 +162,7 @@ class MovieForm extends Component {
                         getAllTags={this.props.getAllTags}
                         getTagsFromSelect={this.getTagsFromSelect}
                         creatable={true}
+                        tags={this.state.info.tags}
                     />
                 </div>
                 <div className="input-field col s12">

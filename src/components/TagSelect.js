@@ -24,11 +24,29 @@ class TagSelect extends Component {
     }
 
     handleChange(e) {
+        console.log(e);
+        this.setState({ selected: e });
+
         let tags = [];
         for (let i in e) {
             tags.push(e[i].value);
         }
         this.props.getTagsFromSelect(tags, this.props.type);
+    }
+
+    componentWillMount() {
+        // Start out with tags selected if need be
+        if (this.props.tags) {
+            let selected = [];
+            const tags = this.props.tags;
+            for (let i in tags) {
+                selected.push({
+                    value: tags[i],
+                    label: tags[i]
+                });
+            }
+            this.setState({ selected });
+        }
     }
 
     render() {
@@ -38,6 +56,7 @@ class TagSelect extends Component {
                     options={this.getOptions()}
                     isSearchable={true}
                     isMulti={true}
+                    value={this.state.selected}
                     onChange={e => this.handleChange(e)}
                 />
             );
@@ -47,6 +66,7 @@ class TagSelect extends Component {
                     options={this.getOptions()}
                     isSearchable={true}
                     isMulti={true}
+                    value={this.state.selected}
                     onChange={e => this.handleChange(e)}
                 />
             );
