@@ -20,6 +20,9 @@ const Collection = props => {
 
     return (
         <div>
+            <div className="col s12">
+                <h2>Collection</h2>
+            </div>
             <Link to="/add/collection">
                 <i className="material-icons small icon-link float-right">
                     add_circle

@@ -52,7 +52,9 @@ class IMDB extends Component {
     render() {
         return (
             <div>
-                <h5>IMDB Search</h5>
+                <div className="col s12">
+                    <h2>IMDB Search</h2>
+                </div>
                 <br />
                 <form onSubmit={e => this.getData(e)}>
                     <div className="input-field col s12">
