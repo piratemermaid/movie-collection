@@ -25,7 +25,11 @@ const Search = props => {
 
     return (
         <div id="search">
-            <h2>Search</h2>
+            <div className="row">
+                <div className="col s12">
+                    <h2>Search</h2>
+                </div>
+            </div>
             <div className="row">
                 <div className="col s12">
                     <h6>Include tags:</h6>

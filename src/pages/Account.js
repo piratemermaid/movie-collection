@@ -41,6 +41,11 @@ class Account extends Component {
         return (
             <div>
                 <div className="row">
+                    <div className="col s12">
+                        <h2>My Account</h2>
+                    </div>
+                </div>
+                <div className="row">
                     <div className="input-field col m6 s12">
                         <p className="form-label">
                             <b>EXPORT DATA</b>

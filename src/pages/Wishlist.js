@@ -19,6 +19,9 @@ const Wishlist = props => {
 
     return (
         <div>
+            <div className="col s12">
+                <h2>Wishlist</h2>
+            </div>
             <Link to="/add/wishlist">
                 <i className="material-icons small icon-link float-right">
                     add_circle
