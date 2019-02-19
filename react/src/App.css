@@ -17,6 +17,12 @@ h2 {
     text-transform: lowercase;
 }
 
+h3 {
+    text-transform: lowercase;
+    color: #64b5f6;
+    font-size: 18px;
+}
+
 h5 {
     text-transform: lowercase;
 }

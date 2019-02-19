@@ -25,8 +25,7 @@ class App extends Component {
                 excludeTags: [],
                 yearMin: null,
                 yearMax: null,
-                reviewMin: null,
-                reviewMax: null,
+                reviewFilter: [],
                 unwatchedOnly: false,
                 watchedOnly: false
             },
