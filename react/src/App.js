@@ -27,7 +27,8 @@ class App extends Component {
                 yearMax: null,
                 reviewMin: null,
                 reviewMax: null,
-                onlyUnwatched: false
+                unwatchedOnly: false,
+                watchedOnly: false
             },
             sortOption: { method: "dateAdded", ascending: true }
         };

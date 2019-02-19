@@ -16,9 +16,26 @@ const Search = props => {
     }
 
     function onUnwatchedOnlyChange() {
+        // If becoming true, make sure watchedOnly is false
+        if (!props.searchOptions.unwatchedOnly) {
+            props.changeSearchOptions("watchedOnly", false);
+        }
+        // Toggle unwatchedOnly option
         props.changeSearchOptions(
             "unwatchedOnly",
             !props.searchOptions.unwatchedOnly
+        );
+    }
+
+    function onWatchedOnlyChange() {
+        // If becoming true, make sure watchedOnly is false
+        if (!props.searchOptions.watchedOnly) {
+            props.changeSearchOptions("unwatchedOnly", false);
+        }
+        // Toggle unwatchedOnly option
+        props.changeSearchOptions(
+            "watchedOnly",
+            !props.searchOptions.watchedOnly
         );
     }
 
@@ -65,7 +82,6 @@ const Search = props => {
             </div>
             {/* year slider */}
             {/* review slider */}
-            {/* only unwatched */}
             <br />
             <div className="row">
                 <div className="col s12">
@@ -81,6 +97,23 @@ const Search = props => {
                             onChange={() => onUnwatchedOnlyChange()}
                         />
                         <span>Unwatched only</span>
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col s12">
+                    <div
+                        className="col checkbox-wrapper"
+                        onClick={() => onWatchedOnlyChange()}
+                    >
+                        <input
+                            type="checkbox"
+                            checked={
+                                props.searchOptions.watchedOnly ? true : false
+                            }
+                            onChange={() => onWatchedOnlyChange()}
+                        />
+                        <span>Watched only</span>
                     </div>
                 </div>
             </div>
