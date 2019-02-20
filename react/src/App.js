@@ -144,6 +144,10 @@ class App extends Component {
         let searchOptions = this.state.searchOptions;
         searchOptions[key] = value;
         this.setState({ searchOptions });
+        localStorage.setItem(
+            "movieState_searchOptions",
+            JSON.stringify(searchOptions)
+        );
     }
 
     changeSortOption(sortOption) {
@@ -168,6 +172,14 @@ class App extends Component {
             localStorage.getItem("movieState_collection_4")
         );
         this.updateState(coll_1, coll_2, coll_3, coll_4);
+
+        const searchOptions = JSON.parse(
+            localStorage.getItem("movieState_searchOptions")
+        );
+
+        if (searchOptions) {
+            this.setState({ searchOptions });
+        }
     }
 
     render() {
