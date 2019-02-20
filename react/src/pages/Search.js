@@ -205,10 +205,7 @@ const Search = props => {
                     />
                     <a
                         onClick={() =>
-                            props.changeSearchOptions("reviewFilter", [
-                                null,
-                                null
-                            ])
+                            props.changeSearchOptions("reviewFilter", [1, 5])
                         }
                         className="reset-filter"
                     >
