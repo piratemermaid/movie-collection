@@ -4,7 +4,12 @@ import TableList from "../components/TableList";
 
 const SearchResult = props => {
     const { collection, searchOptions } = props;
-    const { includeTags, excludeTags, unwatchedOnly } = searchOptions;
+    const {
+        includeTags,
+        excludeTags,
+        unwatchedOnly,
+        reviewFilter
+    } = searchOptions;
 
     function getMatches() {
         let matches = [];
@@ -16,6 +21,7 @@ const SearchResult = props => {
             let matchesIncludeTags = false;
             let matchesExcludeTags = false;
             let matchesUnwatchedOnly = false;
+            let matchesReviewFilter = false;
 
             // If there's no includeTags option, it matches.
             // If there is, and it has matching tag(s), it matches.
@@ -51,10 +57,25 @@ const SearchResult = props => {
                 }
             }
 
+            const { review } = movieInfo;
+            if (!review) {
+                // TODO: maybe add checkbox for including
+                // unreviewed movies?
+                // For now just don't include them
+                matchesReviewFilter = true;
+            } else {
+                if (review >= reviewFilter[0] && review <= reviewFilter[1]) {
+                    matchesReviewFilter = true;
+                } else {
+                    matchesReviewFilter = false;
+                }
+            }
+
             if (
                 matchesIncludeTags &&
                 matchesExcludeTags &&
-                matchesUnwatchedOnly
+                matchesUnwatchedOnly &&
+                matchesReviewFilter
             ) {
                 matches.push(movieInfo);
             }
