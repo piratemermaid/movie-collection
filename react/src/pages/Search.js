@@ -189,7 +189,6 @@ const Search = props => {
                     <input
                         type="number"
                         className="review-search-input"
-                        placeholder="--"
                         value={reviewFilter[0]}
                         min="1"
                         max={getInputMinMax("max")}
@@ -199,7 +198,6 @@ const Search = props => {
                     <input
                         type="number"
                         className="review-search-input"
-                        placeholder="--"
                         value={reviewFilter[1]}
                         min={getInputMinMax("min")}
                         max="5"
