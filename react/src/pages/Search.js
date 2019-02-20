@@ -40,84 +40,69 @@ const Search = props => {
         );
     }
 
-    function onStarClick(i) {
-        if (reviewFilter.length === 0) {
-            props.changeSearchOptions("reviewFilter", [i]);
-        } else if (reviewFilter.length === 1) {
-            // If there's only one review filter, add another value
-            // which makes a min & max
-            const current = reviewFilter[0];
-            if (i === current) {
-                // If clicked review is already there, remove filter
-                props.changeSearchOptions("reviewFilter", []);
-            } else if (i < current) {
-                // If clicked review is less than what's there, add it as the min
-                props.changeSearchOptions("reviewFilter", [i, current]);
-            } else {
-                // If clicked review is greater than what's there, add it as the max
-                props.changeSearchOptions("reviewFilter", [current, i]);
-            }
-        } else {
-            const currentMin = reviewFilter[0];
-            const currentMax = reviewFilter[1];
-            if (i === currentMin) {
-                // If clicked review equals the minimum, remove the minimum
-                props.changeSearchOptions("reviewFilter", [currentMax]);
-            } else if (i === currentMax) {
-                // If clicked review equals the maximum, remove the maximum
-                props.changeSearchOptions("reviewFilter", [currentMin]);
-            } else if (i < currentMin) {
-                // If clicked review is less than the minimum,
-                // make it the new minimum
-                props.changeSearchOptions("reviewFilter", [i, currentMax]);
-            } else if (i > currentMax) {
-                // If clicked review is greater than the maximum,
-                // make it the new maximum
-                props.changeSearchOptions("reviewFilter", [currentMin, i]);
-            } else if (i > currentMin && i < currentMax) {
-                // If clicked review is between the min and max,
-                // set it to the closest one or to the new min,
-                // assuming users want to see higher rated movies
-                const diffMin = i - currentMin;
-                const diffMax = currentMax - i;
-                if (diffMin > diffMax) {
-                    props.changeSearchOptions("reviewFilter", [currentMin, i]);
-                } else {
-                    props.changeSearchOptions("reviewFilter", [i, currentMax]);
-                }
-            }
-        }
-    }
-
     function getStarClass(i) {
-        let starClass = "material-icons small icon-link review-star";
+        let starClass = "material-icons small icon-link review-star no-hover";
         // If this number is in the reviewFilter,
         // or between 2 reviewFilter numbers, add active class
         if (reviewFilter.includes(i)) {
             starClass += " review-star-active";
         } else if (reviewFilter.length > 1) {
-            if (i > reviewFilter[0] && i < reviewFilter[1]) {
+            if (i >= reviewFilter[0] && i <= reviewFilter[1]) {
                 starClass += " review-star-active";
             }
         }
         return starClass;
     }
 
+    function getInputMinMax(type) {
+        if (type === "min") {
+            // Get the minimum value for the max input.
+            // 1 if there's no set min,
+            // otherwise it will be the min + 1.
+            if (!reviewFilter[0]) {
+                return 1;
+            } else {
+                return reviewFilter[0] + 1;
+            }
+        } else {
+            // Get the maximum value for the min input.
+            // 5 if there's no set max,
+            // otherwise it will be the max - 1.
+            if (!reviewFilter[1]) {
+                return 5;
+            } else {
+                return reviewFilter[1] - 1;
+            }
+        }
+    }
+
     function renderReviewFilter() {
         let starArr = [];
         for (let i = 1; i <= 5; i++) {
             starArr.push(
-                <i
-                    className={getStarClass(i)}
-                    onClick={() => onStarClick(i)}
-                    key={i}
-                >
+                <i className={getStarClass(i)} key={i}>
                     star
                 </i>
             );
         }
 
         return starArr;
+    }
+
+    function onReviewFilterChange(e, type) {
+        const review = parseInt(e.target.value, 10);
+
+        if (type === "min") {
+            props.changeSearchOptions("reviewFilter", [
+                review,
+                reviewFilter[1]
+            ]);
+        } else {
+            props.changeSearchOptions("reviewFilter", [
+                reviewFilter[0],
+                review
+            ]);
+        }
     }
 
     function submitSearch() {
@@ -199,6 +184,38 @@ const Search = props => {
                 <div className="col l4 s12">
                     <h3>filter by your reviews</h3>
                     {renderReviewFilter()}
+                    <br />
+                    Min:{" "}
+                    <input
+                        type="number"
+                        className="review-search-input"
+                        placeholder="--"
+                        value={reviewFilter[0]}
+                        min="1"
+                        max={getInputMinMax("max")}
+                        onChange={e => onReviewFilterChange(e, "min")}
+                    />
+                    Max:{" "}
+                    <input
+                        type="number"
+                        className="review-search-input"
+                        placeholder="--"
+                        value={reviewFilter[1]}
+                        min={getInputMinMax("min")}
+                        max="5"
+                        onChange={e => onReviewFilterChange(e, "max")}
+                    />
+                    <a
+                        onClick={() =>
+                            props.changeSearchOptions("reviewFilter", [
+                                null,
+                                null
+                            ])
+                        }
+                        className="reset-filter"
+                    >
+                        Reset
+                    </a>
                 </div>
             </div>
             <div className="row">

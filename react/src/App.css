@@ -101,6 +101,28 @@ h5 {
     padding: 8px;
 }
 
+.review-star.no-hover:hover {
+    color: #e3f2fd;
+    cursor: default;
+}
+
+input.review-search-input {
+    width: 50px !important;
+    text-align: center;
+}
+
+.reset-filter {
+    text-transform: lowercase;
+    font-weight: bold;
+    margin-left: 4px;
+    font-size: 12px;
+}
+
+.reset-filter:hover {
+    cursor: pointer;
+    color: #90caf9;
+}
+
 /*///////////////////////////////////////////////////////
 // RESULT STYLES
 ///////////////////////////////////////////////////////*/
