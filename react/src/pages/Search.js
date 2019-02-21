@@ -143,7 +143,7 @@ const Search = props => {
                     />
                 </div>
             </div>
-            {/* use only? */}
+            {/* TODO: add use only */}
             <div className="row">
                 <div className="col s12">
                     <h6>Exclude tags:</h6>
@@ -157,8 +157,6 @@ const Search = props => {
                     />
                 </div>
             </div>
-            {/* year slider */}
-            {/* review slider */}
             <br />
             <div className="row">
                 <div className="col l4 s12">
@@ -190,8 +188,6 @@ const Search = props => {
                         <span>Watched only</span>
                     </div>
                 </div>
-            </div>
-            <div className="row">
                 <div className="col l4 s12">
                     <h3>filter by your reviews</h3>
                     {renderReviewFilter()}
@@ -250,8 +246,6 @@ const Search = props => {
                         <span>Include unreviewed movies</span>
                     </div>
                 </div>
-            </div>
-            <div className="row">
                 <div className="col l4 s12">
                     <h3>filter by year</h3>
                     Min:{" "}
