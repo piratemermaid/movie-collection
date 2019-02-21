@@ -9,7 +9,9 @@ const SearchResult = props => {
         excludeTags,
         unwatchedOnly,
         reviewFilter,
-        includeUnreviewed
+        includeUnreviewed,
+        yearFilter,
+        includeNoYear
     } = searchOptions;
 
     function getMatches() {
@@ -23,6 +25,7 @@ const SearchResult = props => {
             let matchesExcludeTags = false;
             let matchesUnwatchedOnly = false;
             let matchesReviewFilter = false;
+            let matchesYearFilter = false;
 
             // If there's no includeTags option, it matches.
             // If there is, and it has matching tag(s), it matches.
@@ -58,11 +61,11 @@ const SearchResult = props => {
                 }
             }
 
+            // Check if movie review is within the specified range.
+            // If there's no review, check if user wants non-reviewed
+            // movies to come up.
             const { review } = movieInfo;
             if (!review) {
-                // TODO: maybe add checkbox for including
-                // unreviewed movies?
-                // For now just don't include them
                 if (includeUnreviewed) {
                     matchesReviewFilter = true;
                 } else {
@@ -76,11 +79,32 @@ const SearchResult = props => {
                 }
             }
 
+            // Check if movie year is within the specified range.
+            // If there's no year entered, check if user
+            // wants it to come up.
+            const { year } = movieInfo;
+            if (!year || year === "?") {
+                if (includeNoYear) {
+                    matchesYearFilter = true;
+                } else {
+                    matchesYearFilter = false;
+                }
+            } else {
+                if (year >= yearFilter[0] && year <= yearFilter[1]) {
+                    matchesYearFilter = true;
+                } else {
+                    matchesYearFilter = false;
+                }
+            }
+
+            // Make sure this movie entirely matches the user's search
+            // and add it to the matches if so.
             if (
                 matchesIncludeTags &&
                 matchesExcludeTags &&
                 matchesUnwatchedOnly &&
-                matchesReviewFilter
+                matchesReviewFilter &&
+                matchesYearFilter
             ) {
                 matches.push(movieInfo);
             }

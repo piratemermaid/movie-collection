@@ -254,7 +254,6 @@ const Search = props => {
             <div className="row">
                 <div className="col l4 s12">
                     <h3>filter by year</h3>
-                    <br />
                     Min:{" "}
                     <input
                         type="number"
@@ -290,22 +289,20 @@ const Search = props => {
                         className="col checkbox-wrapper"
                         onClick={() =>
                             props.changeSearchOptions(
-                                "includeUnreviewed",
-                                !props.searchOptions.includeUnreviewed
+                                "includeNoYear",
+                                !props.searchOptions.includeNoYear
                             )
                         }
                     >
                         <input
                             type="checkbox"
                             checked={
-                                props.searchOptions.includeUnreviewed
-                                    ? true
-                                    : false
+                                props.searchOptions.includeNoYear ? true : false
                             }
                             onChange={() =>
                                 props.changeSearchOptions(
-                                    "includeUnreviewed",
-                                    !props.searchOptions.includeUnreviewed
+                                    "includeNoYear",
+                                    !props.searchOptions.includeNoYear
                                 )
                             }
                         />
