@@ -23,12 +23,11 @@ class App extends Component {
             searchOptions: {
                 includeTags: [],
                 excludeTags: [],
-                yearMin: null,
-                yearMax: null,
+                unwatchedOnly: false,
+                watchedOnly: false,
                 reviewFilter: [1, 5],
                 includeUnreviewed: true,
-                unwatchedOnly: false,
-                watchedOnly: false
+                yearFilter: [null, null]
             },
             sortOption: { method: "dateAdded", ascending: true }
         };
@@ -41,6 +40,7 @@ class App extends Component {
         this.deleteAll = this.deleteAll.bind(this);
         this.getAllTags = this.getAllTags.bind(this);
         this.changeSearchOptions = this.changeSearchOptions.bind(this);
+        this.getYearRange = this.getYearRange.bind(this);
         this.changeSortOption = this.changeSortOption.bind(this);
     }
 
@@ -82,10 +82,17 @@ class App extends Component {
     updateState(coll_1, coll_2, coll_3, coll_4) {
         const coll = _.union(coll_1, coll_2, coll_3, coll_4);
 
+        let { searchOptions } = this.state;
+        searchOptions.yearFilter = [
+            this.getYearRange(coll).min,
+            this.getYearRange(coll).max
+        ];
+
         this.setState({
             collection: coll || [],
             wishlist:
-                JSON.parse(localStorage.getItem("movieState_wishlist")) || []
+                JSON.parse(localStorage.getItem("movieState_wishlist")) || [],
+            searchOptions
         });
     }
 
@@ -151,6 +158,36 @@ class App extends Component {
         );
     }
 
+    getYearRange(coll) {
+        if (!coll) {
+            coll = this.state.collection;
+        }
+        let minYear = null;
+        let maxYear = null;
+
+        for (let i in coll) {
+            const year = parseInt(coll[i].year, 10);
+            if (year !== "?") {
+                if (!minYear) {
+                    minYear = year;
+                }
+                if (!maxYear) {
+                    maxYear = year;
+                }
+
+                if (year < minYear) {
+                    minYear = year;
+                }
+
+                if (year > maxYear) {
+                    maxYear = year;
+                }
+            }
+        }
+
+        return { min: minYear, max: maxYear };
+    }
+
     changeSortOption(sortOption) {
         this.setState({ sortOption });
     }
@@ -206,6 +243,7 @@ class App extends Component {
                                             changeSearchOptions={
                                                 this.changeSearchOptions
                                             }
+                                            getYearRange={this.getYearRange}
                                         />
                                     )}
                                 />
