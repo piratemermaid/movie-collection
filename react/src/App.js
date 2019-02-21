@@ -27,7 +27,8 @@ class App extends Component {
                 watchedOnly: false,
                 reviewFilter: [1, 5],
                 includeUnreviewed: true,
-                yearFilter: [null, null]
+                yearFilter: [null, null],
+                includeNoYear: true
             },
             sortOption: { method: "dateAdded", ascending: true }
         };
@@ -87,6 +88,8 @@ class App extends Component {
             wishlist:
                 JSON.parse(localStorage.getItem("movieState_wishlist")) || []
         });
+
+        this.updateYearRange(coll);
     }
 
     addMovie(movie, type) {
