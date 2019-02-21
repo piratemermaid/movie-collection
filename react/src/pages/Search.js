@@ -106,7 +106,8 @@ const Search = props => {
     }
 
     function submitSearch() {
-        // Error check
+        // TODO: Error checks
+        // e.g. make sure min & max reviews are valid
 
         // Reroute to SearchResult page
         props.history.push("/search_result");
