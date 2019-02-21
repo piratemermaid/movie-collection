@@ -8,7 +8,8 @@ const SearchResult = props => {
         includeTags,
         excludeTags,
         unwatchedOnly,
-        reviewFilter
+        reviewFilter,
+        includeUnreviewed
     } = searchOptions;
 
     function getMatches() {
@@ -62,7 +63,11 @@ const SearchResult = props => {
                 // TODO: maybe add checkbox for including
                 // unreviewed movies?
                 // For now just don't include them
-                matchesReviewFilter = true;
+                if (includeUnreviewed) {
+                    matchesReviewFilter = true;
+                } else {
+                    matchesReviewFilter = false;
+                }
             } else {
                 if (review >= reviewFilter[0] && review <= reviewFilter[1]) {
                     matchesReviewFilter = true;

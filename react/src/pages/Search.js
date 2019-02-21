@@ -211,6 +211,33 @@ const Search = props => {
                     >
                         Reset
                     </a>
+                    <br />
+                    <br />
+                    <div
+                        className="col checkbox-wrapper"
+                        onClick={() =>
+                            props.changeSearchOptions(
+                                "includeUnreviewed",
+                                !props.searchOptions.includeUnreviewed
+                            )
+                        }
+                    >
+                        <input
+                            type="checkbox"
+                            checked={
+                                props.searchOptions.includeUnreviewed
+                                    ? true
+                                    : false
+                            }
+                            onChange={() =>
+                                props.changeSearchOptions(
+                                    "includeUnreviewed",
+                                    !props.searchOptions.includeUnreviewed
+                                )
+                            }
+                        />
+                        <span>Include unreviewed movies</span>
+                    </div>
                 </div>
             </div>
             <div className="row">
