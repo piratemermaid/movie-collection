@@ -6,7 +6,7 @@ import TagSelect from "../components/TagSelect";
 // TODO: error check include & exclude same tag
 const Search = props => {
     const { searchOptions } = props;
-    const { reviewFilter } = searchOptions;
+    const { reviewFilter, yearFilter } = searchOptions;
 
     function getTagsFromSelect(tags, type) {
         if (type === "search_option_include") {
@@ -54,7 +54,7 @@ const Search = props => {
         return starClass;
     }
 
-    function getInputMinMax(type) {
+    function getReviewMinMax(type) {
         if (type === "min") {
             // Get the minimum value for the max input.
             // 1 if there's no set min,
@@ -102,6 +102,16 @@ const Search = props => {
                 reviewFilter[0],
                 review
             ]);
+        }
+    }
+
+    function onYearFilterChange(e, type) {
+        const year = parseInt(e.target.value, 10);
+
+        if (type === "min") {
+            props.changeSearchOptions("yearFilter", [year, yearFilter[1]]);
+        } else {
+            props.changeSearchOptions("yearFilter", [yearFilter[0], year]);
         }
     }
 
@@ -192,7 +202,7 @@ const Search = props => {
                         className="review-search-input"
                         value={reviewFilter[0]}
                         min="1"
-                        max={getInputMinMax("max")}
+                        max={getReviewMinMax("max")}
                         onChange={e => onReviewFilterChange(e, "min")}
                     />
                     Max:{" "}
@@ -200,7 +210,7 @@ const Search = props => {
                         type="number"
                         className="review-search-input"
                         value={reviewFilter[1]}
-                        min={getInputMinMax("min")}
+                        min={getReviewMinMax("min")}
                         max="5"
                         onChange={e => onReviewFilterChange(e, "max")}
                     />
@@ -238,6 +248,68 @@ const Search = props => {
                             }
                         />
                         <span>Include unreviewed movies</span>
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col l4 s12">
+                    <h3>filter by year</h3>
+                    <br />
+                    Min:{" "}
+                    <input
+                        type="number"
+                        className="review-search-input"
+                        value={yearFilter[0]}
+                        min={props.getYearRange().min}
+                        max={props.getYearRange().max - 1}
+                        onChange={e => onYearFilterChange(e, "min")}
+                    />
+                    Max:{" "}
+                    <input
+                        type="number"
+                        className="review-search-input"
+                        value={yearFilter[1]}
+                        min={props.getYearRange().min + 1}
+                        max={props.getYearRange().max}
+                        onChange={e => onYearFilterChange(e, "max")}
+                    />
+                    <a
+                        onClick={() =>
+                            props.changeSearchOptions("yearFilter", [
+                                props.getYearRange().min,
+                                props.getYearRange().max
+                            ])
+                        }
+                        className="reset-filter"
+                    >
+                        Reset
+                    </a>
+                    <br />
+                    <br />
+                    <div
+                        className="col checkbox-wrapper"
+                        onClick={() =>
+                            props.changeSearchOptions(
+                                "includeUnreviewed",
+                                !props.searchOptions.includeUnreviewed
+                            )
+                        }
+                    >
+                        <input
+                            type="checkbox"
+                            checked={
+                                props.searchOptions.includeUnreviewed
+                                    ? true
+                                    : false
+                            }
+                            onChange={() =>
+                                props.changeSearchOptions(
+                                    "includeUnreviewed",
+                                    !props.searchOptions.includeUnreviewed
+                                )
+                            }
+                        />
+                        <span>Include movies with no year entered</span>
                     </div>
                 </div>
             </div>

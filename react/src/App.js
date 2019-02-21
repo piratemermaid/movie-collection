@@ -82,24 +82,20 @@ class App extends Component {
     updateState(coll_1, coll_2, coll_3, coll_4) {
         const coll = _.union(coll_1, coll_2, coll_3, coll_4);
 
-        let { searchOptions } = this.state;
-        searchOptions.yearFilter = [
-            this.getYearRange(coll).min,
-            this.getYearRange(coll).max
-        ];
-
         this.setState({
             collection: coll || [],
             wishlist:
-                JSON.parse(localStorage.getItem("movieState_wishlist")) || [],
-            searchOptions
+                JSON.parse(localStorage.getItem("movieState_wishlist")) || []
         });
     }
 
     addMovie(movie, type) {
         let current = this.state[type];
         current.push(movie);
+
         this.setState({ [type]: current });
+
+        this.updateYearRange(current);
     }
 
     editMovie(info, oldTitle, type) {
@@ -115,18 +111,25 @@ class App extends Component {
         }
 
         this.setState({ [type]: newMovies });
+
+        this.updateYearRange(newMovies);
     }
 
     deleteMovie(title, type) {
         let newMovies = [];
 
-        for (let i in this.state[type]) {
-            if (this.state[type][i].title !== title) {
-                newMovies.push(this.state[type][i]);
-            }
-        }
-
         this.setState({ [type]: newMovies });
+
+        this.updateYearRange(newMovies);
+    }
+
+    updateYearRange(coll) {
+        let { searchOptions } = this.state;
+        searchOptions.yearFilter = [
+            this.getYearRange(coll).min,
+            this.getYearRange(coll).max
+        ];
+        this.setState({ searchOptions });
     }
 
     deleteAll(type) {
