@@ -1,5 +1,2 @@
-.firebase/
-.firebaserc
-firebase.json
-
 server/node_modules
+server/secrets.js
