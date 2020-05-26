@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router";
 import TagSelect from "../components/TagSelect";
 import NoMovies from "../components/NoMovies";
+import PageHeading from "../components/PageHeading";
 
 // TODO: error check include & exclude same tag
 const Search = (props) => {
@@ -125,15 +126,11 @@ const Search = (props) => {
 
     return (
         <div id="search">
-            <div className="row">
-                <div className="col s12">
-                    <h2>Search</h2>
-                </div>
-            </div>
+            <PageHeading heading="Search" />
             {props.movies.length > 0 ? (
                 <div>
                     <div className="row">
-                        <div className="col s12">
+                        <div className="col s12 no-padding-left  no-padding-right">
                             <h6>Include tags:</h6>
                             <TagSelect
                                 creatable={false}
@@ -147,7 +144,7 @@ const Search = (props) => {
                     </div>
                     {/* TODO: add use only */}
                     <div className="row">
-                        <div className="col s12">
+                        <div className="col s12  no-padding-left  no-padding-right">
                             <h6>Exclude tags:</h6>
                             <TagSelect
                                 creatable={false}

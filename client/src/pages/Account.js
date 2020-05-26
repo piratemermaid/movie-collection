@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { fillMyMovies } from "../myMovies";
+import PageHeading from "../components/PageHeading";
 
 function copyExportData(e) {
     var copyData = document.getElementById("account-export");
@@ -40,13 +41,9 @@ class Account extends Component {
     render() {
         return (
             <div>
+                <PageHeading heading="My Account" />
                 <div className="row">
-                    <div className="col s12">
-                        <h2>My Account</h2>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="input-field col m6 s12">
+                    <div className="input-field col m6 s12 no-padding-left">
                         <p className="form-label">
                             <b>EXPORT DATA</b>
                             <br />
@@ -55,7 +52,7 @@ class Account extends Component {
                         <button
                             className="btn blue lighten-2"
                             style={{ margin: "22px 0" }}
-                            onClick={e => copyExportData(e)}
+                            onClick={(e) => copyExportData(e)}
                         >
                             Copy to Clipboard
                         </button>
@@ -63,10 +60,10 @@ class Account extends Component {
                             id="account-export"
                             className="materialize-textarea"
                             value={this.state.exportData}
-                            onChange={e => this.onExportDataChange(e)}
+                            onChange={(e) => this.onExportDataChange(e)}
                         />
                     </div>
-                    <div className="input-field col m6 s12">
+                    <div className="input-field col m6 s12 no-padding-right">
                         <p className="form-label">
                             <b>IMPORT DATA</b>
                             <br />
@@ -75,7 +72,7 @@ class Account extends Component {
                         <button
                             className="btn blue lighten-2"
                             style={{ margin: "22px 0" }}
-                            onClick={e => this.importData(e)}
+                            onClick={(e) => this.importData(e)}
                         >
                             Import Data
                         </button>
@@ -83,7 +80,7 @@ class Account extends Component {
                             id="account-import"
                             className="materialize-textarea"
                             value={this.state.importData}
-                            onChange={e => this.onImportDataChange(e)}
+                            onChange={(e) => this.onImportDataChange(e)}
                         />
                     </div>
                 </div>

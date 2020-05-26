@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { OMDB_API } from "../utils";
 
+import PageHeading from "../components/PageHeading";
 // options: displays all matching movies
 import IMDBOptions from "../components/IMDBOptions";
 // results: shows only the movie the user selected
@@ -30,16 +31,16 @@ class IMDB extends Component {
         e.preventDefault();
         axios
             .get(`${OMDB_API}type="movie"&s=${this.state.search}`)
-            .then(res => {
+            .then((res) => {
                 this.setState({ data: res.data.Search, display: "options" });
             })
-            .catch(function(err) {
+            .catch(function (err) {
                 console.log(err);
             });
     }
 
     chooseMovie(title) {
-        const chosenData = this.state.data.filter(movie => {
+        const chosenData = this.state.data.filter((movie) => {
             return movie.Title === title;
         });
         this.setState({ chosenData, display: "result" });
@@ -52,17 +53,15 @@ class IMDB extends Component {
     render() {
         return (
             <div>
-                <div className="col s12">
-                    <h2>IMDB Search</h2>
-                </div>
+                <PageHeading heading="IMDB Search" />
                 <br />
-                <form onSubmit={e => this.getData(e)}>
+                <form onSubmit={(e) => this.getData(e)}>
                     <div className="input-field col s12">
                         <p className="form-label">Title</p>
                         <input
                             type="text"
                             value={this.state.search}
-                            onChange={e => this.onSearchChange(e)}
+                            onChange={(e) => this.onSearchChange(e)}
                         />
                     </div>
                 </form>

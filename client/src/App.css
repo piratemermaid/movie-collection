@@ -44,6 +44,14 @@ h5 {
     cursor: pointer;
 }
 
+.col.no-padding-left {
+    padding-left: 0;
+}
+
+.col.no-padding-right {
+    padding-right: 0;
+}
+
 /*///////////////////////////////////////////////////////
 // HEADER STYLES
 ///////////////////////////////////////////////////////*/

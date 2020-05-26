@@ -1,15 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import TableList from "../components/TableList";
+import PageHeading from "../components/PageHeading";
 
-const Wishlist = props => {
+const Wishlist = (props) => {
     const wishlist = props.wishlist;
     for (let i in wishlist) {
         if (typeof wishlist[i].tags === "string") {
             let tags;
             if (wishlist[i].tags.length > 0) {
                 tags = wishlist[i].tags.split(" ");
-                tags = tags.filter(val => val); // get rid of empty values
+                tags = tags.filter((val) => val); // get rid of empty values
             } else {
                 tags = [];
             }
@@ -19,9 +20,7 @@ const Wishlist = props => {
 
     return (
         <div>
-            <div className="col s12">
-                <h2>Wishlist</h2>
-            </div>
+            <PageHeading heading="Wishlist" />
             <Link to="/add/wishlist">
                 <i className="material-icons small icon-link float-right">
                     add_circle
