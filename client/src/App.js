@@ -250,6 +250,9 @@ class App extends Component {
                                                 this.changeSearchOptions
                                             }
                                             getYearRange={this.getYearRange}
+                                            updateLocalStorage={
+                                                this.updateLocalStorage
+                                            }
                                         />
                                     )}
                                 />
@@ -298,6 +301,9 @@ class App extends Component {
                                             sortOption={sortOption}
                                             changeSortOption={
                                                 this.changeSortOption
+                                            }
+                                            updateLocalStorage={
+                                                this.updateLocalStorage
                                             }
                                         />
                                     )}

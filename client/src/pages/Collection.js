@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import TableList from "../components/TableList";
+import NoMovies from "../components/NoMovies";
 
-const Collection = props => {
+const Collection = (props) => {
     // fix for tags becoming strings for no reason??? wtf
     // let myProps = props.movies;
     // for (let i in props.movies) {
@@ -23,27 +24,33 @@ const Collection = props => {
             <div className="col s12">
                 <h2>Collection</h2>
             </div>
-            <Link to="/add/collection">
-                <i className="material-icons small icon-link float-right">
-                    add_circle
-                </i>
-            </Link>
-            <TableList
-                movies={props.movies}
-                type="collection"
-                editable={true}
-                deletable={false}
-                sortOption={props.sortOption}
-                changeSortOption={props.changeSortOption}
-            />
-            <div className="dev-options">
-                <a
-                    className="dev-option"
-                    onClick={() => props.deleteAll("collection")}
-                >
-                    Delete collection
-                </a>
-            </div>
+            {props.movies.length > 1 ? (
+                <div>
+                    <Link to="/add/collection">
+                        <i className="material-icons small icon-link float-right">
+                            add_circle
+                        </i>
+                    </Link>
+                    <TableList
+                        movies={props.movies}
+                        type="collection"
+                        editable={true}
+                        deletable={false}
+                        sortOption={props.sortOption}
+                        changeSortOption={props.changeSortOption}
+                    />
+                    <div className="dev-options">
+                        <a
+                            className="dev-option"
+                            onClick={() => props.deleteAll("collection")}
+                        >
+                            Delete collection
+                        </a>
+                    </div>
+                </div>
+            ) : (
+                <NoMovies updateLocalStorage={props.updateLocalStorage} />
+            )}
         </div>
     );
 };

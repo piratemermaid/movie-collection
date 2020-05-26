@@ -1,10 +1,10 @@
 import React from "react";
 import { withRouter } from "react-router";
-
 import TagSelect from "../components/TagSelect";
+import NoMovies from "../components/NoMovies";
 
 // TODO: error check include & exclude same tag
-const Search = props => {
+const Search = (props) => {
     const { searchOptions } = props;
     const { reviewFilter, yearFilter } = searchOptions;
 
@@ -130,191 +130,207 @@ const Search = props => {
                     <h2>Search</h2>
                 </div>
             </div>
-            <div className="row">
-                <div className="col s12">
-                    <h6>Include tags:</h6>
-                    <TagSelect
-                        creatable={false}
-                        getAllTags={props.getAllTags}
-                        getTagsFromSelect={getTagsFromSelect}
-                        type="search_option_include"
-                        skip={searchOptions.excludeTags}
-                        tags={searchOptions.includeTags}
-                    />
-                </div>
-            </div>
-            {/* TODO: add use only */}
-            <div className="row">
-                <div className="col s12">
-                    <h6>Exclude tags:</h6>
-                    <TagSelect
-                        creatable={false}
-                        getAllTags={props.getAllTags}
-                        getTagsFromSelect={getTagsFromSelect}
-                        type="search_option_exclude"
-                        skip={searchOptions.includeTags}
-                        tags={searchOptions.excludeTags}
-                    />
-                </div>
-            </div>
-            <br />
-            <div className="row">
-                <div className="col l4 s12">
-                    <h3>watched/unwatched only</h3>
-                    <div
-                        className="col checkbox-wrapper"
-                        onClick={() => onUnwatchedOnlyChange()}
-                    >
-                        <input
-                            type="checkbox"
-                            checked={
-                                props.searchOptions.unwatchedOnly ? true : false
-                            }
-                            onChange={() => onUnwatchedOnlyChange()}
-                        />
-                        <span>Unwatched only</span>
+            {props.movies.length > 0 ? (
+                <div>
+                    <div className="row">
+                        <div className="col s12">
+                            <h6>Include tags:</h6>
+                            <TagSelect
+                                creatable={false}
+                                getAllTags={props.getAllTags}
+                                getTagsFromSelect={getTagsFromSelect}
+                                type="search_option_include"
+                                skip={searchOptions.excludeTags}
+                                tags={searchOptions.includeTags}
+                            />
+                        </div>
                     </div>
-                    <div
-                        className="col checkbox-wrapper"
-                        onClick={() => onWatchedOnlyChange()}
-                    >
-                        <input
-                            type="checkbox"
-                            checked={
-                                props.searchOptions.watchedOnly ? true : false
-                            }
-                            onChange={() => onWatchedOnlyChange()}
-                        />
-                        <span>Watched only</span>
+                    {/* TODO: add use only */}
+                    <div className="row">
+                        <div className="col s12">
+                            <h6>Exclude tags:</h6>
+                            <TagSelect
+                                creatable={false}
+                                getAllTags={props.getAllTags}
+                                getTagsFromSelect={getTagsFromSelect}
+                                type="search_option_exclude"
+                                skip={searchOptions.includeTags}
+                                tags={searchOptions.excludeTags}
+                            />
+                        </div>
+                    </div>
+                    <br />
+                    <div className="row">
+                        <div className="col l4 s12">
+                            <h3>watched/unwatched only</h3>
+                            <div
+                                className="col checkbox-wrapper"
+                                onClick={() => onUnwatchedOnlyChange()}
+                            >
+                                <input
+                                    type="checkbox"
+                                    checked={
+                                        props.searchOptions.unwatchedOnly
+                                            ? true
+                                            : false
+                                    }
+                                    onChange={() => onUnwatchedOnlyChange()}
+                                />
+                                <span>Unwatched only</span>
+                            </div>
+                            <div
+                                className="col checkbox-wrapper"
+                                onClick={() => onWatchedOnlyChange()}
+                            >
+                                <input
+                                    type="checkbox"
+                                    checked={
+                                        props.searchOptions.watchedOnly
+                                            ? true
+                                            : false
+                                    }
+                                    onChange={() => onWatchedOnlyChange()}
+                                />
+                                <span>Watched only</span>
+                            </div>
+                        </div>
+                        <div className="col l4 s12">
+                            <h3>filter by your reviews</h3>
+                            {renderReviewFilter()}
+                            <br />
+                            Min:{" "}
+                            <input
+                                type="number"
+                                className="review-search-input"
+                                value={reviewFilter[0]}
+                                min="1"
+                                max={getReviewMinMax("max")}
+                                onChange={(e) => onReviewFilterChange(e, "min")}
+                            />
+                            Max:{" "}
+                            <input
+                                type="number"
+                                className="review-search-input"
+                                value={reviewFilter[1]}
+                                min={getReviewMinMax("min")}
+                                max="5"
+                                onChange={(e) => onReviewFilterChange(e, "max")}
+                            />
+                            <a
+                                onClick={() =>
+                                    props.changeSearchOptions("reviewFilter", [
+                                        1,
+                                        5
+                                    ])
+                                }
+                                className="reset-filter"
+                            >
+                                Reset
+                            </a>
+                            <br />
+                            <br />
+                            <div
+                                className="col checkbox-wrapper"
+                                onClick={() =>
+                                    props.changeSearchOptions(
+                                        "includeUnreviewed",
+                                        !props.searchOptions.includeUnreviewed
+                                    )
+                                }
+                            >
+                                <input
+                                    type="checkbox"
+                                    checked={
+                                        props.searchOptions.includeUnreviewed
+                                            ? true
+                                            : false
+                                    }
+                                    onChange={() =>
+                                        props.changeSearchOptions(
+                                            "includeUnreviewed",
+                                            !props.searchOptions
+                                                .includeUnreviewed
+                                        )
+                                    }
+                                />
+                                <span>Include unreviewed movies</span>
+                            </div>
+                        </div>
+                        <div className="col l4 s12">
+                            <h3>filter by year</h3>
+                            Min:{" "}
+                            <input
+                                type="number"
+                                className="review-search-input"
+                                value={yearFilter[0]}
+                                min={props.getYearRange().min}
+                                max={props.getYearRange().max - 1}
+                                onChange={(e) => onYearFilterChange(e, "min")}
+                            />
+                            Max:{" "}
+                            <input
+                                type="number"
+                                className="review-search-input"
+                                value={yearFilter[1]}
+                                min={props.getYearRange().min + 1}
+                                max={props.getYearRange().max}
+                                onChange={(e) => onYearFilterChange(e, "max")}
+                            />
+                            <a
+                                onClick={() =>
+                                    props.changeSearchOptions("yearFilter", [
+                                        props.getYearRange().min,
+                                        props.getYearRange().max
+                                    ])
+                                }
+                                className="reset-filter"
+                            >
+                                Reset
+                            </a>
+                            <br />
+                            <br />
+                            <div
+                                className="col checkbox-wrapper"
+                                onClick={() =>
+                                    props.changeSearchOptions(
+                                        "includeNoYear",
+                                        !props.searchOptions.includeNoYear
+                                    )
+                                }
+                            >
+                                <input
+                                    type="checkbox"
+                                    checked={
+                                        props.searchOptions.includeNoYear
+                                            ? true
+                                            : false
+                                    }
+                                    onChange={() =>
+                                        props.changeSearchOptions(
+                                            "includeNoYear",
+                                            !props.searchOptions.includeNoYear
+                                        )
+                                    }
+                                />
+                                <span>Include movies with no year entered</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col s12">
+                            <br />
+                            <button
+                                className="btn blue lighten-2"
+                                onClick={() => submitSearch()}
+                            >
+                                Search
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div className="col l4 s12">
-                    <h3>filter by your reviews</h3>
-                    {renderReviewFilter()}
-                    <br />
-                    Min:{" "}
-                    <input
-                        type="number"
-                        className="review-search-input"
-                        value={reviewFilter[0]}
-                        min="1"
-                        max={getReviewMinMax("max")}
-                        onChange={e => onReviewFilterChange(e, "min")}
-                    />
-                    Max:{" "}
-                    <input
-                        type="number"
-                        className="review-search-input"
-                        value={reviewFilter[1]}
-                        min={getReviewMinMax("min")}
-                        max="5"
-                        onChange={e => onReviewFilterChange(e, "max")}
-                    />
-                    <a
-                        onClick={() =>
-                            props.changeSearchOptions("reviewFilter", [1, 5])
-                        }
-                        className="reset-filter"
-                    >
-                        Reset
-                    </a>
-                    <br />
-                    <br />
-                    <div
-                        className="col checkbox-wrapper"
-                        onClick={() =>
-                            props.changeSearchOptions(
-                                "includeUnreviewed",
-                                !props.searchOptions.includeUnreviewed
-                            )
-                        }
-                    >
-                        <input
-                            type="checkbox"
-                            checked={
-                                props.searchOptions.includeUnreviewed
-                                    ? true
-                                    : false
-                            }
-                            onChange={() =>
-                                props.changeSearchOptions(
-                                    "includeUnreviewed",
-                                    !props.searchOptions.includeUnreviewed
-                                )
-                            }
-                        />
-                        <span>Include unreviewed movies</span>
-                    </div>
-                </div>
-                <div className="col l4 s12">
-                    <h3>filter by year</h3>
-                    Min:{" "}
-                    <input
-                        type="number"
-                        className="review-search-input"
-                        value={yearFilter[0]}
-                        min={props.getYearRange().min}
-                        max={props.getYearRange().max - 1}
-                        onChange={e => onYearFilterChange(e, "min")}
-                    />
-                    Max:{" "}
-                    <input
-                        type="number"
-                        className="review-search-input"
-                        value={yearFilter[1]}
-                        min={props.getYearRange().min + 1}
-                        max={props.getYearRange().max}
-                        onChange={e => onYearFilterChange(e, "max")}
-                    />
-                    <a
-                        onClick={() =>
-                            props.changeSearchOptions("yearFilter", [
-                                props.getYearRange().min,
-                                props.getYearRange().max
-                            ])
-                        }
-                        className="reset-filter"
-                    >
-                        Reset
-                    </a>
-                    <br />
-                    <br />
-                    <div
-                        className="col checkbox-wrapper"
-                        onClick={() =>
-                            props.changeSearchOptions(
-                                "includeNoYear",
-                                !props.searchOptions.includeNoYear
-                            )
-                        }
-                    >
-                        <input
-                            type="checkbox"
-                            checked={
-                                props.searchOptions.includeNoYear ? true : false
-                            }
-                            onChange={() =>
-                                props.changeSearchOptions(
-                                    "includeNoYear",
-                                    !props.searchOptions.includeNoYear
-                                )
-                            }
-                        />
-                        <span>Include movies with no year entered</span>
-                    </div>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col s12">
-                    <br />
-                    <button
-                        className="btn blue lighten-2"
-                        onClick={() => submitSearch()}
-                    >
-                        Search
-                    </button>
-                </div>
-            </div>
+            ) : (
+                <NoMovies updateLocalStorage={props.updateLocalStorage} />
+            )}
         </div>
     );
 };
